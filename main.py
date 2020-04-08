@@ -1,11 +1,11 @@
 # import f01, f02, f03, f04... dll
-import F01, F04, F06
+import F01
 
 # Memuat file-filenya (F01 - Load file)
-file = F01.main()
+koleksi_file = F01.main()
 
-wahana = file.data[1]
-print(wahana)
+user = koleksi_file.files[0] # Data dari user.csv
+print(user.contents) # Mengoutput isi dari variabel user
 
 # Login oleh user (F04 - Login user)
 
