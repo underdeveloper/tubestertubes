@@ -1,6 +1,11 @@
 # import f01, f02, f03, f04... dll
+import F01, F04, F06
 
 # Memuat file-filenya (F01 - Load file)
+file = F01.main()
+
+wahana = file.data[1]
+print(wahana)
 
 # Login oleh user (F04 - Login user)
 
@@ -14,5 +19,14 @@
 
     Looping akan di break ketika exit_flag == True (dilakukan oleh F16 - Exit)
 '''
+# exit_flag = False
+# while (not exit_flag):
+#     command = input("> ")
+#     if command == "cari":
+#         F06.pencarian_wahana(wahana)
+#         exit_flag = True
+#     else:
+#         print("Salah command!")
+    
 
 # Setelah looping selesai, program selesai
