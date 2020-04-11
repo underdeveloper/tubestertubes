@@ -67,8 +67,8 @@ def store(filename):
     except ValueError:
         print("ERROR: Invalid filename.")
 
-def findidx(array, colname):
-    # function findidx (colname : string) -> integer
+def find_idx(array, colname):
+    # function find_idx (colname : string) -> integer
     # Mencari nomor indeks suatu kolom bernama colname pada array array
     # KAMUS LOKAL
     # i : integer
@@ -77,9 +77,9 @@ def findidx(array, colname):
         if (str(array[0][i]) == str(colname)):
             return int(i)
 
-def finddata(array, colname, keyword):
-    #function finddata (array : array of array of string, colname : string, keyword : string) -> array of string
-    # Mencari data yang tersimpan dalam array
+def find_baris(array, colname, keyword):
+    # function find_baris (array : array of array of string, colname : string, keyword : string) -> array of string
+    # Mencari baris yang tersimpan dalam array
     # KAMUS LOKAL
     # i, colidx : integer
     # datafound : array of string
@@ -98,3 +98,49 @@ def finddata(array, colname, keyword):
     else:
         datafound = []
         return datafound
+
+def find_kolom(array, colname, keyword):
+    # function find_baris (array : array of array of string, colname : string, keyword : string) -> array of string
+    # Mencari kolom yang tersimpan dalam array
+    # KAMUS LOKAL
+    # i, colidx : integer
+    # kolom : array of string
+    # ALGORITMA
+    for i in range (len(array[0])):
+        if (array[0][i] == colname):
+            colidx = int(i)
+    kolom = ["*" for i in range (len(array))]
+    for i in range (len(array)):
+        kolom[i] = array[i][colidx]
+    return kolom
+
+def find_cell(array, keyword):
+    # function find_cell (array : array of string, keyword : string) -> string
+    # Mencari cell tertentu yang tersimpan dalam array 1 dimensi
+    # KAMUS LOKAL
+    # i : integer
+    # isFound : boolean
+    # cellfound = string
+    # ALGORITMA
+    i = 0
+    isFound = False
+    while ((i < len(array)) and (isFound == False)):
+        if (array[i] == keyword):
+            cellfound = array[i]
+            isFound = True
+        i = i + 1
+    if (isFound == True):
+        return cellfound
+    else: # isFound == False
+        return ""
+
+def search(array, result_column, from_column, from_data):
+    # function search(array : array of array of string, result_column : string, from_column : string, from_data : string) -> string
+    # SYARAT: result_column, from_column, from_data valid
+    # KAMUS LOKAL
+    # data : array of string
+    # idx : integer
+    # ALGORITMA
+    data = find_baris(array, from_column, from_data)
+    idx = find_idx(array, result_column)
+    return data[idx]

@@ -33,7 +33,7 @@ def main(userfile):
         for i in range (user.datacount):
             if (user.datadesc[i] == "username pemain"):
                 user.data[i] = (str(input("Masukkan " + user.datadesc[i] + ": "))).lower()
-                if (load.finddata(userfile, "Username", user.data[i]) == []):
+                if (load.find_baris(userfile, "Username", user.data[i]) == []):
                     isUsernameOK = True
             elif (user.datadesc[i] == "tanggal lahir pemain (DD/MM/YYYY)"):
                 user.data[i] = str(input("Masukkan " + user.datadesc[i] + ": "))

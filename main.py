@@ -21,18 +21,18 @@ load.main()
 # Login sebagai admin:
 # Username: wangkypro
 # Password: coklatenaknol
-user = login.main(load.use("user.csv"))
+whoami = login.main(load.use("user.csv"))
 
 # Dideklarasi exit_flag (boolean) yang menandakan apabila user sudah mau keluar dari program
 # Awalnya exit_flag = False
-if (user != []):
+if (whoami != []):
     exit_flag = False
 
 # Looping
 
 # Loop pemain
-while ((exit_flag == False) and (load.finddata(user, "Role", "Pemain") != [])):
-    print("Anda ter-logged in sebagai " + user[1][load.findidx(user, "Username")])
+while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Pemain") != [])):
+    print("Anda ter-logged in sebagai " + whoami[1][load.find_idx(whoami, "Username")])
     print("Anda adalah seorang Pemain.")
     print("Apa yang mau anda lakukan?")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
@@ -48,8 +48,8 @@ while ((exit_flag == False) and (load.finddata(user, "Role", "Pemain") != [])):
         print("")
 
 # Loop admin
-while ((exit_flag == False) and (load.finddata(user, "Role", "Admin") != [])):
-    print("Anda ter-logged in sebagai " + user[1][load.findidx(user, "Username")])
+while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Admin") != [])):
+    print("Anda ter-logged in sebagai " + whoami[1][load.find_idx(whoami, "Username")])
     print("Anda adalah seorang Admin.")
     print("Apa yang mau anda lakukan?")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")

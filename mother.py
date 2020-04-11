@@ -18,8 +18,14 @@ load.main()
 #save.main(load.file.data)
 
 # Login oleh user (F04 - Login user)
-user = login.main(load.use("user.csv"))
-print(user)
+# whoami = login.main(load.use("user.csv"))
+# print(whoami)
+
+user = load.use("user.csv")
+
+
+x = load.search(user, "Username", "Nama", "Willy Wangky")
+print("Username hasil search adalah: " + x)
 
 # Dideklarasi exit_flag (boolean) yang menandakan apabila user sudah mau keluar dari program
 # Awalnya exit_flag = False
