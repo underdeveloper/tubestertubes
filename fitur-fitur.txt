@@ -1,4 +1,0 @@
-Di dalam file ini adalah fitur-fitur yang harus dibuat di tubes kita
-
-format: nama fitur | sudah dilakukan belum?
-contoh: login | belum mulai / lagi dikerjain / sudah, tapi perlu disetel supaya lebih bagus / kayaknya udah deh :)
