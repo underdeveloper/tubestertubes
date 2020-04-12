@@ -2,11 +2,15 @@
 # Me-load ke-7 file .csv ke sistem
 
 # KAMUS
-class file:
-    count = 7
-    description = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
-    name = ["*" for i in range (count)]
-    data = ["*" for i in range (count)]
+class FileCSV:
+    def __init__(self, count=7):
+        self.count = count
+        self.description = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
+        self.name = ["*" for i in range (self.count)]
+        self.data = ["*" for i in range (self.count)]
+
+file = FileCSV()
+
 # Di atas ini adalah "file", suatu tipe bentukan
 # Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam file.data
 # file.data inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
@@ -37,61 +41,64 @@ def main():
     print("")
     print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
 
+    for string in file.name:
+        print(string)
+
 def use(filename):
     # function use (filename : string) -> string
     # Memberikan copy file yang diminta dari versi yang ada di file.name
+
+    # >>> Asumsi filename sudah benar. <<<
+
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
-    try:
-        for i in range (len(file.name)):
-            if (str(filename) == file.name[i]):
-                return file.data[i]
-            else:
-                raise ValueError
-    except ValueError:
-        print("ERROR: Invalid filename.")
+    for i in range(0,file.count+1):
+        if (str(file.name[i]) == filename):
+            return file.data[i]
+        elif i == file.count:
+            return None # Kalau gaada, dia return None. INI BELUM DIUJI AKAN MERUSAK APA
 
 def store(filename):
-    # function store (filename : string) -> string
+    # procedure store (input filename : string, output file.data : FileCSV)
     # Meng-update salah satu elemen file.name yang sesuai dengan nama file yang di-input
+
+    # >>> Asumsi filename sudah benar. <<<
+
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
-    try:
-        for i in range (len(file.name)):
-            if(str(filename) == file.name[i]):
-                file.name[i] = filename
-            else:
-                raise ValueError
-    except ValueError:
-        print("ERROR: Invalid filename.")
+    for i in range(0, file.count+1):
+        if (str(file.name[i]) == filename):
+            file.name[i] = filename
+        elif i == file.count:
+            print("ERROR : Filename salah.")
 
-def find_idx(array, colname):
+def find_idx(table, colname):
     # function find_idx (colname : string) -> integer
     # Mencari nomor indeks suatu kolom bernama colname pada array array
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
-    for i in range (len(array[0])):
-        if (str(array[0][i]) == str(colname)):
+    for i in range (len(table[0])):
+        if (str(table[0][i]) == str(colname)):
             return int(i)
 
-def find_baris(array, colname, keyword):
+def find_baris(table, colname, keyword):
     # function find_baris (array : array of array of string, colname : string, keyword : string) -> array of string
-    # Mencari baris yang tersimpan dalam array
+    # Mencari baris yang tersimpan dalam table
     # KAMUS LOKAL
     # i, colidx : integer
     # datafound : array of string
     # isFound : boolean
     # ALGORITMA
-    for i in range (len(array[0])):
-        if (array[0][i] == colname):
+    for i in range (len(table[0])):
+        if (table[0][i] == colname):
             colidx = int(i)
     isFound = False
-    for i in range (len(array)):
-        if (array[i][colidx] == keyword):
-            datafound = array[i]
+    for i in range (len(table)):
+        if (table[i][colidx] == keyword):
+            datafound = table[i]
             isFound = True
     if (isFound == True):
         return datafound
@@ -99,23 +106,23 @@ def find_baris(array, colname, keyword):
         datafound = []
         return datafound
 
-def find_kolom(array, colname, keyword):
-    # function find_kolom (array : array of array of string, colname : string, keyword : string) -> array of string
-    # Mencari kolom yang tersimpan dalam array
+def find_kolom(table, colname, keyword):
+    # function find_kolom (table : array of array of string, colname : string, keyword : string) -> array of string
+    # Mencari kolom yang tersimpan dalam table
     # KAMUS LOKAL
     # i, colidx : integer
     # kolom : array of string
     # isFound : boolean
     # ALGORITMA
     isFound = False
-    for i in range (len(array[0])):
-        if (array[0][i] == colname):
+    for i in range (len(table[0])):
+        if (table[0][i] == colname):
             colidx = int(i)
             isFound = True
     if (isFound == True):
-        kolom = ["*" for i in range (len(array))]
-        for i in range (len(array)):
-            kolom[i] = array[i][colidx]
+        kolom = ["*" for i in range (len(table))]
+        for i in range (len(table)):
+            kolom[i] = table[i][colidx]
         return kolom
     else: # isFound == False
         return []
@@ -140,13 +147,13 @@ def find_cell(array, keyword):
     else: # isFound == False
         return ""
 
-def search(array, result_column, from_column, from_data):
-    # function search(array : array of array of string, result_column : string, from_column : string, from_data : string) -> string
+def search(table, result_column, from_column, from_data):
+    # function search(table : array of array of string, result_column : string, from_column : string, from_data : string) -> string
     # SYARAT: result_column, from_column, from_data valid
     # KAMUS LOKAL
     # data : array of string
     # idx : integer
     # ALGORITMA
-    data = find_baris(array, from_column, from_data)
-    idx = find_idx(array, result_column)
+    data = find_baris(table, from_column, from_data)
+    idx = find_idx(table, result_column)
     return data[idx]

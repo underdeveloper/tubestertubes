@@ -6,6 +6,7 @@ import F01 as load
 import F02 as save
 import F03 as signup
 import F04 as login
+import F06 as cari_wahana
 import F16 as exit
 
 # Memuat file-filenya (F01 - Load file)
@@ -36,12 +37,15 @@ while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Pemain") != []
     print("Anda adalah seorang Pemain.")
     print("Apa yang mau anda lakukan?")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
+    print("[6] Mencari wahana sesuai pembatasan user.")
     print("[16] Log-out.")
-    x = str(input("Masukkan nomor aksi yang ingin anda lakukan: "))
-    if (str(x) == "2"):
+    x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
+    if (x == "2"):
         save.main(load.file.data)
         print("")
-    elif (str(x) == "16"):
+    elif (x == "6"):
+        cari_wahana.main('wahana.csv')
+    elif (x == "16"):
         exit_flag = True
     else:
         print("ERROR: Unknown command.")
@@ -55,14 +59,14 @@ while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Admin") != [])
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
     print("[3] Mendaftarkan pemain baru.")
     print("[16] Log-out.")
-    x = str(input("Masukkan nomor aksi yang ingin anda lakukan: "))
-    if (str(x) == "2"):
+    x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
+    if (x == "2"):
         save.main(load.file.data)
         print("")
-    elif (str(x) == "3"):
+    elif (x == "3"):
         signup.main(load.use("user.csv"))
         print("")
-    elif (str(x) == "16"):
+    elif (x == "16"):
         exit_flag = True
     else:
         print("ERROR: Unknown command.")
