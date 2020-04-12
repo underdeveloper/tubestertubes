@@ -74,27 +74,28 @@ def main (userfile):
                 return True
                 
     print ("Hasil pencarian: ")
-    if umur == 1:
-        if tinggi == 1:
-            idxumur1 = aux.find_idx(userfile, "Batasan_Umur")
-            idxtinggi1 = aux.find_idx(userfile, "Batasan_Tinggi")
-            print ([ut11.loc["ID_Wahana"]], " | ", [ut11.loc["Nama_Wahana"]], " | ", [ut11.loc["Harga_Tiket"]])
-        elif tinggi == 2:
-            ut12 = df.loc[df["Batasan_Umur"]<17] & [df["Batasan Tinggi"]== "Tanpa Batasan"]
-            print([ut12.loc["ID_Wahana"]], " | ", [ut12.loc["Nama_Wahana"]], " | ", [ut12.loc["Harga_Tiket"]])
-    elif umur == 2:
-        if tinggi == 1:
-            ut21 = df.loc[df["Batasan_Umur"]>=17] & [df["Batasan_Tinggi"]>170]
-            print([ut21.loc["ID_Wahana"]], " | ", [ut21.loc["Nama_Wahana"]], " | ", [ut21.loc["Harga_Tiket"]])
-        elif tinggi == 2:
-            ut22 = df.loc[df["Batasan_Umur"]>=17] & [df["Batasan_Tinggi"] == "Tanpa Batasan"]
-            print([ut22.loc["ID_Wahana"]], " | ", [ut22.loc["Nama_Wahana"]], " | ", [ut22.loc["Harga_Tiket"]])
-    elif umur == 3:
-        ut31 = df.loc[df["Batasan_Umur"] == "Semua Umur"] & [df["Batasan_Tinggi"] > 170]
-        if tinggi == 1:
-            print ([ut31.loc["ID_Wahana"]], " | ", [ut31.loc["Nama_Wahana"]], " | ", [ut31.loc["Harga_Tiket"]])
-        elif tinggi == 2:
-            ut32 =df.loc[df["Batasan_Umur"] == "Semua Umur"] & [df["Batasan_Tinggi"] == "Tanpa Batasan"]
-            print([ut32.loc["ID_Wahana"]], " | ", [ut32.loc["Nama_Wahana"]], " | ", [ut32.loc["Harga_Tiket"]])
+   
+    # if umur == 1:
+    #     if tinggi == 1:
+            # idxumur1 = aux.find_idx(userfile, "Batasan_Umur")
+            # idxtinggi1 = aux.find_idx(userfile, "Batasan_Tinggi")
+    #         print ([ut11.loc["ID_Wahana"]], " | ", [ut11.loc["Nama_Wahana"]], " | ", [ut11.loc["Harga_Tiket"]])
+    #     elif tinggi == 2:
+    #         ut12 = df.loc[df["Batasan_Umur"]<17] & [df["Batasan Tinggi"]== "Tanpa Batasan"]
+    #         print([ut12.loc["ID_Wahana"]], " | ", [ut12.loc["Nama_Wahana"]], " | ", [ut12.loc["Harga_Tiket"]])
+    # elif umur == 2:
+    #     if tinggi == 1:
+    #         ut21 = df.loc[df["Batasan_Umur"]>=17] & [df["Batasan_Tinggi"]>170]
+    #         print([ut21.loc["ID_Wahana"]], " | ", [ut21.loc["Nama_Wahana"]], " | ", [ut21.loc["Harga_Tiket"]])
+    #     elif tinggi == 2:
+    #         ut22 = df.loc[df["Batasan_Umur"]>=17] & [df["Batasan_Tinggi"] == "Tanpa Batasan"]
+    #         print([ut22.loc["ID_Wahana"]], " | ", [ut22.loc["Nama_Wahana"]], " | ", [ut22.loc["Harga_Tiket"]])
+    # elif umur == 3:
+    #     ut31 = df.loc[df["Batasan_Umur"] == "Semua Umur"] & [df["Batasan_Tinggi"] > 170]
+    #     if tinggi == 1:
+    #         print ([ut31.loc["ID_Wahana"]], " | ", [ut31.loc["Nama_Wahana"]], " | ", [ut31.loc["Harga_Tiket"]])
+    #     elif tinggi == 2:
+    #         ut32 =df.loc[df["Batasan_Umur"] == "Semua Umur"] & [df["Batasan_Tinggi"] == "Tanpa Batasan"]
+    #         print([ut32.loc["ID_Wahana"]], " | ", [ut32.loc["Nama_Wahana"]], " | ", [ut32.loc["Harga_Tiket"]])
 
 # ON PROGRESS
