@@ -32,7 +32,7 @@ if (whoami != []):
 # Looping
 
 # Loop pemain
-while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Pemain") != [])):
+while ((exit_flag == False) and (load.find_baris_first(whoami, "Role", "Pemain") != [])):
     print("Anda ter-logged in sebagai " + whoami[1][load.find_idx(whoami, "Username")])
     print("Anda adalah seorang Pemain.")
     print("Apa yang mau anda lakukan?")
@@ -52,7 +52,7 @@ while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Pemain") != []
         print("")
 
 # Loop admin
-while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Admin") != [])):
+while ((exit_flag == False) and (load.find_baris_first(whoami, "Role", "Admin") != [])):
     print("Anda ter-logged in sebagai " + whoami[1][load.find_idx(whoami, "Username")])
     print("Anda adalah seorang Admin.")
     print("Apa yang mau anda lakukan?")
