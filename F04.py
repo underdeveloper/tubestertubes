@@ -5,7 +5,7 @@
 
 # ALGORITMA PROGRAM UTAMA
 
-import auxilliary as aux
+import auxilliary as flib
 
 # REALISASI FUNGSI/PROSEDUR
 def main(userfile):
@@ -21,13 +21,13 @@ def main(userfile):
     while (isUser == False):
         username = str(input("Masukkan username: ")) # Feral
         password = str(input("Masukkan password: ")) # fer4l
-        finduser = aux.find_baris_first(userfile.data, "Username", username)
+        finduser = flib.find_baris_first(userfile.data, "Username", username)
         if (finduser != []):
-            findpassword = aux.validate_cell(finduser, password)
+            findpassword = flib.validate_cell(finduser, password)
             if (findpassword == True):
                 isUser = True
                 print("")
-                print("Selamat bersenang-senang, " + finduser[aux.find_idx(userfile.data, "Nama")] + "!")
+                print("Selamat bersenang-senang, " + finduser[flib.find_idx(userfile.data, "Nama")] + "!")
                 print("")
         if (isUser == False):
             print("Username/Password salah")
@@ -37,7 +37,7 @@ def main(userfile):
 def getuserdata(user, dataname):
     # function getuserdata (dataname : string) -> string
     # Mengambil data dari user yang telah login
-    return user[1][aux.find_idx(user, str(dataname))]
+    return user[1][flib.find_idx(user, str(dataname))]
     # APLIKASI
     # (pada modul lain)
     # import F04 as login

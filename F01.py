@@ -3,7 +3,7 @@
 
 import os
 import csv
-import auxilliary as aux
+import auxilliary as flib
 
 # KAMUS
 class Rekaman:
@@ -18,7 +18,7 @@ class Rekaman:
         self.rows = rows
         self.data = [["*" for i in range(columns)] for j in range(rows)]
 filedescription = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
-filecount = aux.length(filedescription)
+filecount = flib.length(filedescription)
 files = [Rekaman() for i in range (filecount)]
 # Di atas ini adalah "Rekaman", suatu tipe bentukan, dan 3 variable : tuple [0..7], filecount : integer, files = array [0..filecount] of Rekaman()
 # Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam files
@@ -41,8 +41,8 @@ def main():
         # Load <nama file>.csv ke file.data
         with open(os.path.dirname(__file__) + "\\" + str(files[i].name), mode = 'r') as f:
             reader = list(csv.reader(f))
-            files[i].rows = aux.length(reader)
-            files[i].columns = aux.length(reader[0])
+            files[i].rows = flib.length(reader)
+            files[i].columns = flib.length(reader[0])
             files[i].data = reader
     print("")
     print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
@@ -73,8 +73,8 @@ def store(filename, table_baru):
     # ALGORITMA
     for i in range(0, filecount+1):
         if (files[i].name == filename):
-            files[i].rows = aux.length(table_baru)
-            files[i].columns = aux.length(table_baru[0])
+            files[i].rows = flib.length(table_baru)
+            files[i].columns = flib.length(table_baru[0])
             files[i].data = table_baru
         elif i == filecount:
             print("ERROR : Filename salah.")

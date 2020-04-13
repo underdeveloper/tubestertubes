@@ -11,7 +11,7 @@ class user:
 
 import os
 import F01 as load
-import auxilliary as aux
+import auxilliary as flib
 
 # REALISASI FUNGSI/PROSEDUR
 
@@ -34,11 +34,11 @@ def main(userfile):
         for i in range (user.datacount):
             if (user.datadesc[i] == "username pemain"):
                 user.data[i] = (str(input("Masukkan " + user.datadesc[i] + ": "))).lower()
-                if (aux.find_baris_first(userfile.data, "Username", user.data[i]) == []):
+                if (flib.find_baris_first(userfile.data, "Username", user.data[i]) == []):
                     isUsernameOK = True
             elif (user.datadesc[i] == "tanggal lahir pemain (DD/MM/YYYY)"):
                 user.data[i] = str(input("Masukkan " + user.datadesc[i] + ": "))
-                isBirthdayOK = aux.validate_date(user.data[i])
+                isBirthdayOK = flib.validate_date(user.data[i])
             elif (user.datadesc[i] == "tinggi badan pemain (cm)"):
                 user.data[i] = str(input("Masukkan " + user.datadesc[i] + ": "))
                 try:
@@ -58,7 +58,7 @@ def main(userfile):
             print("Tanggal lahir Anda tidak valid. Silakan ulangi lagi.")
         if (isHeightOK == False):
             print("Tinggi badan Anda tidak valid. Silakan ulangi lagi.")
-    useradded = aux.konsDot(userfile.data, user.data)
+    useradded = flib.konsDot(userfile.data, user.data)
     userfile.rows = userfile.rows + 1
     userfile.data = useradded
     print("")

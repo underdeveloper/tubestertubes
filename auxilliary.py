@@ -46,11 +46,11 @@ def validate_date(date):
         return False
     # APLIKASI
     # (pada modul lain)
-    # import auxilliary as aux
-    # isValid = aux.validate_date(1/1/2000)
+    # import auxilliary as flib
+    # isValid = flib.validate_date(1/1/2000)
     # print(isValid)
     # >> True
-    # isValid = aux.validate_date(1-1-2000)
+    # isValid = flib.validate_date(1-1-2000)
     # print(isValid)
     # >> False
 
@@ -82,9 +82,9 @@ def length(array):
     return count
     # APLIKASI
     # (pada modul lain)
-    # import auxilliary as aux
+    # import auxilliary as flib
     # A = [1, 2, 3]
-    # l = aux.length(A)
+    # l = flib.length(A)
     # print(l)
     # >> 3
 
@@ -103,10 +103,10 @@ def konsDot(array, element):
     return a
     # APLIKASI
     # (pada modul lain)
-    # import auxilliary as aux
+    # import auxilliary as flib
     # A = [[ITB, UNPAD], [UI]]
     # B = [ITS, UNAIR]
-    # C = aux.konsDot(A, B)
+    # C = flib.konsDot(A, B)
     # print(C)
     # >> [[ITB, UNPAD], [UI], [ITS, UNAIR]]
 
@@ -121,9 +121,9 @@ def find_idx(table, colname):
             return int(i)
     # APLIKASI
     # (pada modul lain)
-    # import auxilliary as aux
+    # import auxilliary as flib
     # A = [["Nama", "Saldo"], ["Willy Wangky", "0"]]
-    # i = aux.find_idx(A, "Saldo")
+    # i = flib.find_idx(A, "Saldo")
     # print(i)
     # >> 1
 
@@ -152,15 +152,15 @@ def find_baris_first(table, colname, keyword, startidx = 0):
         return datafound
     # APLIKASI
     # (pada modul lain)
-    # import auxilliary as aux
+    # import auxilliary as flib
     # A = [["Nama", "Saldo"], ["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
-    # F = aux.find_baris_first(A, "Nama", "Willy Wangky")
+    # F = flib.find_baris_first(A, "Nama", "Willy Wangky")
     # print(F)
     # >> ["Willy Wangky", "0"]
-    # G = aux.find_baris_first(A, "Nama", "Willy Wangky", 1)
+    # G = flib.find_baris_first(A, "Nama", "Willy Wangky", 1)
     # print(G)
     # >> ["Willy Wangky", "1000"]
-    # Z = # F = aux.find_baris_first(A, "Nama", "Wangky Willy")
+    # Z = # F = flib.find_baris_first(A, "Nama", "Wangky Willy")
     # print(Z)
     # >> []
 
@@ -181,12 +181,12 @@ def find_baris_all(table, colname, keyword):
     return datafound
     # APLIKASI
     # (pada modul lain)
-    # import auxilliary as aux
+    # import auxilliary as flib
     # A = [["Nama", "Saldo"], ["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
-    # F = aux.find_baris_first(A, "Nama", "Willy Wangky")
+    # F = flib.find_baris_first(A, "Nama", "Willy Wangky")
     # print(F)
     # >> [["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
-    # Z = aux.find_baris_first(A, "Nama", "Wangky Willy")
+    # Z = flib.find_baris_first(A, "Nama", "Wangky Willy")
     # print(Z)
     # [[]]
 
@@ -212,12 +212,12 @@ def find_kolom(table, colname):
         return []
     # APLIKASI
     # (pada modul lain)
-    # import auxilliary as aux
+    # import auxilliary as flib
     # A = [["Nama", "Saldo"], ["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
-    # B = aux.find_kolom(A, "Saldo")
+    # B = flib.find_kolom(A, "Saldo")
     # print(B)
     # >> ["0", "1000"]
-    # Z = aux.find_kolom(A, "Tanggal_Lahir")
+    # Z = flib.find_kolom(A, "Tanggal_Lahir")
     # print(Z)
     # >> []
 
@@ -237,12 +237,12 @@ def validate_cell(array, keyword):
     return isFound
     # APLIKASI
     # (pada modul lain)
-    # import auxilliary as aux
+    # import auxilliary as flib
     # AA = ["Willy Wangky", "0"]
-    # isValid = aux.validate_cell(AA, "0")
+    # isValid = flib.validate_cell(AA, "0")
     # print(isValid)
     # >> True
-    # isValid = aux.validate_cell(AA, "Admin")
+    # isValid = flib.validate_cell(AA, "Admin")
     # print(isValid)
     # >> False
 
@@ -258,8 +258,8 @@ def search(table, result_column, from_column, from_data):
     return data[idx]
     # APLIKASI
     # (pada modul lain)
-    # import auxilliary as aux
+    # import auxilliary as flib
     # A = [["Nama", "Saldo"], ["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
-    # B = aux.search(A, "Saldo", "Nama", "Willy Wangky")
+    # B = flib.search(A, "Saldo", "Nama", "Willy Wangky")
     # print(B)
     # >> "0"

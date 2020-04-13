@@ -8,7 +8,7 @@ filedesc = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Pen
 
 import os
 import csv
-import auxilliary as aux
+import auxilliary as flib
 
 # REALISASI FUNGSI/PROSEDUR
 
@@ -20,7 +20,7 @@ def main(datatosave):
     # KAMUS LOKAL
     # i, j : integer
     # ALGORITMA
-    for i in range (aux.length(datatosave)):
+    for i in range (flib.length(datatosave)):
         # Masukkan <nama file> yang akan di-save
         filename = str(input("Masukkan nama " + filedesc[i] + ": "))
         # Save datatosave[i] ke <nama file>.csv
