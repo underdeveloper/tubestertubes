@@ -29,9 +29,7 @@ def main(userfile):
                 print("Selamat bersenang-senang, " + finduser[load.find_idx(userfile, "Nama")] + "!")
         if (isUser == False):
             print("Username/Password salah")
-    user = []
-    user.append(userfile[0])
-    user.append(finduser)
+    user = [userfile[0], finduser]
     return user
 
 def getuserdata(user, dataname):

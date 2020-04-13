@@ -82,7 +82,7 @@ def input_date():
     return date
 
 def length(array):
-    # function array_length (array : array of string) -> integer
+    # function length (array : array of string) -> integer
     # Mencari panjang suatu array
     # KAMUS LOKAL
     # i, count : integer
@@ -91,3 +91,12 @@ def length(array):
     for i in array:
         count = count + 1
     return count
+
+def merge(array1, array2):
+    # function merge (array1 : array of string, array2 : array of string) -> array eof array of string
+    # Menggabungkan 2 array
+    # KAMUS LOKAL
+    # array : array of string
+    # ALGORITMA
+    array = [array1, array2]
+    return array

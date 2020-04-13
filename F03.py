@@ -12,11 +12,12 @@ class user:
 import os
 import datetime
 import F01 as load
+import auxilliary as aux
 
 # REALISASI FUNGSI/PROSEDUR
 
 def main(userfile):
-    # procedure main (input/output userfile : array of array [0..6] of string)
+    # fungsi main (userfile : array of array [0..6] of string) -> array of array [0..6] of string
     # I.S. userfile terdefinisi
     # F.S. ditambahkan suatu data baru ke userfile
     # KAMUS LOKAL
@@ -61,6 +62,7 @@ def main(userfile):
             print("Tanggal lahir Anda tidak valid. Silakan ulangi lagi.")
         if (isHeightOK == False):
             print("Tinggi badan Anda tidak valid. Silakan ulangi lagi.")
-    userfile.append(user.data)
+    useradded = aux.merge(userfile, user.data)
     print("")
     print("Selamat menjadi pemain, " + user.data[0] + ". Selamat bermain.")
+    return useradded

@@ -64,7 +64,8 @@ while ((exit_flag == False) and (load.find_baris_first(whoami, "Role", "Admin") 
         save.main(load.file.data)
         print("")
     elif (x == "3"):
-        signup.main(load.use("user.csv"))
+        useradded = signup.main(load.use("user.csv"))
+        load.file.data[0] = useradded
         print("")
     elif (x == "16"):
         exit_flag = True
