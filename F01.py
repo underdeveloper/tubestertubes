@@ -24,9 +24,9 @@ class FileCSV:
 file = FileCSV()
 
 # Di atas ini adalah "file", suatu tipe bentukan
-# Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam file.data
-# file.data inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
-# Modul lain akan akan mengurus penyimpanan kembali file.data ke-7 file .csv
+# Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam file.ke
+# file.ke inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
+# Modul lain akan akan mengurus penyimpanan kembali file.ke ke-7 file .csv
 
 # ALGORITMA PROGRAM UTAMA
 
@@ -50,9 +50,9 @@ def main():
         # Load <nama file>.csv ke file.data
         with open(os.path.dirname(__file__) + "\\" + str(file.ke[i].name), mode = 'r') as f:
             reader = list(csv.reader(f))
+            file.ke[i].rows = aux.length(reader)
+            file.ke[i].columns = aux.length(reader[0])
             file.ke[i].data = reader
-            file.ke[i].rows = aux.length(file.ke[i].data)
-            file.ke[i].columns = aux.length(file.ke[i].data[0])
     print("")
     print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
 
@@ -140,7 +140,7 @@ def find_baris_all(table, colname, keyword):
     datafound = []
     for i in range (aux.length(table)):
         if (table[i][colidx] == keyword):
-            datafound = aux.merge(datafound, table[i])
+            datafound = aux.konsDot(datafound, table[i])
     if ((aux.length(datafound)) == 0):
         datafound = [[]]
         return datafound
