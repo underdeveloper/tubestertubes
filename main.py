@@ -42,7 +42,6 @@ while ((exit_flag == False) and (load.find_baris_first(whoami, "Role", "Pemain")
     x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
     if (x == "2"):
         save.main(load.files)
-        print("")
     elif (x == "6"):
         cari_wahana.main('wahana.csv')
     elif (x == "16"):
@@ -62,11 +61,9 @@ while ((exit_flag == False) and (load.find_baris_first(whoami, "Role", "Admin") 
     x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
     if (x == "2"):
         save.main(load.files)
-        print("")
     elif (x == "3"):
         userfile = signup.main(load.use("user.csv"))
         load.files[0] = userfile
-        print("")
     elif (x == "16"):
         exit_flag = True
     else:

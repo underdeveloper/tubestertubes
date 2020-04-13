@@ -52,9 +52,7 @@ def main():
             files[i].data = reader
     print("")
     print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
-
-    for i in range (aux.length(files)):
-        print(files[i].name)
+    print("")
 
 def use(filename):
     # function use (filename : string) -> string

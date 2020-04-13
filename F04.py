@@ -16,6 +16,7 @@ def main(userfile):
     # username, password : string
     # finduser, findpassword : array [0..6] of string
     # user : array [0..1] of array [0..6] of string
+    # ALGORITMA
     isUser = False
     while (isUser == False):
         username = str(input("Masukkan username: ")) # Feral
@@ -27,6 +28,7 @@ def main(userfile):
                 isUser = True
                 print("")
                 print("Selamat bersenang-senang, " + finduser[load.find_idx(userfile.data, "Nama")] + "!")
+                print("")
         if (isUser == False):
             print("Username/Password salah")
     user = [userfile.data[0], finduser]

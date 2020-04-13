@@ -29,3 +29,4 @@ def main(datatosave):
             writer.writerows(datatosave[i].data)
     print("")
     print("Data berhasil disimpan!")
+    print("")
