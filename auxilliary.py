@@ -80,3 +80,14 @@ def input_date():
             break
         print("Tanggal salah format (Format: DD/MM/YYYY) atau tidak sesuai kalender!")
     return date
+
+def length(array):
+    # function array_length (array : array of string) -> integer
+    # Mencari panjang suatu array
+    # KAMUS LOKAL
+    # i, count : integer
+    # ALGORITMA
+    count = 0
+    for i in array:
+        count = count + 1
+    return count

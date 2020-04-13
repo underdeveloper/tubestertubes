@@ -20,6 +20,7 @@ file = FileCSV()
 
 import os
 import csv
+import auxilliary as aux
 
 # REALISASI FUNGSI/PROSEDUR
 
@@ -80,7 +81,7 @@ def find_idx(table, colname):
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
-    for i in range (len(table[0])):
+    for i in range (aux.length(table[0])):
         if (str(table[0][i]) == str(colname)):
             return int(i)
 
@@ -92,16 +93,16 @@ def find_baris_first(table, colname, keyword, startidx = 0):
     # datafound : array of string
     # isFound : boolean
     # ALGORITMA
-    if (startidx >= (len(table))):
+    if (startidx >= (aux.length(table))):
         datafound = []
         return datafound
-    else: # (startidx < len(table))
-        for i in range (len(table[0])):
+    else: # (startidx < aux.length(table))
+        for i in range (aux.length(table[0])):
             if (table[0][i] == colname):
                 colidx = int(i)
         isFound = False
         i = startidx
-        while ((i < (len(table))) and (isFound == False)):
+        while ((i < (aux.length(table))) and (isFound == False)):
             if (table[i][colidx] == keyword):
                 datafound = table[i]
                 isFound = True
@@ -119,14 +120,14 @@ def find_baris_all(table, colname, keyword):
     # i, colidx : integer
     # datafound : array of array of string
     # ALGORITMA
-    for i in range (len(table[0])):
+    for i in range (aux.length(table[0])):
         if (table[0][i] == colname):
             colidx = int(i)
     datafound = []
-    for i in range (len(table)):
+    for i in range (aux.length(table)):
         if (table[i][colidx] == keyword):
             datafound.append(table[i])
-    if ((len(datafound)) == 0):
+    if ((aux.length(datafound)) == 0):
         datafound = [[]]
         return datafound
     else: #((len(datafound)) > 0))
@@ -141,13 +142,13 @@ def find_kolom(table, colname, keyword):
     # isFound : boolean
     # ALGORITMA
     isFound = False
-    for i in range (len(table[0])):
+    for i in range (aux.length(table[0])):
         if (table[0][i] == colname):
             colidx = int(i)
             isFound = True
     if (isFound == True):
-        kolom = ["*" for i in range (len(table))]
-        for i in range (len(table)):
+        kolom = ["*" for i in range (aux.length(table))]
+        for i in range (aux.length(table)):
             kolom[i] = table[i][colidx]
         return kolom
     else: # (isFound == False)
@@ -163,7 +164,7 @@ def find_cell(array, keyword):
     # ALGORITMA
     i = 0
     isFound = False
-    while ((i < len(array)) and (isFound == False)):
+    while ((i < (aux.length(array))) and (isFound == False)):
         if (array[i] == keyword):
             cellfound = array[i]
             isFound = True
