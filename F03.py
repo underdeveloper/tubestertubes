@@ -62,7 +62,7 @@ def main(userfile):
             print("Tanggal lahir Anda tidak valid. Silakan ulangi lagi.")
         if (isHeightOK == False):
             print("Tinggi badan Anda tidak valid. Silakan ulangi lagi.")
-    useradded = aux.merge(userfile.data, user.data)
+    useradded = aux.konsDot(userfile.data, user.data)
     userfile.rows = userfile.rows + 1
     userfile.data = useradded
     print("")

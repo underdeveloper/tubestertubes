@@ -92,11 +92,16 @@ def length(array):
         count = count + 1
     return count
 
-def merge(array1, array2):
-    # function merge (array1 : array of string, array2 : array of string) -> array eof array of string
-    # Menggabungkan 2 array
+def konsDot(array, element):
+    # function konsDot (array : array of array of string, element : array of string) -> array of array of string
+    # Menambah 1 elemen ke dalam array
     # KAMUS LOKAL
-    # array : array of string
+    # a : array of array of string
+    # a_length, i : integer
     # ALGORITMA
-    array = [array1, array2]
-    return array
+    a_length = (length(array)) + 1
+    a = [[] for i in range (a_length)]
+    for i in range (length(array)):
+        a[i] = array[i]
+    a[a_length - 1] = element
+    return a
