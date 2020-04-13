@@ -34,7 +34,7 @@ def main(userfile):
         for i in range (user.datacount):
             if (user.datadesc[i] == "username pemain"):
                 user.data[i] = (str(input("Masukkan " + user.datadesc[i] + ": "))).lower()
-                if (load.find_baris_first(userfile, "Username", user.data[i]) == []):
+                if (load.find_baris_first(userfile.data, "Username", user.data[i]) == []):
                     isUsernameOK = True
             elif (user.datadesc[i] == "tanggal lahir pemain (DD/MM/YYYY)"):
                 user.data[i] = str(input("Masukkan " + user.datadesc[i] + ": "))
@@ -62,7 +62,9 @@ def main(userfile):
             print("Tanggal lahir Anda tidak valid. Silakan ulangi lagi.")
         if (isHeightOK == False):
             print("Tinggi badan Anda tidak valid. Silakan ulangi lagi.")
-    useradded = aux.merge(userfile, user.data)
+    useradded = aux.merge(userfile.data, user.data)
+    userfile.rows = userfile.rows + 1
+    userfile.data = useradded
     print("")
     print("Selamat menjadi pemain, " + user.data[0] + ". Selamat bermain.")
-    return useradded
+    return userfile

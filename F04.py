@@ -20,16 +20,16 @@ def main(userfile):
     while (isUser == False):
         username = str(input("Masukkan username: ")) # Feral
         password = str(input("Masukkan password: ")) # fer4l
-        finduser = load.find_baris_first(userfile, "Username", username)
+        finduser = load.find_baris_first(userfile.data, "Username", username)
         if (finduser != []):
             findpassword = load.find_cell(finduser, password)
             if (password == findpassword):
                 isUser = True
                 print("")
-                print("Selamat bersenang-senang, " + finduser[load.find_idx(userfile, "Nama")] + "!")
+                print("Selamat bersenang-senang, " + finduser[load.find_idx(userfile.data, "Nama")] + "!")
         if (isUser == False):
             print("Username/Password salah")
-    user = [userfile[0], finduser]
+    user = [userfile.data[0], finduser]
     return user
 
 def getuserdata(user, dataname):

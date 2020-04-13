@@ -26,6 +26,6 @@ def main(datatosave):
         # Save datatosave[i] ke <nama file>.csv
         with open(os.path.dirname(__file__) + "\\" + str(filename), mode = 'w', newline = '') as f:
             writer = csv.writer(f)
-            writer.writerows(datatosave[i])
+            writer.writerows(datatosave[i].data)
     print("")
     print("Data berhasil disimpan!")

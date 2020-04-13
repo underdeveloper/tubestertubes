@@ -2,12 +2,24 @@
 # Me-load ke-7 file .csv ke sistem
 
 # KAMUS
+
+class Rekaman:
+    # Tipe bentukan kamus data yang akan dipakai.
+    # Rekaman : < name : string
+    #             columns : int
+    #             rows : int
+    #             data : array [0..rows-1] of array [0..columns-1] of string
+    def __init__(self, name = "", columns = 1, rows = 1):
+        self.name = name
+        self.columns = columns
+        self.rows = rows
+        self.data = [["*" for i in range(columns)] for j in range(rows)]
+
 class FileCSV:
-    def __init__(self, count=7):
+    def __init__(self, count = 7):
         self.count = count
         self.description = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
-        self.name = ["*" for i in range (self.count)]
-        self.data = ["*" for i in range (self.count)]
+        self.ke = [Rekaman() for i in range (self.count)]
 
 file = FileCSV()
 
@@ -34,16 +46,18 @@ def main():
     # ALGORITMA
     for i in range (file.count):
         # Masukkan <nama file> yang akan di-load
-        file.name[i] = str(input("Masukkan nama " + file.description[i] + ": "))
+        file.ke[i].name = str(input("Masukkan nama " + file.description[i] + ": "))
         # Load <nama file>.csv ke file.data
-        with open(os.path.dirname(__file__) + "\\" + str(file.name[i]), mode = 'r') as f:
-            reader = csv.reader(f)
-            file.data[i] = list(reader)
+        with open(os.path.dirname(__file__) + "\\" + str(file.ke[i].name), mode = 'r') as f:
+            reader = list(reader(f))
+            file.ke[i].data = reader
+            file.ke[i].rows = aux.length(file.ke[i].data)
+            file.ke[i].columns = aux.length(file.ke[i].data[0])
     print("")
     print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
 
-    for string in file.name:
-        print(string)
+    for i in range (aux.length(file.ke)):
+        print(file.ke[i].name)
 
 def use(filename):
     # function use (filename : string) -> string
@@ -54,11 +68,11 @@ def use(filename):
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
-    for i in range(0,file.count+1):
-        if (str(file.name[i]) == filename):
-            return file.data[i]
-        elif i == file.count:
-            return None # Kalau gaada, dia return None. INI BELUM DIUJI AKAN MERUSAK APA
+    for i in range(0, int(file.count) + 1):
+        if (str(file.ke[i].name) == filename):
+            return file.ke[i]
+        elif (i == file.count):
+            return None # Kalau gaada, dia return None. INI BELUM DIUJI AKAN MERUSAK APA | ini merusak F04, tp dah w edit F04nya
 
 def store(filename):
     # procedure store (input filename : string, output file.data : FileCSV)
@@ -69,9 +83,9 @@ def store(filename):
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
-    for i in range(0, file.count+1):
-        if (str(file.name[i]) == filename):
-            file.name[i] = filename
+    for i in range(0, int(file.count) + 1):
+        if (str(file.ke[i].name) == filename):
+            file.ke[i].name = filename
         elif i == file.count:
             print("ERROR : Filename salah.")
 
@@ -126,7 +140,7 @@ def find_baris_all(table, colname, keyword):
     datafound = []
     for i in range (aux.length(table)):
         if (table[i][colidx] == keyword):
-            datafound.append(table[i])
+            datafound = aux.merge(datafound, table[i])
     if ((aux.length(datafound)) == 0):
         datafound = [[]]
         return datafound
