@@ -49,7 +49,7 @@ def main():
         file.ke[i].name = str(input("Masukkan nama " + file.description[i] + ": "))
         # Load <nama file>.csv ke file.data
         with open(os.path.dirname(__file__) + "\\" + str(file.ke[i].name), mode = 'r') as f:
-            reader = list(reader(f))
+            reader = list(csv.reader(f))
             file.ke[i].data = reader
             file.ke[i].rows = aux.length(file.ke[i].data)
             file.ke[i].columns = aux.length(file.ke[i].data[0])
