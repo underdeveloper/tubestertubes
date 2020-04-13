@@ -11,9 +11,12 @@ def arr_length(some_array):
 
     # ALGORITMA UTAMA
     count = 0
-    for element in some_array:
-        count = count + 1
+    while (some_array[0:] != []):
+        count += 1
+        some_array = some_array[1:]
     return count
+
+# print(arr_length(['1','1','2']))
 
 def merge(table1, table2):
     # function merge (table1 : array of array of string, 
@@ -45,16 +48,15 @@ def merge(table1, table2):
 
     return table3
 
-file_wahana_data = [
-    [], [], []
-]
+# file_wahana_data = [
+#     [], [], []
+# ]
 
-data_baru = [
-    [], []
-]
+# data_baru = [
+#     [], []
+# ]
 
-
-print ( merge(file_wahana_data, data_baru) )
+# print ( merge(file_wahana_data, data_baru) )
 
 
 def contains(arr_str, element):
