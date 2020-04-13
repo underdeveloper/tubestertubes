@@ -85,7 +85,7 @@ def find_idx(table, colname):
             return int(i)
 
 def find_baris_first(table, colname, keyword, startidx = 0):
-    # function find_baris (array : array of array of string, colname : string, keyword : string) -> array of string
+    # function find_baris_first (array : array of array of string, colname : string, keyword : string) -> array of string
     # Mencari baris pertama dengan keyword tertentu yang tersimpan dalam table
     # KAMUS LOKAL
     # i, colidx : integer
@@ -100,11 +100,12 @@ def find_baris_first(table, colname, keyword, startidx = 0):
             if (table[0][i] == colname):
                 colidx = int(i)
         isFound = False
-        i = 0
+        i = startidx
         while ((i < (len(table))) and (isFound == False)):
             if (table[i][colidx] == keyword):
                 datafound = table[i]
                 isFound = True
+            i = i + 1
         if (isFound == True):
             return datafound
         else:
@@ -112,7 +113,7 @@ def find_baris_first(table, colname, keyword, startidx = 0):
             return datafound
 
 def find_baris_all(table, colname, keyword):
-    # function find_baris (array : array of array of string, colname : string, keyword : string) -> array of array of string
+    # function find_baris_all (array : array of array of string, colname : string, keyword : string) -> array of array of string
     # Mencari baris yang tersimpan dalam table
     # KAMUS LOKAL
     # i, colidx : integer
