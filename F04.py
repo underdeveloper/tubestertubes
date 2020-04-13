@@ -20,7 +20,7 @@ def main(userfile):
     while (isUser == False):
         username = str(input("Masukkan username: ")) # Feral
         password = str(input("Masukkan password: ")) # fer4l
-        finduser = load.find_baris(userfile, "Username", username)
+        finduser = load.find_baris_first(userfile, "Username", username)
         if (finduser != []):
             findpassword = load.find_cell(finduser, password)
             if (password == findpassword):

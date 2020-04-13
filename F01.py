@@ -84,27 +84,48 @@ def find_idx(table, colname):
         if (str(table[0][i]) == str(colname)):
             return int(i)
 
-def find_baris(table, colname, keyword):
+def find_baris_first(table, colname, keyword, startidx = 0):
     # function find_baris (array : array of array of string, colname : string, keyword : string) -> array of string
-    # Mencari baris yang tersimpan dalam table
+    # Mencari baris pertama dengan keyword tertentu yang tersimpan dalam table
     # KAMUS LOKAL
     # i, colidx : integer
     # datafound : array of string
     # isFound : boolean
     # ALGORITMA
+    if (startidx >= (len(table))):
+        datafound = []
+        return datafound
+    else: # (startidx < len(table))
+        for i in range (len(table[0])):
+            if (table[0][i] == colname):
+                colidx = int(i)
+        isFound = False
+        i = 0
+        while ((i < (len(table))) and (isFound == False)):
+            if (table[i][colidx] == keyword):
+                datafound = table[i]
+                isFound = True
+        if (isFound == True):
+            return datafound
+        else:
+            datafound = []
+            return datafound
+
+def find_baris_all(table, colname, keyword):
+    # function find_baris (array : array of array of string, colname : string, keyword : string) -> array of array of string
+    # Mencari baris yang tersimpan dalam table
+    # KAMUS LOKAL
+    # i, colidx : integer
+    # datafound : array of array of string
+    # ALGORITMA
     for i in range (len(table[0])):
         if (table[0][i] == colname):
             colidx = int(i)
-    isFound = False
+    datafound = []
     for i in range (len(table)):
         if (table[i][colidx] == keyword):
-            datafound = table[i]
-            isFound = True
-    if (isFound == True):
-        return datafound
-    else:
-        datafound = []
-        return datafound
+            datafound.append(table[i])
+    return datafound
 
 def find_kolom(table, colname, keyword):
     # function find_kolom (table : array of array of string, colname : string, keyword : string) -> array of string
@@ -154,6 +175,6 @@ def search(table, result_column, from_column, from_data):
     # data : array of string
     # idx : integer
     # ALGORITMA
-    data = find_baris(table, from_column, from_data)
+    data = find_baris_first(table, from_column, from_data)
     idx = find_idx(table, result_column)
     return data[idx]
