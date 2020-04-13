@@ -1,9 +1,11 @@
 # Program F01
 # Me-load ke-7 file .csv ke sistem
 
-# KAMUS
-
+import os
+import csv
 import auxilliary as aux
+
+# KAMUS
 
 class Rekaman:
     # Tipe bentukan kamus data yang akan dipakai.
@@ -26,17 +28,12 @@ files = [Rekaman() for i in range (filecount)]
 # files inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
 # Modul lain akan akan mengurus penyimpanan kembali files ke-7 file .csv
 
-# ALGORITMA PROGRAM UTAMA
-
-import os
-import csv
-
 # REALISASI FUNGSI/PROSEDUR
 
 def main():
-    # procedure main (output data : file)
+    # procedure main (output files : array of Rekaman)
     # I.S. file.data terdefinisi sembarang
-    # F.S. ke-7 file .csv di-load ke file.data
+    # F.S. ke-7 file .csv di-load ke files
     # KAMUS LOKAL
     # i : integer
     # reader : _csv.reader object
@@ -50,36 +47,33 @@ def main():
             files[i].rows = aux.length(reader)
             files[i].columns = aux.length(reader[0])
             files[i].data = reader
-    print("")
-    print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
-    print("")
+
+    print("\nFile telah di-load.\n")
+
 
 def use(filename):
     # function use (filename : string) -> string
     # Memberikan copy file yang diminta dari versi yang ada di file.name
 
-    # >>> Asumsi filename sudah benar. <<<
+    # Syarat: Filename sudah benar.
 
     # KAMUS LOKAL
     # i : integer
+
     # ALGORITMA
     for i in range(0, int(filecount) + 1):
         if (str(files[i].name) == filename):
             return files[i]
-        elif (i == filecount):
-            return None # Kalau gaada, dia return None. INI BELUM DIUJI AKAN MERUSAK APA | ini merusak F04, tp dah w edit F04nya
 
-def store(filename):
+def store(filename, table_baru):
     # procedure store (input filename : string, output file.data : FileCSV)
     # Meng-update salah satu elemen file.name yang sesuai dengan nama file yang di-input
-
-    # >>> Asumsi filename sudah benar. <<<
 
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
     for i in range(0, int(filecount) + 1):
         if (str(files[i].name) == filename):
-            files[i].name = filename
+            files[i].name = table_baru
         elif i == filecount:
             print("ERROR : Filename salah.")
