@@ -24,6 +24,7 @@ def main(userfile):
     # isUsernameOK, isBirthdayOK : boolean
     # i : integer
     # formatcheck : string
+    # ALGORITMA
     isUsernameOK = False
     isBirthdayOK = False
     isHeightOK = False
@@ -67,4 +68,5 @@ def main(userfile):
     userfile.data = useradded
     print("")
     print("Selamat menjadi pemain, " + user.data[0] + ". Selamat bermain.")
+    print("")
     return userfile
