@@ -57,10 +57,16 @@ def get_data(filename):
     # Mengeluarkan tabel yang merupakan isi dari data yang telah dimuat.
     # Syarat: File bernama filename sudah pasti telah dimuat.
 
+    # KAMUS LOKAL
+    # found : boolean
+    # file : Rekaman
+
+    # ALGORITMA UTAMA
     found = False
 
     for file in files:
         if file.name == filename:
+            found = True
             return file.data
     
     if not found:
@@ -76,34 +82,73 @@ def store_data(filename, new_table):
         if file.name == filename:
             file.data = new_table
 
-# def findidx(array, colname):
-#     # function findidx (colname : string) -> integer
-#     # Mencari nomor indeks suatu kolom bernama colname pada array array
-#     # KAMUS LOKAL
-#     # i : integer
-#     # ALGORITMA
-#     for i in range (len(array[0])):
-#         if (str(array[0][i]) == str(colname)):
-#             return int(i)
+def find_column_idx(table, column):
+    # function find_column_idx (column : string) -> integer
+    # Mencari nomor indeks suatu kolom bernama column dari array of array of string bernama table
+    
+    # KAMUS LOKAL
+    # found : boolean
+    # file : Rekaman
 
-# def finddata(array, colname, keyword):
-#     #function finddata (array : array of array of string, colname : string, keyword : string) -> array of string
-#     # Mencari data yang tersimpan dalam array
-#     # KAMUS LOKAL
-#     # i, colidx : integer
-#     # datafound : array of string
-#     # isFound : boolean
-#     # ALGORITMA
-#     for i in range (len(array[0])):
-#         if (array[0][i] == colname):
-#             colidx = int(i)
-#     isFound = False
-#     for i in range (len(array)):
-#         if (array[i][colidx] == keyword):
-#             datafound = array[i]
-#             isFound = True
-#     if (isFound == True):
-#         return datafound
-#     else:
-#         datafound = []
-#         return datafound
+    # ALGORITMA UTAMA
+    found = False
+
+    for idx in range(aux.arr_length(table[0])):
+        if table[0][idx] == column:
+            found = True
+            return idx
+    
+    if not found:
+        return None
+            
+def find_first_row(table, column, keyword, startidx=0):
+    # function find_first_row(table : array of array of string,
+    #                         column : string, keyword : string) -> array of string
+    # Mengeluarkan baris pertama yang memiliki nilai <keyword> pada kolom <column> dalam table <table>
+
+    # KAMUS LOKAL
+    # i, colidx : integer
+    # first_row : array of string
+    # isFound : boolean
+
+    # ALGORITMA UTAMA
+    if (startidx >= (aux.arr_length(table))):
+        first_row = []
+
+    else:  # (startidx < aux.arr_length(table))
+        colidx = find_column_idx(table, column)
+
+        isFound = False
+        i = startidx
+
+        while ((i < (aux.arr_length(table))) and (isFound == False)):
+            if (table[i][colidx] == keyword):
+                first_row = table[i]
+                isFound = True
+            i = i + 1
+        if not isFound:
+            first_row = []
+
+    return first_row
+
+def find_all_rows(table, column, keyword):
+    # function find_all_rows(table : array of array of string, 
+    #                        column : string, keyword : string) -> array of array of string
+    # Mengeluarkan semua baris yang memiliki nilai <keyword> pada kolom <column> dalam tabel <table>
+
+    # KAMUS LOKAL
+    # i, colidx : integer
+    # all_rows : array of array of string
+
+    # ALGORITMA
+    colidx = find_column_idx(table, column)
+
+    all_rows = []
+
+    for i in range(aux.arr_length(table)):
+        if (table[i][colidx] == keyword):
+            all_rows = aux.merge(all_rows, table[i])
+    if all_rows == []:
+        all_rows = [[]]
+    
+    return all_rows
