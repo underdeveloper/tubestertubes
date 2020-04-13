@@ -6,7 +6,9 @@ import F01 as load
 import F02 as save
 import F03 as signup
 import F04 as login
+import F06 as cari_wahana
 import F16 as exit
+import auxilliary as aux
 
 # Memuat file-filenya (F01 - Load file)
 load.main()
@@ -31,38 +33,39 @@ if (whoami != []):
 # Looping
 
 # Loop pemain
-while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Pemain") != [])):
-    print("Anda ter-logged in sebagai " + whoami[1][load.find_idx(whoami, "Username")])
+while ((exit_flag == False) and (aux.find_baris_first(whoami, "Role", "Pemain") != [])):
+    print("Anda ter-logged in sebagai " + whoami[1][aux.find_idx(whoami, "Username")])
     print("Anda adalah seorang Pemain.")
     print("Apa yang mau anda lakukan?")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
+    print("[6] Mencari wahana sesuai pembatasan user.")
     print("[16] Log-out.")
-    x = str(input("Masukkan nomor aksi yang ingin anda lakukan: "))
-    if (str(x) == "2"):
-        save.main(load.file.data)
-        print("")
-    elif (str(x) == "16"):
+    x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
+    if (x == "2"):
+        save.main(load.files)
+    elif (x == "6"):
+        cari_wahana.main('wahana.csv')
+    elif (x == "16"):
         exit_flag = True
     else:
         print("ERROR: Unknown command.")
         print("")
 
 # Loop admin
-while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Admin") != [])):
-    print("Anda ter-logged in sebagai " + whoami[1][load.find_idx(whoami, "Username")])
+while ((exit_flag == False) and (aux.find_baris_first(whoami, "Role", "Admin") != [])):
+    print("Anda ter-logged in sebagai " + whoami[1][aux.find_idx(whoami, "Username")])
     print("Anda adalah seorang Admin.")
     print("Apa yang mau anda lakukan?")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
     print("[3] Mendaftarkan pemain baru.")
     print("[16] Log-out.")
-    x = str(input("Masukkan nomor aksi yang ingin anda lakukan: "))
-    if (str(x) == "2"):
-        save.main(load.file.data)
-        print("")
-    elif (str(x) == "3"):
-        signup.main(load.use("user.csv"))
-        print("")
-    elif (str(x) == "16"):
+    x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
+    if (x == "2"):
+        save.main(load.files)
+    elif (x == "3"):
+        userfile = signup.main(load.use("user.csv"))
+        load.files[0] = userfile
+    elif (x == "16"):
         exit_flag = True
     else:
         print("ERROR: Unknown command.")
@@ -72,7 +75,7 @@ while ((exit_flag == False) and (load.find_baris(whoami, "Role", "Admin") != [])
 if (exit_flag == True):
     isGonnaSave = exit.main()
     if (isGonnaSave == True):
-        save.main(load.file.data)
+        save.main(load.files)
         raise SystemExit
     else:
         raise SystemExit

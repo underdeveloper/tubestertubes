@@ -3,6 +3,7 @@ import F01 as load
 import F02 as save
 import F03 as signup
 import F04 as login
+import auxilliary as aux
 
 # Memuat file-filenya (F01 - Load file)
 load.main()
@@ -24,7 +25,7 @@ load.main()
 user = load.use("user.csv")
 
 
-x = load.search(user, "Username", "Nama", "Willy Wangky")
+x = aux.search(user, "Username", "Nama", "Willy Wangky")
 print("Username hasil search adalah: " + x)
 
 # Dideklarasi exit_flag (boolean) yang menandakan apabila user sudah mau keluar dari program

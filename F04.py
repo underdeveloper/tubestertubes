@@ -5,7 +5,7 @@
 
 # ALGORITMA PROGRAM UTAMA
 
-import F01 as load
+import auxilliary as aux
 
 # REALISASI FUNGSI/PROSEDUR
 def main(userfile):
@@ -16,25 +16,25 @@ def main(userfile):
     # username, password : string
     # finduser, findpassword : array [0..6] of string
     # user : array [0..1] of array [0..6] of string
+    # ALGORITMA
     isUser = False
     while (isUser == False):
         username = str(input("Masukkan username: ")) # Feral
         password = str(input("Masukkan password: ")) # fer4l
-        finduser = load.find_baris(userfile, "Username", username)
+        finduser = aux.find_baris_first(userfile.data, "Username", username)
         if (finduser != []):
-            findpassword = load.find_cell(finduser, password)
+            findpassword = aux.find_cell(finduser, password)
             if (password == findpassword):
                 isUser = True
                 print("")
-                print("Selamat bersenang-senang, " + finduser[load.find_idx(userfile, "Nama")] + "!")
+                print("Selamat bersenang-senang, " + finduser[aux.find_idx(userfile.data, "Nama")] + "!")
+                print("")
         if (isUser == False):
             print("Username/Password salah")
-    user = []
-    user.append(userfile[0])
-    user.append(finduser)
+    user = [userfile.data[0], finduser]
     return user
 
 def getuserdata(user, dataname):
     # function getuserdata (dataname : string) -> string
     # Mengambil data dari user yang telah login
-    return user[1][load.find_idx(user, str(dataname))]
+    return user[1][aux.find_idx(user, str(dataname))]
