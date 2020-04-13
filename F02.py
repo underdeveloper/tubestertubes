@@ -16,7 +16,7 @@ def main(datatosave):
     # procedure main (input datatosave : array [0..6] of string)
     # I.S. datatosave terdefinisi
     # F.S. isi dari datatosave telah disalin ke 7 file .csv
-    # datatosave = load.file.data
+    # datatosave = load.files.data
     # KAMUS LOKAL
     # i, j : integer
     # ALGORITMA
