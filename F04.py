@@ -23,8 +23,8 @@ def main(userfile):
         password = str(input("Masukkan password: ")) # fer4l
         finduser = aux.find_baris_first(userfile.data, "Username", username)
         if (finduser != []):
-            findpassword = aux.find_cell(finduser, password)
-            if (password == findpassword):
+            findpassword = aux.validate_cell(finduser, password)
+            if (findpassword == True):
                 isUser = True
                 print("")
                 print("Selamat bersenang-senang, " + finduser[aux.find_idx(userfile.data, "Nama")] + "!")
@@ -38,3 +38,9 @@ def getuserdata(user, dataname):
     # function getuserdata (dataname : string) -> string
     # Mengambil data dari user yang telah login
     return user[1][aux.find_idx(user, str(dataname))]
+    # APLIKASI
+    # (pada modul lain)
+    # import F04 as login
+    # user = array [0..1] of array [0..6] of string { berisi data user yang sedang login }
+    # login.getuserdata(user, "Saldo")
+    # >> <Saldo dari pemain yang sedang login>

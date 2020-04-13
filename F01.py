@@ -49,29 +49,38 @@ def main():
     print("")
 
 def use(filename):
-    # function use (filename : string) -> string
-    # Memberikan copy file yang diminta dari versi yang ada di file.name
-
+    # function use (filename : string) -> array of array of string
+    # Memberikan copy file yang diminta dari versi yang ada di files
     # Syarat: Filename sudah benar.
-
     # KAMUS LOKAL
     # i : integer
-
     # ALGORITMA
     for i in range(0, filecount+1):
         if (files[i].name == filename):
             return files[i]
+    # APLIKASI
+    # (pada modul lain)
+    # import F01 as load
+    # load.use("user.csv")
+    # >> files[0]
 
 def store(filename, table_baru):
-    # procedure store (input filename : string, output file.data : FileCSV)
+    # procedure store (input filename : string, output files[i] : Rekaman)
     # Menyetor table_baru ke file bernama filename
-
     # KAMUS LOKAL
     # i : integer
     # isStored : boolean
     # ALGORITMA
     for i in range(0, filecount+1):
         if (files[i].name == filename):
+            files[i].rows = aux.length(table_baru)
+            files[i].columns = aux.length(table_baru[0])
             files[i].data = table_baru
         elif i == filecount:
             print("ERROR : Filename salah.")
+    # APLIKASI
+    # (pada modul lain)
+    # import F01 as load
+    # A : array of array of string
+    # load.store("user.csv", A)
+    # >> files[0] <- A

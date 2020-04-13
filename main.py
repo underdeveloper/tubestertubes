@@ -9,6 +9,7 @@ import F04 as login
 import F06 as cari_wahana
 import F16 as exit
 import auxilliary as aux
+# Petunjuk penggunaan fungsi/prosedur tiap-tiap modul ada pada masing-masing file modul
 
 # Memuat file-filenya (F01 - Load file)
 load.main()

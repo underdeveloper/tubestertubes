@@ -1,7 +1,5 @@
 # Fungsi-fungsi pembantu
 
-import re
-
 def contains(arr_str, element):
     # FUNCTION contains (arr_str : list, element : string) -> boolean
     # Mengecek apabila string 'element' berada pada array of string 'arr_str;
@@ -26,11 +24,6 @@ def validate_date(date):
 
     # ALGORTIMA UTAMA
 
-    # Pengecekan apabila 'date' sesuai format DD/MM/YYYY
-    r = re.compile(r'\d\d/\d\d/\d\d\d\d')
-    if r.fullmatch(date) is None:
-        return False
-
     # Pengecekan apabila 'date' sesuai kalender
     try:
         day, month, year = map(int, date.split('/'))
@@ -51,6 +44,15 @@ def validate_date(date):
             return False
     except:
         return False
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as aux
+    # isValid = aux.validate_date(1/1/2000)
+    # print(isValid)
+    # >> True
+    # isValid = aux.validate_date(1-1-2000)
+    # print(isValid)
+    # >> False
 
 def input_date():
     # PROCEDURE input_date (output date : string)
@@ -78,6 +80,13 @@ def length(array):
     for i in array:
         count = count + 1
     return count
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as aux
+    # A = [1, 2, 3]
+    # l = aux.length(A)
+    # print(l)
+    # >> 3
 
 def konsDot(array, element):
     # function konsDot (array : array of array of string, element : array of string) -> array of array of string
@@ -92,6 +101,14 @@ def konsDot(array, element):
         a[i] = array[i]
     a[a_length - 1] = element
     return a
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as aux
+    # A = [[ITB, UNPAD], [UI]]
+    # B = [ITS, UNAIR]
+    # C = aux.konsDot(A, B)
+    # print(C)
+    # >> [[ITB, UNPAD], [UI], [ITS, UNAIR]]
 
 def find_idx(table, colname):
     # function find_idx (colname : string) -> integer
@@ -102,6 +119,13 @@ def find_idx(table, colname):
     for i in range (length(table[0])):
         if (str(table[0][i]) == str(colname)):
             return int(i)
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as aux
+    # A = [["Nama", "Saldo"], ["Willy Wangky", "0"]]
+    # i = aux.find_idx(A, "Saldo")
+    # print(i)
+    # >> 1
 
 def find_baris_first(table, colname, keyword, startidx = 0):
     # function find_baris_first (array : array of array of string, colname : string, keyword : string) -> array of string
@@ -126,6 +150,19 @@ def find_baris_first(table, colname, keyword, startidx = 0):
         if (isFound == False):
             datafound = []
         return datafound
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as aux
+    # A = [["Nama", "Saldo"], ["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
+    # F = aux.find_baris_first(A, "Nama", "Willy Wangky")
+    # print(F)
+    # >> ["Willy Wangky", "0"]
+    # G = aux.find_baris_first(A, "Nama", "Willy Wangky", 1)
+    # print(G)
+    # >> ["Willy Wangky", "1000"]
+    # Z = # F = aux.find_baris_first(A, "Nama", "Wangky Willy")
+    # print(Z)
+    # >> []
 
 def find_baris_all(table, colname, keyword):
     # function find_baris_all (array : array of array of string, colname : string, keyword : string) -> array of array of string
@@ -142,9 +179,19 @@ def find_baris_all(table, colname, keyword):
     if ((length(datafound)) == 0):
         datafound = [[]]
     return datafound
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as aux
+    # A = [["Nama", "Saldo"], ["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
+    # F = aux.find_baris_first(A, "Nama", "Willy Wangky")
+    # print(F)
+    # >> [["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
+    # Z = aux.find_baris_first(A, "Nama", "Wangky Willy")
+    # print(Z)
+    # [[]]
 
-def find_kolom(table, colname, keyword):
-    # function find_kolom (table : array of array of string, colname : string, keyword : string) -> array of string
+def find_kolom(table, colname):
+    # function find_kolom (table : array of array of string, colname : string) -> array of string
     # Mencari kolom yang tersimpan dalam table
     # KAMUS LOKAL
     # i, colidx : integer
@@ -157,36 +204,51 @@ def find_kolom(table, colname, keyword):
             colidx = int(i)
             isFound = True
     if (isFound == True):
-        kolom = ["*" for i in range (length(table))]
-        for i in range (length(table)):
+        kolom = ["*" for i in range (1, length(table))]
+        for i in range (1, length(table)):
             kolom[i] = table[i][colidx]
         return kolom
     else: # (isFound == False)
         return []
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as aux
+    # A = [["Nama", "Saldo"], ["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
+    # B = aux.find_kolom(A, "Saldo")
+    # print(B)
+    # >> ["0", "1000"]
+    # Z = aux.find_kolom(A, "Tanggal_Lahir")
+    # print(Z)
+    # >> []
 
-def find_cell(array, keyword):
-    # function find_cell (array : array of string, keyword : string) -> string
-    # Mencari cell tertentu yang tersimpan dalam array 1 dimensi
+def validate_cell(array, keyword):
+    # function validate_cell (array : array of string, keyword : string) -> boolean
+    # Validasi keberadaan suatu cell yang tersimpan dalam suatu array 1 dimensi
     # KAMUS LOKAL
     # i : integer
     # isFound : boolean
-    # cellfound = string
     # ALGORITMA
     i = 0
     isFound = False
     while ((i < (length(array))) and (isFound == False)):
         if (array[i] == keyword):
-            cellfound = array[i]
             isFound = True
         i = i + 1
-    if (isFound == True):
-        return cellfound
-    else: # (isFound == False)
-        return ""
+    return isFound
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as aux
+    # AA = ["Willy Wangky", "0"]
+    # isValid = aux.validate_cell(AA, "0")
+    # print(isValid)
+    # >> True
+    # isValid = aux.validate_cell(AA, "Admin")
+    # print(isValid)
+    # >> False
 
 def search(table, result_column, from_column, from_data):
     # function search(table : array of array of string, result_column : string, from_column : string, from_data : string) -> string
-    # SYARAT: result_column, from_column, from_data valid
+    # SYARAT: result_column, from_column, from_data valid; from_data unik (hanya ada 1 dalam kolom tersebut)
     # KAMUS LOKAL
     # data : array of string
     # idx : integer
@@ -194,3 +256,10 @@ def search(table, result_column, from_column, from_data):
     data = find_baris_first(table, from_column, from_data)
     idx = find_idx(table, result_column)
     return data[idx]
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as aux
+    # A = [["Nama", "Saldo"], ["Willy Wangky", "0"], ["Willy Wangky", "1000"]]
+    # B = aux.search(A, "Saldo", "Nama", "Willy Wangky")
+    # print(B)
+    # >> "0"

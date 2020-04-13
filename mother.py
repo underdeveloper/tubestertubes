@@ -1,9 +1,11 @@
 # import f01, f02, f03, f04... dll
+
 import F01 as load
 import F02 as save
 import F03 as signup
 import F04 as login
 import auxilliary as aux
+# Petunjuk penggunaan fungsi/prosedur tiap-tiap modul ada pada masing-masing file modul
 
 # Memuat file-filenya (F01 - Load file)
 load.main()
