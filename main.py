@@ -1,11 +1,27 @@
 # import f01, f02, f03, f04... dll
-import F01
+import F01 as load
 
 # Memuat file-filenya (F01 - Load file)
-koleksi_file = F01.main()
+filedescs = ["User", "Daftar Wahana", "Pembelian Tiket", "Penggunaan Tiket",
+             "Kepemilikan Tiket", "Refund Tiket", "Kritik dan Saran"]
 
-user = koleksi_file.files[0] # Data dari user.csv
-print(user.contents) # Mengoutput isi dari variabel user
+# Variabel files berisi semua rekaman-rekaman dari file yang telah dimuat.
+files = load.main(filedescs) # files : array of Rekaman
+
+# Cara mengeluarkan tabel dari suatu file:
+# Misalnya kita mau ngambil tabel dari wahana.csv, gunakan F01.get_data():
+tabel_wahana = load.get_data(files, "wahana.csv")
+# Ini merupakan tabel berisi data wahana, yang bisa diakses oleh modul lain.
+print(tabel_wahana)
+
+
+
+
+
+
+
+
+
 
 # Login oleh user (F04 - Login user)
 

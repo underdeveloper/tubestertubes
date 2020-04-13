@@ -20,9 +20,8 @@ class Rekaman:
 
 # REALISASI FUNGSI/PROSEDUR
 
-# File-file yang kita perlukan. bisa diganti nanti.
-filedescs = ["User", "Daftar Wahana", "Pembelian Tiket", "Penggunaan Tiket", "Kepemilikan Tiket", "Refund Tiket", "File Kritik dan Saran"]
-files = []
+# File-file yang kita perlukan. bisa diganti nanti. Ini ditaruh di main.py
+filedescs = ["User", "Daftar Wahana", "Pembelian Tiket", "Penggunaan Tiket", "Kepemilikan Tiket", "Refund Tiket", "Kritik dan Saran"]
 
 def main(filedescs):
     # procedure main (input filenames : array of string
@@ -52,8 +51,10 @@ def main(filedescs):
     
     print("\nFile-file telah dimuat.\n")
 
-def get_data(filename):
-    # function get_data (filename : string) -> array of array of string
+    return files
+
+def get_data(files, filename):
+    # function get_data (files : array of Rekaman, filename : string) -> array of array of string
     # Mengeluarkan tabel yang merupakan isi dari data yang telah dimuat.
     # Syarat: File bernama filename sudah pasti telah dimuat.
 
@@ -72,8 +73,8 @@ def get_data(filename):
     if not found:
         return None
 
-def store_data(filename, new_table):
-    # prosedur store_data(input filename : string, output file : Rekaman)
+def store_data(files, filename, new_table):
+    # prosedur store_data(input filename : string, input/output files : array of Rekaman)
     # I.S. file belum diganti
     # F.S. file telah diganti user
     # Syarat: File bernama filename sudah pasti telah dimuat.
