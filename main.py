@@ -6,11 +6,12 @@ filedescs = ["User", "Daftar Wahana", "Pembelian Tiket", "Penggunaan Tiket",
              "Kepemilikan Tiket", "Refund Tiket", "Kritik dan Saran"]
 
 # Variabel files berisi semua rekaman-rekaman dari file yang telah dimuat.
-files = load.main(filedescs) # files : array of Rekaman
+load.main(filedescs)
+# Sekarang semua file udah kemuat di <load.files>
 
 # Cara mengeluarkan tabel dari suatu file:
 # Misalnya kita mau ngambil tabel dari wahana.csv, gunakan F01.get_data():
-tabel_wahana = load.get_data(files, "wahana.csv")
+tabel_wahana = load.get("wahana.csv")
 # Ini merupakan tabel berisi data wahana, yang bisa diakses oleh modul lain.
 print(tabel_wahana)
 
