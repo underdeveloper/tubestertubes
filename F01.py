@@ -3,6 +3,8 @@
 
 # KAMUS
 
+import auxilliary as aux
+
 class Rekaman:
     # Tipe bentukan kamus data yang akan dipakai.
     # Rekaman : < name : string
@@ -15,24 +17,19 @@ class Rekaman:
         self.rows = rows
         self.data = [["*" for i in range(columns)] for j in range(rows)]
 
-class FileCSV:
-    def __init__(self, count = 7):
-        self.count = count
-        self.description = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
-        self.ke = [Rekaman() for i in range (self.count)]
+filedescription = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
+filecount = aux.length(filedescription)
+files = [Rekaman() for i in range (filecount)]
 
-file = FileCSV()
-
-# Di atas ini adalah "file", suatu tipe bentukan
-# Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam file.ke
-# file.ke inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
-# Modul lain akan akan mengurus penyimpanan kembali file.ke ke-7 file .csv
+# Di atas ini adalah "Rekaman", suatu tipe bentukan, dan 3 variable : tuple [0..7], filecount : integer, files = array [0..filecount] of Rekaman()
+# Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam files
+# files inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
+# Modul lain akan akan mengurus penyimpanan kembali files ke-7 file .csv
 
 # ALGORITMA PROGRAM UTAMA
 
 import os
 import csv
-import auxilliary as aux
 
 # REALISASI FUNGSI/PROSEDUR
 
@@ -44,20 +41,20 @@ def main():
     # i : integer
     # reader : _csv.reader object
     # ALGORITMA
-    for i in range (file.count):
+    for i in range (filecount):
         # Masukkan <nama file> yang akan di-load
-        file.ke[i].name = str(input("Masukkan nama " + file.description[i] + ": "))
+        files[i].name = str(input("Masukkan nama " + filedescription[i] + ": "))
         # Load <nama file>.csv ke file.data
-        with open(os.path.dirname(__file__) + "\\" + str(file.ke[i].name), mode = 'r') as f:
+        with open(os.path.dirname(__file__) + "\\" + str(files[i].name), mode = 'r') as f:
             reader = list(csv.reader(f))
-            file.ke[i].rows = aux.length(reader)
-            file.ke[i].columns = aux.length(reader[0])
-            file.ke[i].data = reader
+            files[i].rows = aux.length(reader)
+            files[i].columns = aux.length(reader[0])
+            files[i].data = reader
     print("")
     print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
 
-    for i in range (aux.length(file.ke)):
-        print(file.ke[i].name)
+    for i in range (aux.length(files)):
+        print(files[i].name)
 
 def use(filename):
     # function use (filename : string) -> string
@@ -68,10 +65,10 @@ def use(filename):
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
-    for i in range(0, int(file.count) + 1):
-        if (str(file.ke[i].name) == filename):
-            return file.ke[i]
-        elif (i == file.count):
+    for i in range(0, int(filecount) + 1):
+        if (str(files[i].name) == filename):
+            return files[i]
+        elif (i == filecount):
             return None # Kalau gaada, dia return None. INI BELUM DIUJI AKAN MERUSAK APA | ini merusak F04, tp dah w edit F04nya
 
 def store(filename):
@@ -83,10 +80,10 @@ def store(filename):
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
-    for i in range(0, int(file.count) + 1):
-        if (str(file.ke[i].name) == filename):
-            file.ke[i].name = filename
-        elif i == file.count:
+    for i in range(0, int(filecount) + 1):
+        if (str(files[i].name) == filename):
+            files[i].name = filename
+        elif i == filecount:
             print("ERROR : Filename salah.")
 
 def find_idx(table, colname):
@@ -111,9 +108,7 @@ def find_baris_first(table, colname, keyword, startidx = 0):
         datafound = []
         return datafound
     else: # (startidx < aux.length(table))
-        for i in range (aux.length(table[0])):
-            if (table[0][i] == colname):
-                colidx = int(i)
+        colidx = find_idx(table, colname)
         isFound = False
         i = startidx
         while ((i < (aux.length(table))) and (isFound == False)):
@@ -134,9 +129,7 @@ def find_baris_all(table, colname, keyword):
     # i, colidx : integer
     # datafound : array of array of string
     # ALGORITMA
-    for i in range (aux.length(table[0])):
-        if (table[0][i] == colname):
-            colidx = int(i)
+    colidx = find_idx(table, colname)
     datafound = []
     for i in range (aux.length(table)):
         if (table[i][colidx] == keyword):

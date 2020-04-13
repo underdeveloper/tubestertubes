@@ -41,7 +41,7 @@ while ((exit_flag == False) and (load.find_baris_first(whoami, "Role", "Pemain")
     print("[16] Log-out.")
     x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
     if (x == "2"):
-        save.main(load.file.ke)
+        save.main(load.files)
         print("")
     elif (x == "6"):
         cari_wahana.main('wahana.csv')
@@ -61,11 +61,11 @@ while ((exit_flag == False) and (load.find_baris_first(whoami, "Role", "Admin") 
     print("[16] Log-out.")
     x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
     if (x == "2"):
-        save.main(load.file.ke)
+        save.main(load.files)
         print("")
     elif (x == "3"):
         userfile = signup.main(load.use("user.csv"))
-        load.file.ke[0] = userfile
+        load.files[0] = userfile
         print("")
     elif (x == "16"):
         exit_flag = True
@@ -77,7 +77,7 @@ while ((exit_flag == False) and (load.find_baris_first(whoami, "Role", "Admin") 
 if (exit_flag == True):
     isGonnaSave = exit.main()
     if (isGonnaSave == True):
-        save.main(load.file.ke)
+        save.main(load.files)
         raise SystemExit
     else:
         raise SystemExit
