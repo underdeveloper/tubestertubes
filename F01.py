@@ -6,7 +6,6 @@ import csv
 import auxilliary as aux
 
 # KAMUS
-
 class Rekaman:
     # Tipe bentukan kamus data yang akan dipakai.
     # Rekaman : < name : string
@@ -18,11 +17,9 @@ class Rekaman:
         self.columns = columns
         self.rows = rows
         self.data = [["*" for i in range(columns)] for j in range(rows)]
-
 filedescription = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
 filecount = aux.length(filedescription)
 files = [Rekaman() for i in range (filecount)]
-
 # Di atas ini adalah "Rekaman", suatu tipe bentukan, dan 3 variable : tuple [0..7], filecount : integer, files = array [0..filecount] of Rekaman()
 # Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam files
 # files inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
@@ -47,9 +44,9 @@ def main():
             files[i].rows = aux.length(reader)
             files[i].columns = aux.length(reader[0])
             files[i].data = reader
-
-    print("\nFile telah di-load.\n")
-
+    print("")
+    print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
+    print("")
 
 def use(filename):
     # function use (filename : string) -> string
