@@ -2,6 +2,61 @@
 
 import re
 
+def arr_length(some_array):
+    # FUNCTION length (some_array : array) -> integer
+    # Mengeluarkan panjang efektif dari array.
+
+    # KAMUS LOKAL
+    # count : integer
+
+    # ALGORITMA UTAMA
+    count = 0
+    for element in some_array:
+        count = count + 1
+    return count
+
+def merge(table1, table2):
+    # function merge (table1 : array of array of string, 
+    #                 table2 : array of array of string) -> array of array of string
+    # Menggabungkan 2 tabel. Urutan harus diperhatikan.
+    # Syarat: table1 dan table2 harus memiliki banyak kolom yang sama.
+
+    # KAMUS LOKAL
+    # length1, length2, length3 : integer
+    # columns, count : int
+    # table3 : array of array of string
+
+    # ALGORITMA
+    length1 = arr_length(table1)
+    length2 = arr_length(table2)
+    length3 = length1 + length2
+    
+    columns = arr_length(table1[0])
+
+    table3 = [["*" for i in range(columns)] for j in range(length3)]
+    
+    count = 0
+    while count < length3:
+        if count < length1:
+            table3[count] = table1[count]
+        else: # length >= length1
+            table3[count] = table2[count-length1]
+        count += 1
+
+    return table3
+
+file_wahana_data = [
+    [], [], []
+]
+
+data_baru = [
+    [], []
+]
+
+
+print ( merge(file_wahana_data, data_baru) )
+
+
 def contains(arr_str, element):
     # FUNCTION contains (arr_str : list, element : string) -> boolean
     # Mengecek apabila string 'element' berada pada array of string 'arr_str;
