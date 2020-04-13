@@ -2,82 +2,78 @@
 # Me-load ke-7 file .csv ke sistem
 
 import os
-import csv  # Library eksternal untuk mengakses file
-import auxilliary as aux  # Library internal, berisi fungsi pembantu
+import csv
+import auxilliary as aux
 
 # KAMUS
+
 class Rekaman:
     # Tipe bentukan kamus data yang akan dipakai.
     # Rekaman : < name : string
     #             columns : int
     #             rows : int
     #             data : array [0..rows-1] of array [0..columns-1] of string
-    def __init__(self, name="", columns=1, rows=1):
+    def __init__(self, name = "", columns = 1, rows = 1):
         self.name = name
         self.columns = columns
         self.rows = rows
         self.data = [["*" for i in range(columns)] for j in range(rows)]
 
+filedescription = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
+filecount = aux.length(filedescription)
+files = [Rekaman() for i in range (filecount)]
+
+# Di atas ini adalah "Rekaman", suatu tipe bentukan, dan 3 variable : tuple [0..7], filecount : integer, files = array [0..filecount] of Rekaman()
+# Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam files
+# files inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
+# Modul lain akan akan mengurus penyimpanan kembali files ke-7 file .csv
+
 # REALISASI FUNGSI/PROSEDUR
 
-# File-file yang kita perlukan. bisa diganti nanti. Ini ditaruh di main.py
-filedescs = ["User", "Daftar Wahana", "Pembelian Tiket", "Penggunaan Tiket", "Kepemilikan Tiket", "Refund Tiket", "Kritik dan Saran"]
-files = []
-
-def main(filedescs):
-    # procedure main (input filenames : array of string
-    #                 output data : file)
+def main():
+    # procedure main (output files : array of Rekaman)
     # I.S. file.data terdefinisi sembarang
     # F.S. ke-7 file .csv di-load ke files
     # KAMUS LOKAL
     # i : integer
     # reader : _csv.reader object
     # ALGORITMA
-    
-    file_amount = aux.length(filedescs)
-    files = [Rekaman() for i in range(file_amount)] # Array berisi kamus data
-    
-    for i in range(file_amount):
-        # Pemasukan nama file eksternal (csv) yang akan dimuat
-        files[i].name = input("Masukkan nama file " + filedescs[i] + ": ")
+    for i in range (filecount):
+        # Masukkan <nama file> yang akan di-load
+        files[i].name = str(input("Masukkan nama " + filedescription[i] + ": "))
+        # Load <nama file>.csv ke file.data
+        with open(os.path.dirname(__file__) + "\\" + str(files[i].name), mode = 'r') as f:
+            reader = list(csv.reader(f))
+            files[i].rows = aux.length(reader)
+            files[i].columns = aux.length(reader[0])
+            files[i].data = reader
 
-        # Memuatkan <ext_file>.csv ke kamus data
-        with open(os.path.dirname(__file__) + "\\" + files[i].name, 'r') as f:
-            file_contents = list(csv.reader(f))
+    print("\nFile telah di-load.\n")
 
-            files[i].columns = aux.length(file_contents[0])
-            files[i].rows = aux.length(file_contents)
 
-            files[i].data = file_contents
-    
-    print("\nFile-file telah dimuat.\n")
+def use(filename):
+    # function use (filename : string) -> string
+    # Memberikan copy file yang diminta dari versi yang ada di file.name
 
-def get(filename):
-    # function get (files : array of Rekaman, filename : string) -> array of array of string
-    # Mengeluarkan tabel yang merupakan isi dari data yang telah dimuat.
-    # Syarat: File bernama filename sudah pasti telah dimuat.
+    # Syarat: Filename sudah benar.
 
     # KAMUS LOKAL
-    # found : boolean
-    # file : Rekaman
+    # i : integer
 
-    # ALGORITMA UTAMA
-    found = False
+    # ALGORITMA
+    for i in range(0, filecount+1):
+        if (files[i].name == filename):
+            return files[i]
 
-    for file in files:
-        if file.name == filename:
-            found = True
-            return file.data
-    
-    if not found:
-        return None
+def store(filename, table_baru):
+    # procedure store (input filename : string, output file.data : FileCSV)
+    # Menyetor table_baru ke file bernama filename
 
-def store(filename, new_table):
-    # prosedur store_data(input filename : string, input/output files : array of Rekaman)
-    # I.S. file belum diganti
-    # F.S. file telah diganti user
-    # Syarat: File bernama filename sudah pasti telah dimuat.
-
-    for file in files:
-        if file.name == filename:
-            file.data = new_table
+    # KAMUS LOKAL
+    # i : integer
+    # ALGORITMA
+    for i in range(0, filecount+1):
+        if (files[i].name == filename):
+            files[i].data = table_baru
+        elif i == filecount:
+            print("ERROR : Filename salah.")
