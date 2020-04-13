@@ -57,29 +57,43 @@ def main():
 def use(filename):
     # function use (filename : string) -> string
     # Memberikan copy file yang diminta dari versi yang ada di file.name
-
-    # >>> Asumsi filename sudah benar. <<<
-
     # KAMUS LOKAL
-    # i : integer
+    # i, j, k : integer
+    # isFound : boolean
+    # filefound : array [0..files[i].rows] of array [0..files[i].columns] of string
     # ALGORITMA
-    for i in range(0, int(filecount) + 1):
-        if (str(files[i].name) == filename):
-            return files[i]
-        elif (i == filecount):
-            return None # Kalau gaada, dia return None. INI BELUM DIUJI AKAN MERUSAK APA | ini merusak F04, tp dah w edit F04nya
+    try:
+        i = 0
+        isFound = False
+        while ((i < filecount) and (isFound == False)):
+            if (str(files[i].name) == filename):
+                isFound = True
+                filefound = [["*" for k in range (files[i].columns)] for j in range (files[i].rows)]
+                filefound = files[i]
+            i = i + 1
+        if (isFound == False):
+            raise ValueError
+        return filefound
+    except ValueError:
+        print("ERROR: Invalid filename.")
+        
 
-def store(filename):
-    # procedure store (input filename : string, output file.data : FileCSV)
+def store(filename, new_table):
+    # procedure store (input filename : string, input new_table : array of array of string)
     # Meng-update salah satu elemen file.name yang sesuai dengan nama file yang di-input
-
-    # >>> Asumsi filename sudah benar. <<<
-
     # KAMUS LOKAL
     # i : integer
+    # isStored : boolean
     # ALGORITMA
-    for i in range(0, int(filecount) + 1):
-        if (str(files[i].name) == filename):
-            files[i].name = filename
-        elif i == filecount:
-            print("ERROR : Filename salah.")
+    i = 0
+    isStored = False
+    try:
+        while ((i < filecount) and (isStored == False)):
+            if (files[i].name == filename):
+                files[i].data = new_table
+                isStored = True
+            i = i + 1
+        if (isStored == False):
+            raise ValueError
+    except ValueError:
+        print("ERROR: Invalid filename.")

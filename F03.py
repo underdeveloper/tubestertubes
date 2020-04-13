@@ -10,7 +10,6 @@ class user:
 # ALGORITMA PROGRAM UTAMA
 
 import os
-import datetime
 import F01 as load
 import auxilliary as aux
 
@@ -39,11 +38,7 @@ def main(userfile):
                     isUsernameOK = True
             elif (user.datadesc[i] == "tanggal lahir pemain (DD/MM/YYYY)"):
                 user.data[i] = str(input("Masukkan " + user.datadesc[i] + ": "))
-                try:
-                    formatcheck = datetime.datetime.strptime(user.data[i], "%d/%m/%Y")
-                    isBirthdayOK = True
-                except ValueError:
-                    isBirthdayOK = False
+                isBirthdayOK = aux.validate_date(user.data[i])
             elif (user.datadesc[i] == "tinggi badan pemain (cm)"):
                 user.data[i] = str(input("Masukkan " + user.datadesc[i] + ": "))
                 try:

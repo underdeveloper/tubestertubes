@@ -123,11 +123,9 @@ def find_baris_first(table, colname, keyword, startidx = 0):
                 datafound = table[i]
                 isFound = True
             i = i + 1
-        if (isFound == True):
-            return datafound
-        else: #(isFound == False)
+        if (isFound == False):
             datafound = []
-            return datafound
+        return datafound
 
 def find_baris_all(table, colname, keyword):
     # function find_baris_all (array : array of array of string, colname : string, keyword : string) -> array of array of string
@@ -143,9 +141,7 @@ def find_baris_all(table, colname, keyword):
             datafound = konsDot(datafound, table[i])
     if ((length(datafound)) == 0):
         datafound = [[]]
-        return datafound
-    else: #((len(datafound)) > 0))
-        return datafound
+    return datafound
 
 def find_kolom(table, colname, keyword):
     # function find_kolom (table : array of array of string, colname : string, keyword : string) -> array of string
