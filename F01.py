@@ -61,19 +61,19 @@ def use(filename):
     # i : integer
 
     # ALGORITMA
-    for i in range(0, int(filecount) + 1):
-        if (str(files[i].name) == filename):
+    for i in range(0, filecount+1):
+        if (files[i].name == filename):
             return files[i]
 
 def store(filename, table_baru):
     # procedure store (input filename : string, output file.data : FileCSV)
-    # Meng-update salah satu elemen file.name yang sesuai dengan nama file yang di-input
+    # Menyetor table_baru ke file bernama filename
 
     # KAMUS LOKAL
     # i : integer
     # ALGORITMA
-    for i in range(0, int(filecount) + 1):
-        if (str(files[i].name) == filename):
-            files[i].name = table_baru
+    for i in range(0, filecount+1):
+        if (files[i].name == filename):
+            files[i].data = table_baru
         elif i == filecount:
             print("ERROR : Filename salah.")
