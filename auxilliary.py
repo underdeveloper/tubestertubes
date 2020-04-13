@@ -16,19 +16,6 @@ def contains(arr_str, element):
     else:
         return False
 
-def find_idx(arr_str, element):
-    # FUNCTION find_idx (arr_str : list, element : string) -> integer
-    # Mencari nomor indeks suatu elemen array 'elemen' pada array of string 'arr_str'
-
-    # KAMUS LOKAL
-    # i : integer
-
-    # ALGORITMA UTAMA
-
-    for i in range(len(arr_str)):
-        if (str(arr_str[i]) == str(element)):
-            return int(i)
-
 def validate_date(date):
     # FUNCTION validate_date (date : string) -> boolean
     # Mengecek apabila string 'date' sesuai dengan format tanggal (DD/MM/YYYY)
@@ -105,3 +92,109 @@ def konsDot(array, element):
         a[i] = array[i]
     a[a_length - 1] = element
     return a
+
+def find_idx(table, colname):
+    # function find_idx (colname : string) -> integer
+    # Mencari nomor indeks suatu kolom bernama colname pada array array
+    # KAMUS LOKAL
+    # i : integer
+    # ALGORITMA
+    for i in range (length(table[0])):
+        if (str(table[0][i]) == str(colname)):
+            return int(i)
+
+def find_baris_first(table, colname, keyword, startidx = 0):
+    # function find_baris_first (array : array of array of string, colname : string, keyword : string) -> array of string
+    # Mencari baris pertama dengan keyword tertentu yang tersimpan dalam table
+    # KAMUS LOKAL
+    # i, colidx : integer
+    # datafound : array of string
+    # isFound : boolean
+    # ALGORITMA
+    if (startidx >= (length(table))):
+        datafound = []
+        return datafound
+    else: # (startidx < length(table))
+        colidx = find_idx(table, colname)
+        isFound = False
+        i = startidx
+        while ((i < (length(table))) and (isFound == False)):
+            if (table[i][colidx] == keyword):
+                datafound = table[i]
+                isFound = True
+            i = i + 1
+        if (isFound == True):
+            return datafound
+        else: #(isFound == False)
+            datafound = []
+            return datafound
+
+def find_baris_all(table, colname, keyword):
+    # function find_baris_all (array : array of array of string, colname : string, keyword : string) -> array of array of string
+    # Mencari baris yang tersimpan dalam table
+    # KAMUS LOKAL
+    # i, colidx : integer
+    # datafound : array of array of string
+    # ALGORITMA
+    colidx = find_idx(table, colname)
+    datafound = []
+    for i in range (length(table)):
+        if (table[i][colidx] == keyword):
+            datafound = konsDot(datafound, table[i])
+    if ((length(datafound)) == 0):
+        datafound = [[]]
+        return datafound
+    else: #((len(datafound)) > 0))
+        return datafound
+
+def find_kolom(table, colname, keyword):
+    # function find_kolom (table : array of array of string, colname : string, keyword : string) -> array of string
+    # Mencari kolom yang tersimpan dalam table
+    # KAMUS LOKAL
+    # i, colidx : integer
+    # kolom : array of string
+    # isFound : boolean
+    # ALGORITMA
+    isFound = False
+    for i in range (length(table[0])):
+        if (table[0][i] == colname):
+            colidx = int(i)
+            isFound = True
+    if (isFound == True):
+        kolom = ["*" for i in range (length(table))]
+        for i in range (length(table)):
+            kolom[i] = table[i][colidx]
+        return kolom
+    else: # (isFound == False)
+        return []
+
+def find_cell(array, keyword):
+    # function find_cell (array : array of string, keyword : string) -> string
+    # Mencari cell tertentu yang tersimpan dalam array 1 dimensi
+    # KAMUS LOKAL
+    # i : integer
+    # isFound : boolean
+    # cellfound = string
+    # ALGORITMA
+    i = 0
+    isFound = False
+    while ((i < (length(array))) and (isFound == False)):
+        if (array[i] == keyword):
+            cellfound = array[i]
+            isFound = True
+        i = i + 1
+    if (isFound == True):
+        return cellfound
+    else: # (isFound == False)
+        return ""
+
+def search(table, result_column, from_column, from_data):
+    # function search(table : array of array of string, result_column : string, from_column : string, from_data : string) -> string
+    # SYARAT: result_column, from_column, from_data valid
+    # KAMUS LOKAL
+    # data : array of string
+    # idx : integer
+    # ALGORITMA
+    data = find_baris_first(table, from_column, from_data)
+    idx = find_idx(table, result_column)
+    return data[idx]
