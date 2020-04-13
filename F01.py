@@ -1,9 +1,11 @@
 # Program F01
 # Me-load ke-7 file .csv ke sistem
 
-# KAMUS
-
+import os
+import csv
 import auxilliary as aux
+
+# KAMUS
 
 class Rekaman:
     # Tipe bentukan kamus data yang akan dipakai.
@@ -26,17 +28,12 @@ files = [Rekaman() for i in range (filecount)]
 # files inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
 # Modul lain akan akan mengurus penyimpanan kembali files ke-7 file .csv
 
-# ALGORITMA PROGRAM UTAMA
-
-import os
-import csv
-
 # REALISASI FUNGSI/PROSEDUR
 
 def main():
-    # procedure main (output data : file)
+    # procedure main (output files : array of Rekaman)
     # I.S. file.data terdefinisi sembarang
-    # F.S. ke-7 file .csv di-load ke file.data
+    # F.S. ke-7 file .csv di-load ke files
     # KAMUS LOKAL
     # i : integer
     # reader : _csv.reader object
@@ -50,50 +47,34 @@ def main():
             files[i].rows = aux.length(reader)
             files[i].columns = aux.length(reader[0])
             files[i].data = reader
-    print("")
-    print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
-    print("")
+
+    print("\nFile telah di-load.\n")
+
 
 def use(filename):
     # function use (filename : string) -> string
     # Memberikan copy file yang diminta dari versi yang ada di file.name
-    # KAMUS LOKAL
-    # i, j, k : integer
-    # isFound : boolean
-    # filefound : array [0..files[i].rows] of array [0..files[i].columns] of string
-    # ALGORITMA
-    try:
-        i = 0
-        isFound = False
-        while ((i < filecount) and (isFound == False)):
-            if (str(files[i].name) == filename):
-                isFound = True
-                filefound = [["*" for k in range (files[i].columns)] for j in range (files[i].rows)]
-                filefound = files[i]
-            i = i + 1
-        if (isFound == False):
-            raise ValueError
-        return filefound
-    except ValueError:
-        print("ERROR: Invalid filename.")
-        
 
-def store(filename, new_table):
-    # procedure store (input filename : string, input new_table : array of array of string)
-    # Meng-update salah satu elemen file.name yang sesuai dengan nama file yang di-input
+    # Syarat: Filename sudah benar.
+
+    # KAMUS LOKAL
+    # i : integer
+
+    # ALGORITMA
+    for i in range(0, filecount+1):
+        if (files[i].name == filename):
+            return files[i]
+
+def store(filename, table_baru):
+    # procedure store (input filename : string, output file.data : FileCSV)
+    # Menyetor table_baru ke file bernama filename
+
     # KAMUS LOKAL
     # i : integer
     # isStored : boolean
     # ALGORITMA
-    i = 0
-    isStored = False
-    try:
-        while ((i < filecount) and (isStored == False)):
-            if (files[i].name == filename):
-                files[i].data = new_table
-                isStored = True
-            i = i + 1
-        if (isStored == False):
-            raise ValueError
-    except ValueError:
-        print("ERROR: Invalid filename.")
+    for i in range(0, filecount+1):
+        if (files[i].name == filename):
+            files[i].data = table_baru
+        elif i == filecount:
+            print("ERROR : Filename salah.")
