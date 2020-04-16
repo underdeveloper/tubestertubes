@@ -10,19 +10,20 @@ class user:
 # ALGORITMA PROGRAM UTAMA
 
 import os
-import datetime
 import F01 as load
+import auxilliary as flib
 
 # REALISASI FUNGSI/PROSEDUR
 
 def main(userfile):
-    # procedure main (input/output userfile : array of array [0..6] of string)
+    # fungsi main (userfile : array of array [0..6] of string) -> array of array [0..6] of string
     # I.S. userfile terdefinisi
     # F.S. ditambahkan suatu data baru ke userfile
     # KAMUS LOKAL
     # isUsernameOK, isBirthdayOK : boolean
     # i : integer
     # formatcheck : string
+    # ALGORITMA
     isUsernameOK = False
     isBirthdayOK = False
     isHeightOK = False
@@ -33,15 +34,11 @@ def main(userfile):
         for i in range (user.datacount):
             if (user.datadesc[i] == "username pemain"):
                 user.data[i] = (str(input("Masukkan " + user.datadesc[i] + ": "))).lower()
-                if (load.finddata(userfile, "Username", user.data[i]) == []):
+                if (flib.find_baris_first(userfile.data, "Username", user.data[i]) == []):
                     isUsernameOK = True
             elif (user.datadesc[i] == "tanggal lahir pemain (DD/MM/YYYY)"):
                 user.data[i] = str(input("Masukkan " + user.datadesc[i] + ": "))
-                try:
-                    formatcheck = datetime.datetime.strptime(user.data[i], "%d/%m/%Y")
-                    isBirthdayOK = True
-                except ValueError:
-                    isBirthdayOK = False
+                isBirthdayOK = flib.validate_date(user.data[i])
             elif (user.datadesc[i] == "tinggi badan pemain (cm)"):
                 user.data[i] = str(input("Masukkan " + user.datadesc[i] + ": "))
                 try:
@@ -61,6 +58,10 @@ def main(userfile):
             print("Tanggal lahir Anda tidak valid. Silakan ulangi lagi.")
         if (isHeightOK == False):
             print("Tinggi badan Anda tidak valid. Silakan ulangi lagi.")
-    userfile.append(user.data)
+    useradded = flib.konsDot(userfile.data, user.data)
+    userfile.rows = userfile.rows + 1
+    userfile.data = useradded
     print("")
     print("Selamat menjadi pemain, " + user.data[0] + ". Selamat bermain.")
+    print("")
+    return userfile

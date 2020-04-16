@@ -5,7 +5,7 @@
 
 # ALGORITMA PROGRAM UTAMA
 
-import F01 as load
+import auxilliary as flib
 
 # REALISASI FUNGSI/PROSEDUR
 def main(userfile):
@@ -16,19 +16,31 @@ def main(userfile):
     # username, password : string
     # finduser, findpassword : array [0..6] of string
     # user : array [0..1] of array [0..6] of string
+    # ALGORITMA
     isUser = False
     while (isUser == False):
-        username = str(input("Masukkan username: "))
-        password = str(input("Masukkan password: "))
-        finduser = load.finddata(userfile, "Username", username)
-        findpassword = load.finddata(userfile, "Password", password)
-        if ((finduser == findpassword) and (finduser != []) and (findpassword != [])):
-            isUser = True
-            print("")
-            print("Selamat bersenang-senang, " + finduser[load.findidx(userfile, "Nama")] + "!")
+        username = str(input("Masukkan username: ")) # Feral
+        password = str(input("Masukkan password: ")) # fer4l
+        finduser = flib.find_baris_first(userfile.data, "Username", username)
+        if (finduser != []):
+            findpassword = flib.validate_cell(finduser, password)
+            if (findpassword == True):
+                isUser = True
+                print("")
+                print("Selamat bersenang-senang, " + finduser[flib.find_idx(userfile.data, "Nama")] + "!")
+                print("")
         if (isUser == False):
             print("Username/Password salah")
-    user = []
-    user.append(userfile[0])
-    user.append(finduser)
+    user = [userfile.data[0], finduser]
     return user
+
+def getuserdata(user, dataname):
+    # function getuserdata (dataname : string) -> string
+    # Mengambil data dari user yang telah login
+    return user[1][flib.find_idx(user, str(dataname))]
+    # APLIKASI
+    # (pada modul lain)
+    # import F04 as login
+    # user = array [0..1] of array [0..6] of string { berisi data user yang sedang login }
+    # login.getuserdata(user, "Saldo")
+    # >> <Saldo dari pemain yang sedang login>

@@ -1,49 +1,88 @@
+# KAMUS
+# exit_flag, isGonnaSave : boolean
+
 # import f01, f02, f03, f04... dll
 import F01 as load
+import F02 as save
+import F03 as signup
+import F04 as login
+import F06 as cari_wahana
+import F11 as komplen_wahana
+import F16 as exit
+import auxilliary as flib
+# Petunjuk penggunaan fungsi/prosedur tiap-tiap modul ada pada masing-masing file modul
 
 # Memuat file-filenya (F01 - Load file)
-filedescs = ["User", "Daftar Wahana", "Pembelian Tiket", "Penggunaan Tiket",
-             "Kepemilikan Tiket", "Refund Tiket", "Kritik dan Saran"]
-
-# Variabel files berisi semua rekaman-rekaman dari file yang telah dimuat.
-load.main(filedescs)
-# Sekarang semua file udah kemuat di <load.files>
-
-# Cara mengeluarkan tabel dari suatu file:
-# Misalnya kita mau ngambil tabel dari wahana.csv, gunakan F01.get_data():
-tabel_wahana = load.get("wahana.csv")
-# Ini merupakan tabel berisi data wahana, yang bisa diakses oleh modul lain.
-print(tabel_wahana)
-
-
-
-
-
-
-
-
-
+load.main()
+# Data semua file .csv telah di-load ke dalam suatu array bernama load.file.data
+# Untuk memanggil salah satu file pada array bisa dengan load.use(<Nama File>.csv)
+# Untuk mengesave salah satu file ke array bisa dengan load.store(<Nama File>.csv)
+# contoh: signup.main(load.use("user.csv")) akan memanggil prosedur signup.main yang membutuhkan file user.csv sebagai input
+# Jangan coba-coba memanggil array secara paksa dengan load.file.data[<Nama File>.csv]
+# Perubahan pada array tidak akan di-save ke file .csv asli sampai ada pemanggilan modul save.
 
 # Login oleh user (F04 - Login user)
+# Login sebagai admin:
+# Username: wangkypro
+# Password: coklatenaknol
+whoami = login.main(load.use("user.csv"))
 
 # Dideklarasi exit_flag (boolean) yang menandakan apabila user sudah mau keluar dari program
 # Awalnya exit_flag = False
+if (whoami != []):
+    exit_flag = False
 
 # Looping
-''' 
-    Dilakukan looping pake while (not exit_flag)
-    User bisa menggunakan fitur-fitur di sini sebanyak mungkin
 
-    Looping akan di break ketika exit_flag == True (dilakukan oleh F16 - Exit)
-'''
-# exit_flag = False
-# while (not exit_flag):
-#     command = input("> ")
-#     if command == "cari":
-#         F06.pencarian_wahana(wahana)
-#         exit_flag = True
-#     else:
-#         print("Salah command!")
-    
+# Loop pemain
+while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Pemain") != [])):
+    print("Anda ter-logged in sebagai " + whoami[1][flib.find_idx(whoami, "Username")])
+    print("Anda adalah seorang Pemain.")
+    print("Apa yang mau anda lakukan?")
+    print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
+    print("[6] Mencari wahana sesuai pembatasan user.")
+    print("[16] Log-out.")
+    x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
+    if (x == "2"):
+        save.main(load.files)
+    elif (x == "6"):
+        cari_wahana.main('wahana.csv')
+    elif (x == "16"):
+        exit_flag = True
+    else:
+        print("ERROR: Unknown command.")
+        print("")
+
+# Loop admin
+while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Admin") != [])):
+    print("Anda ter-logged in sebagai " + whoami[1][flib.find_idx(whoami, "Username")])
+    print("Anda adalah seorang Admin.")
+    print("Apa yang mau anda lakukan?")
+    print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
+    print("[3] Mendaftarkan pemain baru.")
+    print("[11] Mengeluarkan kritik dan saran dari pemain di wahana.")
+    print("[16] Log-out.")
+    x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
+    if (x == "2"):
+        save.main(load.files)
+    elif (x == "3"):
+        userfile = signup.main(load.use("user.csv"))
+        load.files[0] = userfile
+    elif (x == "11"):
+        komplen_wahana.sort_this(load.use('kritiksaran.csv'))
+    elif (x == "16"):
+        exit_flag = True
+    else:
+        print("ERROR: Unknown command.")
+        print("")
 
 # Setelah looping selesai, program selesai
+if (exit_flag == True):
+    isGonnaSave = exit.main()
+    if (isGonnaSave == True):
+        save.main(load.files)
+        raise SystemExit
+    else:
+        raise SystemExit
+else:
+    print("ERROR: Unexpected exit from user/admin loop. Changes will not be saved")
