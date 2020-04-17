@@ -263,3 +263,26 @@ def search(table, result_column, from_column, from_data):
     # B = flib.search(A, "Saldo", "Nama", "Willy Wangky")
     # print(B)
     # >> "0"
+
+def years_since_then(date1, date2):
+    # function years_since_then(date1 : string, date2 : string) -> integer
+    # Mengeluarkan tahun yang telah berlalu sejak date1 ke date2.
+    # Tahun yang dikeluarkan dibulatkan ke bawah (16.5 -> 16).
+    # date1 dan date2 memiliki format "DD/MM/YY" yang sudah lolos validate_date().
+
+    # KAMUS LOKAL
+    # days1, months1, years1 : int
+    # days2, months2, years2 : int
+    # result_years : int
+
+    # ALGORITMA
+    # Memecahkan format menjadi integer yang diperlukan (hari, bulan, tahun)
+    (days1, months1, years1) = tuple(map(int, date1.split('/')))
+    (days2, months2, years2) = tuple(map(int, date2.split('/')))
+    result_years = years2 - years1
+
+    # 14 Juli 2001 - 13 Juli 2020 => Masih terhitung 18 tahun, walaupun sebenarnya 18.95 tahun.
+    if (months1 > months2) or (months1 <= months2 and days1 > days2):
+        result_years -= 1
+
+    return result_years
