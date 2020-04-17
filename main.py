@@ -69,7 +69,7 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Admin") 
         userfile = signup.main(load.use("user.csv"))
         load.files[0] = userfile
     elif (x == "11"):
-        komplen_wahana.sort_this(load.use('kritiksaran.csv'))
+        komplen_wahana.print_sorted(load.use('kritiksaran.csv'))
     elif (x == "16"):
         exit_flag = True
     else:

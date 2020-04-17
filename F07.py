@@ -2,7 +2,7 @@
 # 
 import auxilliary as aux
 
-def beli_tiket(username, user, wahana, pembelian_tiket, kepemilikan_tiket):
+def beli_tiket(pengguna, user, wahana, pembelian_tiket, kepemilikan_tiket):
     # PROCEDURE beli_tiket (input user : string, input user : FileCSV, input wahana : FileCSV
     #                      input/output : pembelian_tiket, input/output : kepemilikan_tiket)
     # I.S. pembelian_tiket abstrak, username sudah pasti ada di database user
@@ -10,7 +10,17 @@ def beli_tiket(username, user, wahana, pembelian_tiket, kepemilikan_tiket):
     # KAMUS LOKAL
 
     # ALGORITMA
-    return True # temporer saja :)
+    username = pengguna[1][aux.find_idx(pengguna, "Username")]
+    date_of_birth = pengguna[1][aux.find_idx(pengguna, "Tanggal_Lahir")]
+    
+    idwahana = input("Masukkan ID wahana: ")
+    date_now = input("Masukkan tanggal hari ini: ")
+    tickets = input("Jumlah tiket yang dibeli: ")
+
+    
+
+
+    return
     
     # 1. Meminta input berikut: ID wahana, tanggal hari ini, jumlah tiket yang dibeli
     # 2. Validasi input!
