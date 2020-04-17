@@ -67,21 +67,16 @@ def use(filename):
 
 def store(filename, table_baru):
     # procedure store (input filename : string, output files[i] : Rekaman)
-    # Menyetor table_baru ke file bernama filename
+    # Menyetor table_baru ke file bernama filename.
+    # Syarat: Filename sudah benar.
     # KAMUS LOKAL
     # i : integer
-    # isStored : boolean
     # ALGORITMA
-    isStored = False
-
-    for i in range(0, filecount+1):
-        if i == filecount and not isStored:
-            print("ERROR : Filename salah.")
-        elif (files[i].name == filename):
+    for i in range(0, filecount):
+        if files[i].name == filename:
             files[i].rows = flib.length(table_baru)
             files[i].columns = flib.length(table_baru[0])
             files[i].data = table_baru
-            isStored = True
     # APLIKASI
     # (pada modul lain)
     # import F01 as load

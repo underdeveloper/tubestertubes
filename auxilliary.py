@@ -137,7 +137,7 @@ def konsDot(array, element):
     # a : array of array of string
     # a_length, i : integer
     # ALGORITMA
-    a_length = (length(array)) + 1
+    a_length = length(array) + 1
     a = [[] for i in range (a_length)]
     for i in range (length(array)):
         a[i] = array[i]
@@ -146,11 +146,32 @@ def konsDot(array, element):
     # APLIKASI
     # (pada modul lain)
     # import auxilliary as flib
-    # A = [[ITB, UNPAD], [UI]]
-    # B = [ITS, UNAIR]
+    # A = [["ITB", "UNPAD"], ["UI"]]
+    # B = ["ITS", "UNAIR"]
     # C = flib.konsDot(A, B)
     # print(C)
-    # >> [[ITB, UNPAD], [UI], [ITS, UNAIR]]
+    # >> [["ITB", "UNPAD"], ["UI"], ["ITS", "UNAIR"]]
+
+def merge(array1, array2):
+    # function merge (array1 : array of array of string, array2 : array of array of string) -> array of array of string
+    # Melakukan merge antara dua array of array of string.
+    # KAMUS LOKAL
+    # merged : array of array of string
+    # merged_length, i : integer
+    merged_length = length(array1) + length(array2)
+    merged = [[] for i in range (merged_length)]
+    merged[0:length(array1)] = array1
+    merged[length(array1):] = array2
+
+    return merged
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as flib
+    # A = [["ITB", "UNPAD"], ["UI"]]
+    # B = [["ITS", "UNAIR"], ["UNJ"]]
+    # C = flib.merge(A, B)
+    # print(C)
+    # >> [["ITB", "UNPAD"], ["UI"], ["ITS", "UNAIR"], ["UNJ"]]
 
 def find_idx(table, colname):
     # function find_idx (table : array of array of string, colname : string) -> integer

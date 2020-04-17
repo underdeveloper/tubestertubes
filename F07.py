@@ -14,38 +14,43 @@ def main(pengguna, wahana, pembelian, tiket):
     username = pengguna[1][aux.find_idx(pengguna, "Username")]
     date_of_birth = pengguna[1][aux.find_idx(pengguna, "Tanggal_Lahir")]
     
+    # Validasi input dan saldo (belum)
+
     id_wahana = input("Masukkan ID wahana: ")
     date_now = input("Masukkan tanggal hari ini: ")
-    tickets = input("Jumlah tiket yang dibeli: ")
+    tickets = int(input("Jumlah tiket yang dibeli: "))
 
     age = aux.years_since_then(date_of_birth, date_now)
 
     # Menuliskan pembelian baru ke rekaman pembelian.csv
+
     data_pembelian = [username, date_now, id_wahana, tickets]
     new_pembelian = aux.konsDot(pembelian.data, data_pembelian)
     load.store("pembelian.csv", new_pembelian)
 
     # Menambahkan kepemilikan tiket ke rekaman tiket.csv
-    if aux.find_baris_first(tiket.data, "Username", username) == []: 
+
+    previously_bought = aux.merge([tiket.data[0]], aux.find_baris_all(tiket.data, "Username", username))
+
+    if previously_bought[1:] == [[]]:
         # Jika pengguna belum pernah membeli tiket sama sekali, ditambahkan entry baru.
         data_tiket = [username, id_wahana, tickets]
         new_tiket = aux.konsDot(tiket.data, data_tiket)
     
     else:  # Pengguna sudah pernah membeli tiket sebelumnya.
-        
-        previously_bought = aux.find_baris_all(tiket.data, "Username", username)
-        if aux.find_baris_first(previously_bought, "ID_Wahana", id_wahana) == []:
+        ticket_id_wahana = aux.find_baris_first(previously_bought, "ID_Wahana", id_wahana)
+
+        if ticket_id_wahana == []:
             # Jika pengguna belum pernah membeli tiket di id_wahana yang sama sebelumnya, ditambahkan entry baru.
             data_tiket = [username, id_wahana, tickets]
             new_tiket = aux.konsDot(tiket.data, data_tiket)
         else:
             # Jika pengguna pernah membeli tiket di id_wahana yang sama sebelumnya, baris tersebut diperbarukan.
-            
-            # !!!
-            # BELUM DIIMPLEMENTASIKAN
-            # !!!
-            
-            new_tiket = tiket.data # Sementara
+            new_tiket = tiket.data
+            row_to_be_changed = aux.find_baris_idx(new_tiket, ticket_id_wahana) # Baris tiket yang ingin diganti
+            idx_col_jml_tiket = aux.find_idx(new_tiket, "Jumlah_Tiket")
+            new_tiket[row_to_be_changed][idx_col_jml_tiket] = str(int(new_tiket[row_to_be_changed][idx_col_jml_tiket]) + tickets)
+
     load.store("tiket.csv", new_tiket)
 
     print("Prosedur pembelian tiket telah selesai.", end="\n\n")
