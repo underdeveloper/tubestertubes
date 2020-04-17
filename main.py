@@ -7,6 +7,7 @@ import F02 as save
 import F03 as signup
 import F04 as login
 import F06 as cari_wahana
+import F07 as beli_tiket
 import F11 as komplen_wahana
 import F16 as exit
 import auxilliary as flib
@@ -41,12 +42,15 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Pemain")
     print("Apa yang mau anda lakukan?")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
     print("[6] Mencari wahana sesuai pembatasan user.")
+    print("[7] Membeli tiket.")
     print("[16] Log-out.")
     x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
     if (x == "2"):
         save.main(load.files)
     elif (x == "6"):
         cari_wahana.main('wahana.csv')
+    elif (x == "7"):
+        beli_tiket.main(whoami, load.use("wahana.csv"), load.use("pembelian.csv"), load.use("tiket.csv"))
     elif (x == "16"):
         exit_flag = True
     else:

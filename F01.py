@@ -64,6 +64,7 @@ def use(filename):
     # load.use("user.csv")
     # >> files[0]
 
+
 def store(filename, table_baru):
     # procedure store (input filename : string, output files[i] : Rekaman)
     # Menyetor table_baru ke file bernama filename
@@ -71,13 +72,16 @@ def store(filename, table_baru):
     # i : integer
     # isStored : boolean
     # ALGORITMA
+    isStored = False
+
     for i in range(0, filecount+1):
-        if (files[i].name == filename):
+        if i == filecount and not isStored:
+            print("ERROR : Filename salah.")
+        elif (files[i].name == filename):
             files[i].rows = flib.length(table_baru)
             files[i].columns = flib.length(table_baru[0])
             files[i].data = table_baru
-        elif i == filecount:
-            print("ERROR : Filename salah.")
+            isStored = True
     # APLIKASI
     # (pada modul lain)
     # import F01 as load
