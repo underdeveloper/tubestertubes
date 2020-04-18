@@ -1,5 +1,8 @@
 # F07 - PEMBELIAN TIKET
-# 
+# Desainer: Sulthan
+# Coder: Sulthan
+# Tester: Sulthan 
+
 import F01 as load
 import auxilliary as aux
 
@@ -13,14 +16,63 @@ def main(pengguna, wahana, pembelian, tiket):
     # ALGORITMA
     username = pengguna[1][aux.find_idx(pengguna, "Username")]
     date_of_birth = pengguna[1][aux.find_idx(pengguna, "Tanggal_Lahir")]
+    height = int(pengguna[1][aux.find_idx(pengguna, "Tinggi_Badan")])
+    balance = int(pengguna[1][aux.find_idx(pengguna, "Saldo")])
     
-    # Validasi input dan saldo (belum)
-
+    # Input dan validasi ID Wahana
     id_wahana = input("Masukkan ID wahana: ")
-    date_now = input("Masukkan tanggal hari ini: ")
-    tickets = int(input("Jumlah tiket yang dibeli: "))
+    wahana_found = aux.konsDot([wahana.data[0]], aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana))
+    while wahana_found[1] == []:
+        id_wahana = input("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\". Mohon diulang: ')
+        wahana_found[1] = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
+    print(wahana_found)
+    # Input dan validasi tanggal hari ini
+    date_now = aux.input_date("Masukkan tanggal hari ini: ")
+    age = aux.years_since_then(date_of_birth, date_now) # Menentukan umur dari pengguna
 
-    age = aux.years_since_then(date_of_birth, date_now)
+    # Input dan validasi jumlah tiket yang ingin dibeli
+    tickets = 0
+    tickets = int(input("Jumlah tiket yang dibeli: "))
+    while tickets <= 0:
+        tickets = int(input("Jumlah tiket harus lebih dari 0. Mohon diulang: "))
+
+    # Mengecek apakah umur pengguna sudah memenuhi batasan umur wahana.
+    wahana_age_group = wahana_found[1][aux.find_idx(wahana_found, "Batasan_Umur")]
+    # Wahana untuk anak-anak, tetapi pengguna dewasa
+    if wahana_age_group == "anak-anak" and age >= 17:
+        print("Batasan umur: Anak-anak (< 17 tahun)")
+        print("Umur Anda: " + str(age))
+        print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini."
+              + "\nSilakan menggunakan wahana lain yang tersedia.")
+        return
+    # Wahana untuk dewasa, tetapi pengguna anak-anak
+    elif wahana_age_group == "dewasa" and age < 17:
+        print("Batasan umur: Dewasa (>= 17 tahun)")
+        print("Umur Anda: " + str(age))
+        print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini."
+              + "\nSilakan menggunakan wahana lain yang tersedia.")
+        return
+    
+    # Mengecek apakah tinggi pengguna sudah memenuhi batasan tinggi wahana.
+    wahana_height_group = wahana_found[1][aux.find_idx(wahana_found, "Batasan_Tinggi")]
+    # Wahana untuk pemain >170cm, tetapi pengguna <=170cm. 
+    if wahana_height_group == ">170" and height <= 170:
+        print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini."
+              + "\nSilakan menggunakan wahana lain yang tersedia.")
+        return
+
+    # Mengecek apakah pengguna memiliki saldo yang cukup.
+    tickets_price = tickets * int(wahana_found[1][aux.find_idx(wahana_found, "Harga_Tickets")])
+        # Saldo pengguna tidak cukup untuk membeli tiket
+    if tickets_price > balance: 
+        print("Harga tiket total: " + str(tickets_price))
+        print("Saldo: " + str(balance))
+        print("Saldo anda tidak cukup.")
+        print("Silakan mengisi saldo Anda.")
+        return
+
+
+    # Jika lolos semua pengecekan, akan dimulai proses penyetoran data pembelian tiket.
 
     # Menuliskan pembelian baru ke rekaman pembelian.csv
 
@@ -53,11 +105,8 @@ def main(pengguna, wahana, pembelian, tiket):
 
     load.store("tiket.csv", new_tiket)
 
-    print("Prosedur pembelian tiket telah selesai.", end="\n\n")
+    # Mengurangi saldo pengguna dengan harga tiket yang dibayar.
+    pengguna[1][aux.find_idx(pengguna, "Saldo")] = str(balance - tickets_price)
 
-    # 1. Meminta input berikut: ID wahana, tanggal hari ini, jumlah tiket yang dibeli - sudah
-    # 2. Validasi input! - belum
-    # 3. Mengecek apabila pengguna memenuhi persyaratan wahana - belum
-    # 4. Mengecek apabila saldo pengguna sudah cukup - belum
-    # 5. Jika lolos semua pengecekan, ditulis data pembelian ke pembelian_tiket - penulisan sudah
-    #    dan tambahkan tiket ke kepemilikan_tiket
+    print("Prosedur pembelian tiket telah selesai."
+           + "\nSelamat bersenang-senang di " + wahana_found[1][aux.find_idx(wahana_found, "Nama_Wahana")], end="\n\n")

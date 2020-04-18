@@ -30,3 +30,22 @@ def main(datatosave):
     print("")
     print("Data berhasil disimpan!")
     print("")
+
+
+def main_auto(datatosave):
+    # procedure main (input datatosave : array [0..6] of string)
+    # I.S. datatosave terdefinisi
+    # F.S. isi dari datatosave telah disalin ke 7 file .csv
+    # datatosave = load.files.data
+    # KAMUS LOKAL
+    # i, j : integer
+    # ALGORITMA
+    actual_filenames = ["user.csv", "wahana.csv", "pembelian.csv",
+                        "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv"]
+    for i in range(flib.length(actual_filenames)):
+        filename = actual_filenames[i]
+        # Save datatosave[i] ke <nama file>.csv
+        with open(os.path.dirname(__file__) + "\\" + str(filename), mode='w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerows(datatosave[i].data)
+    print("\nData berhasil disimpan!\n")

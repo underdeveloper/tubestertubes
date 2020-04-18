@@ -14,7 +14,10 @@ import auxilliary as flib
 # Petunjuk penggunaan fungsi/prosedur tiap-tiap modul ada pada masing-masing file modul
 
 # Memuat file-filenya (F01 - Load file)
-load.main()
+
+# load.main()
+load.main_auto() # Ganti jadi yang manual kalo testing sudah selesai.
+
 # Data semua file .csv telah di-load ke dalam suatu array bernama load.file.data
 # Untuk memanggil salah satu file pada array bisa dengan load.use(<Nama File>.csv)
 # Untuk mengesave salah satu file ke array bisa dengan load.store(<Nama File>.csv)
@@ -84,7 +87,8 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Admin") 
 if (exit_flag == True):
     isGonnaSave = exit.main()
     if (isGonnaSave == True):
-        save.main(load.files)
+        # save.main(load.files)
+        save.main_auto(load.files) # Ganti jadi yang manual kalo testing sudah selesai.
         raise SystemExit
     else:
         raise SystemExit
