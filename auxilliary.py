@@ -1,18 +1,7 @@
 # Fungsi-fungsi pembantu
 
-def contains(arr_str, element):
-    # FUNCTION contains (arr_str : list, element : string) -> boolean
-    # Mengecek apabila string 'element' berada pada array of string 'arr_str;
-
-    # KAMUS LOKAL
-    #
-
-    # ALGORTIMA UTAMA
-
-    if element in arr_str:
-        return True
-    else:
-        return False
+#     FAIRLY STRAIGHTFORWARD
+# Fungsi/prosedur di bawah ini merupakan fungsi yang mudah untuk dipahami dan dipakai.
 
 def validate_date(date):
     # FUNCTION validate_date (date : string) -> boolean
@@ -70,9 +59,49 @@ def input_date():
         print("Tanggal salah format (Format: DD/MM/YYYY) atau tidak sesuai kalender!")
     return date
 
+def years_since_then(date1, date2):
+    # function years_since_then(date1 : string, date2 : string) -> integer
+    # Mengeluarkan tahun yang telah berlalu sejak date1 ke date2.
+    # Tahun yang dikeluarkan dibulatkan ke bawah (16.5 -> 16).
+    # date1 dan date2 memiliki format "DD/MM/YY" yang sudah lolos validate_date().
+
+    # KAMUS LOKAL
+    # days1, months1, years1 : int
+    # days2, months2, years2 : int
+    # result_years : int
+
+    # ALGORITMA
+    # Memecahkan format menjadi integer yang diperlukan (hari, bulan, tahun)
+    (days1, months1, years1) = tuple(map(int, date1.split('/')))
+    (days2, months2, years2) = tuple(map(int, date2.split('/')))
+    result_years = years2 - years1
+
+    # 14 Juli 2001 - 13 Juli 2020 => Masih terhitung 18 tahun, walaupun sebenarnya 18.95 tahun.
+    if (months1 > months2) or (months1 <= months2 and days1 > days2):
+        result_years -= 1
+
+    return result_years
+
+
+#     PEMROSESAN ARRAY, AND ARRAY OF ARRAY
+# Fungsi/prosedur di bawah digunakan untuk mengakses, memroses, dan mengubah array.
+
+def contains(array, element):
+    # FUNCTION contains (arr_str : array, element : string) -> boolean
+    # Mengecek apabila string 'element' berada pada array of string 'arr_str;
+
+    # KAMUS LOKAL
+
+    # ALGORTIMA UTAMA
+
+    if element in array:
+        return True
+    else:
+        return False
+
 def length(array):
-    # function length (array : array of string) -> integer
-    # Mencari panjang suatu array
+    # function length (array : array) -> integer
+    # Mencari panjang suatu array.
     # KAMUS LOKAL
     # i, count : integer
     # ALGORITMA
@@ -88,6 +117,19 @@ def length(array):
     # print(l)
     # >> 3
 
+def find_baris_idx(table, row):
+    # function find_baris_idx (table : array of array of string, row : array of string) -> integer
+    # Mencari nomor indeks suatu baris pada table.
+    # Syarat: row sudah pasti ada di table.
+
+    # KAMUS LOKAL
+    # i : integer
+
+    # ALGORITMA
+    for i in range(length(table)):
+        if (table[i] == row):
+            return int(i)
+
 def konsDot(array, element):
     # function konsDot (array : array of array of string, element : array of string) -> array of array of string
     # Menambah 1 elemen ke dalam array
@@ -95,7 +137,7 @@ def konsDot(array, element):
     # a : array of array of string
     # a_length, i : integer
     # ALGORITMA
-    a_length = (length(array)) + 1
+    a_length = length(array) + 1
     a = [[] for i in range (a_length)]
     for i in range (length(array)):
         a[i] = array[i]
@@ -104,14 +146,35 @@ def konsDot(array, element):
     # APLIKASI
     # (pada modul lain)
     # import auxilliary as flib
-    # A = [[ITB, UNPAD], [UI]]
-    # B = [ITS, UNAIR]
+    # A = [["ITB", "UNPAD"], ["UI"]]
+    # B = ["ITS", "UNAIR"]
     # C = flib.konsDot(A, B)
     # print(C)
-    # >> [[ITB, UNPAD], [UI], [ITS, UNAIR]]
+    # >> [["ITB", "UNPAD"], ["UI"], ["ITS", "UNAIR"]]
+
+def merge(array1, array2):
+    # function merge (array1 : array of array of string, array2 : array of array of string) -> array of array of string
+    # Melakukan merge antara dua array of array of string.
+    # KAMUS LOKAL
+    # merged : array of array of string
+    # merged_length, i : integer
+    merged_length = length(array1) + length(array2)
+    merged = [[] for i in range (merged_length)]
+    merged[0:length(array1)] = array1
+    merged[length(array1):] = array2
+
+    return merged
+    # APLIKASI
+    # (pada modul lain)
+    # import auxilliary as flib
+    # A = [["ITB", "UNPAD"], ["UI"]]
+    # B = [["ITS", "UNAIR"], ["UNJ"]]
+    # C = flib.merge(A, B)
+    # print(C)
+    # >> [["ITB", "UNPAD"], ["UI"], ["ITS", "UNAIR"], ["UNJ"]]
 
 def find_idx(table, colname):
-    # function find_idx (colname : string) -> integer
+    # function find_idx (table : array of array of string, colname : string) -> integer
     # Mencari nomor indeks suatu kolom bernama colname pada array array
     # KAMUS LOKAL
     # i : integer
@@ -166,7 +229,7 @@ def find_baris_first(table, colname, keyword, startidx = 0):
 
 def find_baris_all(table, colname, keyword):
     # function find_baris_all (array : array of array of string, colname : string, keyword : string) -> array of array of string
-    # Mencari baris yang tersimpan dalam table
+    # Mencari semua baris dengan keyword tertentu yang tersimpan pada table
     # KAMUS LOKAL
     # i, colidx : integer
     # datafound : array of array of string
@@ -263,26 +326,3 @@ def search(table, result_column, from_column, from_data):
     # B = flib.search(A, "Saldo", "Nama", "Willy Wangky")
     # print(B)
     # >> "0"
-
-def years_since_then(date1, date2):
-    # function years_since_then(date1 : string, date2 : string) -> integer
-    # Mengeluarkan tahun yang telah berlalu sejak date1 ke date2.
-    # Tahun yang dikeluarkan dibulatkan ke bawah (16.5 -> 16).
-    # date1 dan date2 memiliki format "DD/MM/YY" yang sudah lolos validate_date().
-
-    # KAMUS LOKAL
-    # days1, months1, years1 : int
-    # days2, months2, years2 : int
-    # result_years : int
-
-    # ALGORITMA
-    # Memecahkan format menjadi integer yang diperlukan (hari, bulan, tahun)
-    (days1, months1, years1) = tuple(map(int, date1.split('/')))
-    (days2, months2, years2) = tuple(map(int, date2.split('/')))
-    result_years = years2 - years1
-
-    # 14 Juli 2001 - 13 Juli 2020 => Masih terhitung 18 tahun, walaupun sebenarnya 18.95 tahun.
-    if (months1 > months2) or (months1 <= months2 and days1 > days2):
-        result_years -= 1
-
-    return result_years
