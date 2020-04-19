@@ -43,7 +43,7 @@ def validate_date(date):
     # print(isValid)
     # >> False
 
-def input_date():
+def input_date(input_msg=""):
     # PROCEDURE input_date (output date : string)
     # Prosedur untuk pemasukan tanggal, akan diulang sampai tanggal valid.
 
@@ -53,7 +53,7 @@ def input_date():
     # ALGORITMA UTAMA
     date = ""
     while True:
-        date = input()
+        date = input(input_msg)
         if validate_date(date):
             break
         print("Tanggal salah format (Format: DD/MM/YYYY) atau tidak sesuai kalender!")

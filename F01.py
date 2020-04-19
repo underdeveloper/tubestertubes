@@ -48,6 +48,25 @@ def main():
     print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
     print("")
 
+def main_auto():
+    # procedure main_auto (output files : array of Rekaman)
+    # I.S. file.data terdefinisi sembarang
+    # F.S. ke-7 file .csv di-load ke files
+    # main_auto() merupakan prosedur sama dengan main(), tetapi diotomasikan.
+    # Prosedur ini dipakai untuk masa testing program ini, dan akan dimatikan
+    # saat program final dikeluarkan.
+
+    actual_filenames = ["user.csv", "wahana.csv", "pembelian.csv", 
+    "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv"]
+    for i in range(flib.length(actual_filenames)):
+        files[i].name = actual_filenames[i]
+        with open(os.path.dirname(__file__) + "\\" + actual_filenames[i], mode='r') as f:
+            reader = list(csv.reader(f))
+            files[i].rows = flib.length(reader)
+            files[i].columns = flib.length(reader[0])
+            files[i].data = reader
+    print("\nFile perusahaan Willy Wangky's Chocolate Factory telah di-load.\n")
+
 def use(filename):
     # function use (filename : string) -> array of array of string
     # Memberikan copy file yang diminta dari versi yang ada di files
@@ -66,18 +85,16 @@ def use(filename):
 
 def store(filename, table_baru):
     # procedure store (input filename : string, output files[i] : Rekaman)
-    # Menyetor table_baru ke file bernama filename
+    # Menyetor table_baru ke file bernama filename.
+    # Syarat: Filename sudah benar.
     # KAMUS LOKAL
     # i : integer
-    # isStored : boolean
     # ALGORITMA
-    for i in range(0, filecount+1):
-        if (files[i].name == filename):
+    for i in range(0, filecount):
+        if files[i].name == filename:
             files[i].rows = flib.length(table_baru)
             files[i].columns = flib.length(table_baru[0])
             files[i].data = table_baru
-        elif i == filecount:
-            print("ERROR : Filename salah.")
     # APLIKASI
     # (pada modul lain)
     # import F01 as load
