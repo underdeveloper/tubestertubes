@@ -56,7 +56,8 @@ def main_auto():
     # Prosedur ini dipakai untuk masa testing program ini, dan akan dimatikan
     # saat program final dikeluarkan.
 
-    actual_filenames = ["user.csv", "wahana.csv", "pembelian.csv", "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv"]
+    actual_filenames = ["user.csv", "wahana.csv", "pembelian.csv", 
+    "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv"]
     for i in range(flib.length(actual_filenames)):
         files[i].name = actual_filenames[i]
         with open(os.path.dirname(__file__) + "\\" + actual_filenames[i], mode='r') as f:
