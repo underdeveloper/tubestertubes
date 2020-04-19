@@ -6,14 +6,18 @@
 import F01 as load
 import auxilliary as aux
 
-def main(pengguna, wahana, pembelian, tiket):
-    # PROCEDURE beli_tiket (input pengguna, input wahana : Rekaman
-    #                      input/output : pembelian, input/output : tiket)
-    # I.S. pembelian_tiket abstrak, username sudah pasti ada di database user
-    # F.S. Jika input lolos ujian, pembelian_tiket akan ditambah sesuai pembelian tiket yang dilakukan pengguna.
+def main(pengguna):
+    # PROCEDURE main (input pengguna, input wahana : Rekaman
+    #                 input/output pembelian : Rekaman, input/output tiket : Rekaman)
+    # I.S. pembelian dan tiket abstrak
+    # F.S. Jika input lolos ujian, pembelian dan tiket akan diupdate.
     # KAMUS LOKAL
 
     # ALGORITMA
+    wahana = load.use("wahana.csv")
+    pembelian = load.use("pembelian.csv")
+    tiket = load.use("tiket.csv")
+
     username = pengguna[1][aux.find_idx(pengguna, "Username")]
     date_of_birth = pengguna[1][aux.find_idx(pengguna, "Tanggal_Lahir")]
     height = int(pengguna[1][aux.find_idx(pengguna, "Tinggi_Badan")])
@@ -25,16 +29,24 @@ def main(pengguna, wahana, pembelian, tiket):
     while wahana_found[1] == []:
         id_wahana = input("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\". Mohon diulang: ')
         wahana_found[1] = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
-    print(wahana_found)
+    
     # Input dan validasi tanggal hari ini
     date_now = aux.input_date("Masukkan tanggal hari ini: ")
     age = aux.years_since_then(date_of_birth, date_now) # Menentukan umur dari pengguna
 
     # Input dan validasi jumlah tiket yang ingin dibeli
-    tickets = 0
     tickets = int(input("Jumlah tiket yang dibeli: "))
     while tickets <= 0:
-        tickets = int(input("Jumlah tiket harus lebih dari 0. Mohon diulang: "))
+        if tickets == 0:
+            cancel_buy = input("Batalkan pembelian tiket? [Y/N] ")
+            while cancel_buy.upper() != 'Y' and cancel_buy.upper() != 'N':
+                cancel_buy = input("Masukan salah. Batalkan pembelian tiket? [Y/N] ")
+            if cancel_buy == 'Y':
+                return
+            else: # cancel_buy == 'N'
+                tickets = int(input("Jumlah tiket yang dibeli: "))
+        else:
+            tickets = int(input("Jumlah tiket harusnya bukan negatif. Mohon diulang: "))
 
     # Mengecek apakah umur pengguna sudah memenuhi batasan umur wahana.
     wahana_age_group = wahana_found[1][aux.find_idx(wahana_found, "Batasan_Umur")]
@@ -62,7 +74,7 @@ def main(pengguna, wahana, pembelian, tiket):
         return
 
     # Mengecek apakah pengguna memiliki saldo yang cukup.
-    tickets_price = tickets * int(wahana_found[1][aux.find_idx(wahana_found, "Harga_Tickets")])
+    tickets_price = tickets * int(wahana_found[1][aux.find_idx(wahana_found, "Harga_Tiket")])
         # Saldo pengguna tidak cukup untuk membeli tiket
     if tickets_price > balance: 
         print("Harga tiket total: " + str(tickets_price))
@@ -109,4 +121,6 @@ def main(pengguna, wahana, pembelian, tiket):
     pengguna[1][aux.find_idx(pengguna, "Saldo")] = str(balance - tickets_price)
 
     print("Prosedur pembelian tiket telah selesai."
-           + "\nSelamat bersenang-senang di " + wahana_found[1][aux.find_idx(wahana_found, "Nama_Wahana")], end="\n\n")
+           + "\nSelamat bersenang-senang di " + wahana_found[1][aux.find_idx(wahana_found, "Nama_Wahana")] + "!\n\n")
+    
+    return
