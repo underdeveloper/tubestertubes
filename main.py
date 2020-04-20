@@ -6,16 +6,18 @@ import F01 as load
 import F02 as save
 import F03 as signup
 import F04 as login
-import F06 as cari_wahana
 import F07 as beli_tiket
+import F08 as pakai_tiket
+import F09 as refund
+import F13 as topup
 import F16 as exit
 import auxilliary as flib
 # Petunjuk penggunaan fungsi/prosedur tiap-tiap modul ada pada masing-masing file modul
 
 # Memuat file-filenya (F01 - Load file)
 
-# load.main() # Manually load semua file.
-load.main_auto() # Automatically load semua file. Mohon diganti jadi yang manual jika sudah selesai.
+# load.main()
+load.main_auto() # Ganti jadi yang manual kalo testing sudah selesai.
 
 # Data semua file .csv telah di-load ke dalam suatu array bernama load.file.data
 # Untuk memanggil salah satu file pada array bisa dengan load.use(<Nama File>.csv)
@@ -45,14 +47,17 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Pemain")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
     print("[6] Mencari wahana sesuai pembatasan user.")
     print("[7] Membeli tiket.")
+    print("[8] Menggunakan tiket.")
     print("[16] Log-out.")
     x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
     if (x == "2"):
         save.main(load.files)
-    elif (x == "6"):
-        cari_wahana.main('wahana.csv')
     elif (x == "7"):
-        beli_tiket.main(whoami, load.use("wahana.csv"), load.use("pembelian.csv"), load.use("tiket.csv"))
+        beli_tiket.main(whoami)
+    elif (x == "8"):
+        pakai_tiket.main(whoami)
+    elif (x == "9"):
+        refund.main(whoami)
     elif (x == "16"):
         exit_flag = True
     else:
@@ -66,6 +71,7 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Admin") 
     print("Apa yang mau anda lakukan?")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
     print("[3] Mendaftarkan pemain baru.")
+    print("[13] Top up saldo pengguna.")
     print("[16] Log-out.")
     x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
     if (x == "2"):
@@ -73,6 +79,8 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Admin") 
     elif (x == "3"):
         userfile = signup.main(load.use("user.csv"))
         load.files[0] = userfile
+    elif (x == "13"):
+        topup.main()
     elif (x == "16"):
         exit_flag = True
     else:
@@ -83,12 +91,10 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Admin") 
 if (exit_flag == True):
     isGonnaSave = exit.main()
     if (isGonnaSave == True):
-        # save.main(load.files) # Manually save semua file.
-        save.main_auto(load.files) # Automatically save semua file. Mohon diganti jadi yang manual jika sudah selesai.
-
+        # save.main(load.files)
+        save.main_auto(load.files) # Ganti jadi yang manual kalo testing sudah selesai.
         raise SystemExit
-
     else:
         raise SystemExit
 else:
-    print("ERROR: Unexpected exit from user/admin loop. Changes will not be saved.")
+    print("ERROR: Unexpected exit from user/admin loop. Changes will not be saved")
