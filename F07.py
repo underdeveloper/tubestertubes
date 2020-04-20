@@ -7,10 +7,9 @@ import F01 as load
 import auxilliary as aux
 
 def main(pengguna):
-    # PROCEDURE main (input pengguna, input wahana : Rekaman
-    #                 input/output pembelian : Rekaman, input/output tiket : Rekaman)
+    # PROCEDURE main (input pengguna)
     # I.S. pembelian dan tiket abstrak
-    # F.S. Jika input lolos ujian, pembelian dan tiket akan diupdate.
+    # F.S. Jika input lolos ujian, tiket dan pembelian akan diupdate.
     # KAMUS LOKAL
 
     # ALGORITMA
@@ -18,17 +17,17 @@ def main(pengguna):
     pembelian = load.use("pembelian.csv")
     tiket = load.use("tiket.csv")
 
-    username = pengguna[1][aux.find_idx(pengguna, "Username")]
-    date_of_birth = pengguna[1][aux.find_idx(pengguna, "Tanggal_Lahir")]
+    username = str(pengguna[1][aux.find_idx(pengguna, "Username")])
+    date_of_birth = str(pengguna[1][aux.find_idx(pengguna, "Tanggal_Lahir")])
     height = int(pengguna[1][aux.find_idx(pengguna, "Tinggi_Badan")])
     balance = int(pengguna[1][aux.find_idx(pengguna, "Saldo")])
     
     # Input dan validasi ID Wahana
     id_wahana = input("Masukkan ID wahana: ")
-    wahana_found = aux.konsDot([wahana.data[0]], aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana))
-    while wahana_found[1] == []:
+    wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
+    while wahana_found == []:
         id_wahana = input("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\". Mohon diulang: ')
-        wahana_found[1] = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
+        wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
     
     # Input dan validasi tanggal hari ini
     date_now = aux.input_date("Masukkan tanggal hari ini: ")
@@ -49,7 +48,7 @@ def main(pengguna):
             tickets = int(input("Jumlah tiket harusnya bukan negatif. Mohon diulang: "))
 
     # Mengecek apakah umur pengguna sudah memenuhi batasan umur wahana.
-    wahana_age_group = wahana_found[1][aux.find_idx(wahana_found, "Batasan_Umur")]
+    wahana_age_group = wahana_found[aux.find_idx(wahana.data, "Batasan_Umur")]
     # Wahana untuk anak-anak, tetapi pengguna dewasa
     if wahana_age_group == "anak-anak" and age >= 17:
         print("Batasan umur: Anak-anak (< 17 tahun)")
@@ -66,7 +65,7 @@ def main(pengguna):
         return
     
     # Mengecek apakah tinggi pengguna sudah memenuhi batasan tinggi wahana.
-    wahana_height_group = wahana_found[1][aux.find_idx(wahana_found, "Batasan_Tinggi")]
+    wahana_height_group = wahana_found[aux.find_idx(wahana.data, "Batasan_Tinggi")]
     # Wahana untuk pemain >170cm, tetapi pengguna <=170cm. 
     if wahana_height_group == ">170" and height <= 170:
         print("Anda tidak memenuhi persyaratan untuk memainkan wahana ini."
@@ -74,7 +73,7 @@ def main(pengguna):
         return
 
     # Mengecek apakah pengguna memiliki saldo yang cukup.
-    tickets_price = tickets * int(wahana_found[1][aux.find_idx(wahana_found, "Harga_Tiket")])
+    tickets_price = tickets * int(wahana_found[aux.find_idx(wahana.data, "Harga_Tiket")])
         # Saldo pengguna tidak cukup untuk membeli tiket
     if tickets_price > balance: 
         print("Harga tiket total: " + str(tickets_price))
@@ -121,6 +120,6 @@ def main(pengguna):
     pengguna[1][aux.find_idx(pengguna, "Saldo")] = str(balance - tickets_price)
 
     print("Prosedur pembelian tiket telah selesai."
-           + "\nSelamat bersenang-senang di " + wahana_found[1][aux.find_idx(wahana_found, "Nama_Wahana")] + "!\n\n")
+           + "\nSelamat bersenang-senang di " + wahana_found[aux.find_idx(wahana.data, "Nama_Wahana")] + "!\n\n")
     
     return

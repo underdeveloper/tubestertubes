@@ -6,9 +6,10 @@ import F01 as load
 import F02 as save
 import F03 as signup
 import F04 as login
-import F06 as cari_wahana
 import F07 as beli_tiket
-import F11 as komplen_wahana
+import F08 as pakai_tiket
+import F09 as refund
+import F13 as topup
 import F16 as exit
 import auxilliary as flib
 # Petunjuk penggunaan fungsi/prosedur tiap-tiap modul ada pada masing-masing file modul
@@ -46,14 +47,17 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Pemain")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
     print("[6] Mencari wahana sesuai pembatasan user.")
     print("[7] Membeli tiket.")
+    print("[8] Menggunakan tiket.")
     print("[16] Log-out.")
     x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
     if (x == "2"):
         save.main(load.files)
-    elif (x == "6"):
-        cari_wahana.main('wahana.csv')
     elif (x == "7"):
-        beli_tiket.main(whoami, load.use("wahana.csv"), load.use("pembelian.csv"), load.use("tiket.csv"))
+        beli_tiket.main(whoami)
+    elif (x == "8"):
+        pakai_tiket.main(whoami)
+    elif (x == "9"):
+        refund.main(whoami)
     elif (x == "16"):
         exit_flag = True
     else:
@@ -67,7 +71,7 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Admin") 
     print("Apa yang mau anda lakukan?")
     print("[2] Menyimpan semua perubahan yang sudah dilakukan.")
     print("[3] Mendaftarkan pemain baru.")
-    print("[11] Mengeluarkan kritik dan saran dari pemain di wahana.")
+    print("[13] Top up saldo pengguna.")
     print("[16] Log-out.")
     x = input("Masukkan nomor aksi yang ingin anda lakukan: ")
     if (x == "2"):
@@ -75,8 +79,8 @@ while ((exit_flag == False) and (flib.find_baris_first(whoami, "Role", "Admin") 
     elif (x == "3"):
         userfile = signup.main(load.use("user.csv"))
         load.files[0] = userfile
-    elif (x == "11"):
-        komplen_wahana.print_sorted(load.use('kritiksaran.csv'))
+    elif (x == "13"):
+        topup.main()
     elif (x == "16"):
         exit_flag = True
     else:

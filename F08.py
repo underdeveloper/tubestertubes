@@ -9,7 +9,7 @@ import auxilliary as aux
 def main(pengguna):
     # PROCEDURE main (input pengguna)
     # I.S. tiket dan penggunaan abstrak
-    # F.S. Jika input lolos ujian, penggunaan akan diupdate.
+    # F.S. Jika input lolos ujian, tiket dan penggunaan akan diupdate.
     # KAMUS LOKAL
 
     # ALGORITMA
@@ -17,15 +17,15 @@ def main(pengguna):
     tiket = load.use("tiket.csv")
     penggunaan = load.use("penggunaan.csv")
 
-    username = pengguna[1][aux.find_idx(pengguna, "Username")]
+    username = str(pengguna[1][aux.find_idx(pengguna, "Username")])
 
     # Input dan validasi ID Wahana:
     id_wahana = input("Masukkan ID wahana: ")
-    wahana_found = aux.konsDot([wahana.data[0]], aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana))
-    while wahana_found[1] == []:
+    wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
+    while wahana_found == []:
         id_wahana = input("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\". Mohon diulang: ')
-        wahana_found[1] = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
-    wahana_name = wahana_found[1][aux.find_idx(wahana_found, "Nama_Wahana")]
+        wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
+    wahana_name = wahana_found[aux.find_idx(wahana.data, "Nama_Wahana")]
 
     # Input dan validasi tanggal hari ini
     date_now = aux.input_date("Masukkan tanggal hari ini: ")
@@ -43,15 +43,14 @@ def main(pengguna):
             else:  # cancel_buy == 'N'
                 tickets = int(input("Jumlah tiket yang digunakan: "))
         else:
-            tickets = int(
-                input("Jumlah tiket harusnya bukan negatif. Mohon diulang: "))
+            tickets = int(input("Jumlah tiket harusnya bukan negatif. Mohon diulang: "))
     
     # Mengecek apakah pengguna sudah membeli tiket pada wahana
 
     previously_bought = aux.merge([tiket.data[0]], aux.find_baris_all(tiket.data, "Username", username))
     
     ticket_id_wahana = aux.find_baris_first(previously_bought, "ID_Wahana", id_wahana)
-    owned_tickets = str(ticket_id_wahana[aux.find_idx(tiket.data, "Jumlah_Tiket")])
+    owned_tickets = int(ticket_id_wahana[aux.find_idx(tiket.data, "Jumlah_Tiket")])
 
     if ticket_id_wahana == []:
         # Jika pengguna belum pernah membeli tiket di id_wahana, pengguna tidak diperbolehkan memakai tiket.
@@ -60,7 +59,7 @@ def main(pengguna):
     elif int(owned_tickets) < tickets:
         # Jika pengguna meminta tiket lebih banyak daripada yang sebenarnya ia punya, pengguna tidak diperbolehkan memakai tiket.
         print("Anda belum pernah membeli tiket terkait.")
-        print("Alasan: Anda hanya memiliki " + owned_tickets + " tiket pada wahana " + wahana_name + ".\n")
+        print("Alasan: Anda hanya memiliki " + str(owned_tickets) + " tiket pada wahana " + wahana_name + ".\n")
     else:
         # Jika pengguna memiliki tiket yang cukup pada wahana, pengguna menggunakan tiket tersebut.
         
