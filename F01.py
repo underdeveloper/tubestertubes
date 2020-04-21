@@ -20,7 +20,7 @@ class Rekaman:
 filedescription = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
 filecount = flib.length(filedescription)
 files = [Rekaman() for i in range (filecount)]
-# Di atas ini adalah "Rekaman", suatu tipe bentukan, dan 3 variable : tuple [0..7], filecount : integer, files = array [0..filecount] of Rekaman()
+# Di atas ini adalah "Rekaman", suatu tipe bentukan, dan 3 variable: filedescription : tuple [0..6], filecount : integer, files : array [0..filecount] of Rekaman()
 # Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam files
 # files inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
 # Modul lain akan akan mengurus penyimpanan kembali files ke-7 file .csv
@@ -68,33 +68,54 @@ def main_auto():
     print("\nFile perusahaan Willy Wangky's Chocolate Factory telah di-load.\n")
 
 def use(filename):
-    # function use (filename : string) -> array of array of string
-    # Memberikan copy file yang diminta dari versi yang ada di files
-    # Syarat: Filename sudah benar.
+    # function use (filename : string) -> string
+    # Memberikan copy file yang diminta dari versi yang ada di files.name
     # KAMUS LOKAL
-    # i : integer
+    # i, j, k : integer
+    # isFound : boolean
+    # filefound : array [0..files[i].rows] of array [0..files[i].columns] of string
     # ALGORITMA
-    for i in range(0, filecount+1):
-        if (files[i].name == filename):
-            return files[i]
+    try:
+        i = 0
+        isFound = False
+        while ((i < filecount) and (isFound == False)):
+            if (str(files[i].name) == filename):
+                isFound = True
+                filefound = [["*" for k in range (files[i].columns)] for j in range (files[i].rows)]
+                filefound = files[i]
+            i = i + 1
+        if (isFound == False):
+            raise ValueError
+        return filefound
+    except ValueError:
+        print("ERROR: Invalid filename.")
     # APLIKASI
     # (pada modul lain)
     # import F01 as load
     # load.use("user.csv")
     # >> files[0]
 
-def store(filename, table_baru):
-    # procedure store (input filename : string, output files[i] : Rekaman)
-    # Menyetor table_baru ke file bernama filename.
-    # Syarat: Filename sudah benar.
+def store(filename, new_table):
+    # procedure store (input filename : string, input new_table : array of array of string)
+    # Meng-update salah satu elemen files.name yang sesuai dengan nama file yang di-input
     # KAMUS LOKAL
     # i : integer
+    # isStored : boolean
     # ALGORITMA
-    for i in range(0, filecount):
-        if files[i].name == filename:
-            files[i].rows = flib.length(table_baru)
-            files[i].columns = flib.length(table_baru[0])
-            files[i].data = table_baru
+    i = 0
+    isStored = False
+    try:
+        while ((i < filecount) and (isStored == False)):
+            if (files[i].name == filename):
+                files[i].rows = flib.length(new_table)
+                files[i].columns = flib.length(new_table[0])
+                files[i].data = new_table
+                isStored = True
+            i = i + 1
+        if (isStored == False):
+            raise ValueError
+    except ValueError:
+        print("ERROR: Invalid filename.")
     # APLIKASI
     # (pada modul lain)
     # import F01 as load

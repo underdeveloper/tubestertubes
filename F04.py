@@ -6,6 +6,7 @@
 # ALGORITMA PROGRAM UTAMA
 
 import auxilliary as flib
+import B01
 
 # REALISASI FUNGSI/PROSEDUR
 def main(userfile):
@@ -21,9 +22,12 @@ def main(userfile):
     while (isUser == False):
         username = str(input("Masukkan username: ")) # Feral
         password = str(input("Masukkan password: ")) # fer4l
+        # Cek apakah username valid
         finduser = flib.find_baris_first(userfile.data, "Username", username)
         if (finduser != []):
-            findpassword = flib.validate_cell(finduser, password)
+            # Cek apakah password valid
+            spw = finduser[flib.find_idx(userfile.data, "Password")]
+            findpassword = B01.verify(spw, password)
             if (findpassword == True):
                 isUser = True
                 print("")

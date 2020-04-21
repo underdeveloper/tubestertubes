@@ -3,11 +3,6 @@
 # Ini dilakukan supaya penyimpanan password lebih aman, karena tidak hanya
 # sebagai plaintext, melainkan dengan hasil hash.
 
-# PESAN KE FERAL ( MOHON INI DIHAPUS KALAU UDAH SELESAI! )
-# Ini proses hashnya ya, mohon dipakai untuk bagian signup dan login
-# Hasil hash_pass() adalah yang disimpan di kolom "Password" di user.csv
-# Makasih
-
 import os
 import hashlib
 import secrets
