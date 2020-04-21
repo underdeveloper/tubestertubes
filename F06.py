@@ -1,14 +1,18 @@
 # PROGRAM F06
+# Desainer : Stefanny
+# Coder : Stefanny
+# Tester :
+
 # Mencari wahana sesuai kriteria tinggi badan dan batasan umur
 
 # Kriteria batasan umur (anak-anak/dewasa/semua umur)
 # Kriteria tinggi badan (>170/tanpa batasan)
 
-# KAMUS
 
 # ALGORITMA
 
 # REALISASI FUNGSI/PROSEDUR
+
 import auxilliary as aux
 import F01 as load
 
@@ -30,6 +34,7 @@ def isBatasTinggiTrue (tinggi) :
 
 def main (userfile):
     #Program utama F06
+    wahana = load.use ("wahana.csv")
 
     print ("Jenis batasan umur: ")
     print ("1. Anak-anak (<17 tahun)")
@@ -42,10 +47,11 @@ def main (userfile):
     print (" ")
     while True:
         umur = int(input("Batasan umur pemain: "))
-        if isBatasUmurTrue(umur): # 1, 2, 3
+        if isBatasUmurTrue(umur):  # 1, 2, 3
             break
-        else: # selain 1, 2, 3
+        else:  # selain 1, 2, 3
             print("Batasan umur tidak valid!")
+            return
 
     while True:
         tinggi = int(input("Batasan tinggi pemain: "))
@@ -53,33 +59,120 @@ def main (userfile):
             break
         else:  # selain 1, 2
             print("Batasan tinggi tidak valid!")
+            return
+        # data_wahana = load.use(wahanafile)
 
-    # data_wahana = load.use(wahanafile)
-                
-    print ("Hasil pencarian: ",end="\n")
+    print("Hasil pencarian: ", end="\n")
 
-   
-    # if umur == 1:
-    #     if tinggi == 1:
-            # idxumur1 = aux.find_idx(userfile, "Batasan_Umur")
-            # idxtinggi1 = aux.find_idx(userfile, "Batasan_Tinggi")
-    #         print ([ut11.loc["ID_Wahana"]], " | ", [ut11.loc["Nama_Wahana"]], " | ", [ut11.loc["Harga_Tiket"]])
-    #     elif tinggi == 2:
-    #         ut12 = df.loc[df["Batasan_Umur"]<17] & [df["Batasan Tinggi"]== "Tanpa Batasan"]
-    #         print([ut12.loc["ID_Wahana"]], " | ", [ut12.loc["Nama_Wahana"]], " | ", [ut12.loc["Harga_Tiket"]])
-    # elif umur == 2:
-    #     if tinggi == 1:
-    #         ut21 = df.loc[df["Batasan_Umur"]>=17] & [df["Batasan_Tinggi"]>170]
-    #         print([ut21.loc["ID_Wahana"]], " | ", [ut21.loc["Nama_Wahana"]], " | ", [ut21.loc["Harga_Tiket"]])
-    #     elif tinggi == 2:
-    #         ut22 = df.loc[df["Batasan_Umur"]>=17] & [df["Batasan_Tinggi"] == "Tanpa Batasan"]
-    #         print([ut22.loc["ID_Wahana"]], " | ", [ut22.loc["Nama_Wahana"]], " | ", [ut22.loc["Harga_Tiket"]])
-    # elif umur == 3:
-    #     ut31 = df.loc[df["Batasan_Umur"] == "Semua Umur"] & [df["Batasan_Tinggi"] > 170]
-    #     if tinggi == 1:
-    #         print ([ut31.loc["ID_Wahana"]], " | ", [ut31.loc["Nama_Wahana"]], " | ", [ut31.loc["Harga_Tiket"]])
-    #     elif tinggi == 2:
-    #         ut32 =df.loc[df["Batasan_Umur"] == "Semua Umur"] & [df["Batasan_Tinggi"] == "Tanpa Batasan"]
-    #         print([ut32.loc["ID_Wahana"]], " | ", [ut32.loc["Nama_Wahana"]], " | ", [ut32.loc["Harga_Tiket"]])
 
-# ON PROGRESS
+    if umur == 1 :
+        if tinggi == 1:
+            u = "anak-anak"
+            t = ">170"
+
+            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi",t)
+
+            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
+            id_wahana = aux.find_idx(validasi, "ID_Wahana")
+            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+
+            if validasi == [] :
+                print ("Tidak ada wahana yang sesuai dengan pencarian kamu.")
+                return
+            else :
+                #bila terdapat data dengan umur dan tinggi yang sesuai
+                print (id_wahana, "| ", nama_wahana, "| ", harga_tiket )
+                return
+        elif tinggi == 2:
+            u = "anak-anak"
+            t = "tanpa batasan"
+
+            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+
+            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
+            id_wahana = aux.find_idx(validasi, "ID_Wahana")
+            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+
+            if validasi == []:
+                print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
+                return
+            else:
+                # bila terdapat data dengan umur dan tinggi yang sesuai
+                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                return
+    elif umur == 2:
+        if tinggi == 1:
+            u = "dewasa"
+            t = ">170"
+
+            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+
+            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
+            id_wahana = aux.find_idx(validasi, "ID_Wahana")
+            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+
+            if validasi == []:
+                print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
+                return
+            else:
+                # bila terdapat data dengan umur dan tinggi yang sesuai
+                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                return
+        elif tinggi == 2:
+            u = "dewasa"
+            t = "tanpa batasan"
+
+            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+
+            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
+            id_wahana = aux.find_idx(validasi, "ID_Wahana")
+            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+
+            if validasi == []:
+                print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
+                return
+            else:
+                # bila terdapat data dengan umur dan tinggi yang sesuai
+                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                return
+    elif umur == 3:
+        if tinggi == 1:
+            u = "semua umur"
+            t = ">170"
+
+            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+
+            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
+            id_wahana = aux.find_idx(validasi, "ID_Wahana")
+            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+
+            if validasi == []:
+                print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
+                return
+            else:
+                # bila terdapat data dengan umur dan tinggi yang sesuai
+                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                return
+        elif tinggi == 2:
+            u = "semua umur"
+            t = "tanpa batasan"
+
+            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+
+            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
+            id_wahana = aux.find_idx(validasi, "ID_Wahana")
+            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+
+            if validasi == []:
+                print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
+                return
+            else:
+                # bila terdapat data dengan umur dan tinggi yang sesuai
+                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                return
