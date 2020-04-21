@@ -40,40 +40,24 @@ def main (userfile):
     print ("1. Lebih dari 170 cm")
     print ("2. Tanpa batasan")
     print (" ")
-    umur = int(input("Batasan umur pemain: "))
-    if isBatasUmurTrue(umur) == True :
-        umur = umur
-    else : #bila batas umur != 1 / 2 / 3 
-        print("Batasan umur tidak valid!")
-        while True:
-            umur = int(input("Batasan umur pemain: "))
-            if umur == 1:
-                return False
-            elif umur == 2:
-                return False
-            elif umur == 3:
-                return False
-            else: #bila batasan umur != 1 / 2 / 3
-                print("Batasan umur tidak valid!")
-                return True
-    tinggi = int(input ("Batasan tinggi badan: "))
-    if isBatasTinggiTrue(tinggi) :
-        pass
-    else:
-        print("Batasan tinggi badan tidak valid!")
-        while True:
-            tinggi = int(input("Batasan tinggi badan: "))
-            if tinggi == 1:
-                return False
-            elif tinggi == 2:
-                return False
-            elif tinggi == 3:
-                return False
-            else:
-                print("Batasan tinggi badan tidak valid!")
-                return True
+    while True:
+        umur = int(input("Batasan umur pemain: "))
+        if isBatasUmurTrue(umur): # 1, 2, 3
+            break
+        else: # selain 1, 2, 3
+            print("Batasan umur tidak valid!")
+
+    while True:
+        tinggi = int(input("Batasan tinggi pemain: "))
+        if isBatasTinggiTrue(tinggi):  # 1, 2
+            break
+        else:  # selain 1, 2
+            print("Batasan tinggi tidak valid!")
+
+    # data_wahana = load.use(wahanafile)
                 
-    print ("Hasil pencarian: ")
+    print ("Hasil pencarian: ",end="\n")
+
    
     # if umur == 1:
     #     if tinggi == 1:
