@@ -73,9 +73,9 @@ def main (userfile):
             umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
             validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi",t)
 
-            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
-            id_wahana = aux.find_idx(validasi, "ID_Wahana")
-            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
+            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
+            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
 
             if validasi == [] :
                 print ("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -91,9 +91,9 @@ def main (userfile):
             umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
             validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
-            id_wahana = aux.find_idx(validasi, "ID_Wahana")
-            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
+            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
+            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -110,9 +110,9 @@ def main (userfile):
             umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
             validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
-            id_wahana = aux.find_idx(validasi, "ID_Wahana")
-            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
+            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
+            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -128,9 +128,9 @@ def main (userfile):
             umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
             validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
-            id_wahana = aux.find_idx(validasi, "ID_Wahana")
-            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
+            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
+            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -147,9 +147,9 @@ def main (userfile):
             umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
             validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
-            id_wahana = aux.find_idx(validasi, "ID_Wahana")
-            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
+            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
+            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -165,9 +165,9 @@ def main (userfile):
             umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
             validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
-            id_wahana = aux.find_idx(validasi, "ID_Wahana")
-            harga_tiket = aux.find_idx(validasi, "Harga_Tiket")
+            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
+            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
+            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
