@@ -70,8 +70,8 @@ def main (userfile):
             u = "anak-anak"
             t = ">170"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi",t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi",t)
 
             nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
             id_wahana = aux.find_idx(validasi, "ID_Wahana")
@@ -88,8 +88,8 @@ def main (userfile):
             u = "anak-anak"
             t = "tanpa batasan"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
             nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
             id_wahana = aux.find_idx(validasi, "ID_Wahana")
@@ -107,8 +107,8 @@ def main (userfile):
             u = "dewasa"
             t = ">170"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
             nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
             id_wahana = aux.find_idx(validasi, "ID_Wahana")
@@ -125,8 +125,8 @@ def main (userfile):
             u = "dewasa"
             t = "tanpa batasan"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
             nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
             id_wahana = aux.find_idx(validasi, "ID_Wahana")
@@ -144,8 +144,8 @@ def main (userfile):
             u = "semua umur"
             t = ">170"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
             nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
             id_wahana = aux.find_idx(validasi, "ID_Wahana")
@@ -162,8 +162,8 @@ def main (userfile):
             u = "semua umur"
             t = "tanpa batasan"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
             nama_wahana = aux.find_idx(validasi, "Nama_Wahana")
             id_wahana = aux.find_idx(validasi, "ID_Wahana")
