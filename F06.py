@@ -63,19 +63,30 @@ def main (userfile):
         # data_wahana = load.use(wahanafile)
 
     print("Hasil pencarian: ", end="\n")
-
-
+    i = 0
+    j = 0
     if umur == 1 :
         if tinggi == 1:
             u = "anak-anak"
             t = ">170"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi",t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi",t)
 
-            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
-            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
-            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
+            arr1 = [0 for i in range(len(validasi))]
+            id_wahana = [0 for j in range(len(validasi))]
+            nama_wahana = [0 for j in range(len(validasi))]
+            harga_tiket = [0 for j in range(len(validasi))]
+
+            for i in range(len(validasi)):
+                arr1[i] = validasi[i]
+                # print (D[i])
+            for j in range(len(arr1[i])):
+                # Z = arr1[j]
+                # arr2 = Z[1]
+                id_wahana = arr1[j][0]
+                nama_wahana = arr1[j][1]
+                harga_tiket =  arr1[j][2]
 
             if validasi == [] :
                 print ("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -88,12 +99,23 @@ def main (userfile):
             u = "anak-anak"
             t = "tanpa batasan"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
-            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
-            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
+            arr1 = [0 for i in range(len(validasi))]
+            id_wahana = [0 for j in range(len(validasi))]
+            nama_wahana = [0 for j in range(len(validasi))]
+            harga_tiket = [0 for j in range(len(validasi))]
+
+            for i in range(len(validasi)):
+                arr1[i] = validasi[i]
+                # print (D[i])
+            for j in range(len(arr1[i])):
+                # Z = arr1[j]
+                # arr2 = Z[1]
+                id_wahana = arr1[j][0]
+                nama_wahana = arr1[j][1]
+                harga_tiket = arr1[j][2]
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -107,12 +129,23 @@ def main (userfile):
             u = "dewasa"
             t = ">170"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_kolom (validasi, "Nama_Wahana")
-            id_wahana = aux.find_kolom (validasi, "ID_Wahana")
-            harga_tiket = aux.find_kolom (validasi, "Harga_Tiket")
+            arr1 = [0 for i in range(len(validasi))]
+            id_wahana = [0 for j in range(len(validasi))]
+            nama_wahana = [0 for j in range(len(validasi))]
+            harga_tiket = [0 for j in range(len(validasi))]
+
+            for i in range(len(validasi)):
+                arr1[i] = validasi[i]
+                # print (D[i])
+            for j in range(len(arr1[i])):
+                # Z = arr1[j]
+                # arr2 = Z[1]
+                id_wahana = arr1[j][0]
+                nama_wahana = arr1[j][1]
+                harga_tiket = arr1[j][2]
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -125,12 +158,23 @@ def main (userfile):
             u = "dewasa"
             t = "tanpa batasan"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
-            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
-            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
+            arr1 = [0 for i in range(len(validasi))]
+            id_wahana = [0 for j in range(len(validasi))]
+            nama_wahana = [0 for j in range(len(validasi))]
+            harga_tiket = [0 for j in range(len(validasi))]
+
+            for i in range(len(validasi)):
+                arr1[i] = validasi[i]
+                # print (D[i])
+            for j in range(len(arr1[i])):
+                # Z = arr1[j]
+                # arr2 = Z[1]
+                id_wahana = arr1[j][0]
+                nama_wahana = arr1[j][1]
+                harga_tiket = arr1[j][2]
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -144,12 +188,23 @@ def main (userfile):
             u = "semua umur"
             t = ">170"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
-            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
-            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
+            arr1 = [0 for i in range(len(validasi))]
+            id_wahana = [0 for j in range(len(validasi))]
+            nama_wahana = [0 for j in range(len(validasi))]
+            harga_tiket = [0 for j in range(len(validasi))]
+
+            for i in range(len(validasi)):
+                arr1[i] = validasi[i]
+                # print (D[i])
+            for j in range(len(arr1[i])):
+                # Z = arr1[j]
+                # arr2 = Z[1]
+                id_wahana = arr1[j][0]
+                nama_wahana = arr1[j][1]
+                harga_tiket = arr1[j][2]
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
@@ -162,12 +217,23 @@ def main (userfile):
             u = "semua umur"
             t = "tanpa batasan"
 
-            umur_true = aux.find_baris_first(wahana.data, "Batasan_Umur", u)
-            validasi = aux.find_baris_first(umur_true, "Batasan_Tinggi", t)
+            umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
+            validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-            nama_wahana = aux.find_kolom(validasi, "Nama_Wahana")
-            id_wahana = aux.find_kolom(validasi, "ID_Wahana")
-            harga_tiket = aux.find_kolom(validasi, "Harga_Tiket")
+            arr1 = [0 for i in range(len(validasi))]
+            id_wahana = [0 for j in range(len(validasi))]
+            nama_wahana = [0 for j in range(len(validasi))]
+            harga_tiket = [0 for j in range(len(validasi))]
+
+            for i in range(len(validasi)):
+                arr1[i] = validasi[i]
+                # print (D[i])
+            for j in range(len(arr1[i])):
+                # Z = arr1[j]
+                # arr2 = Z[1]
+                id_wahana = arr1[j][0]
+                nama_wahana = arr1[j][1]
+                harga_tiket = arr1[j][2]
 
             if validasi == []:
                 print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
