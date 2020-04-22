@@ -93,7 +93,7 @@ def main (userfile):
                 return
             else :
                 #bila terdapat data dengan umur dan tinggi yang sesuai
-                print (id_wahana, "| ", nama_wahana, "| ", harga_tiket )
+                print (id_wahana, "|", nama_wahana, "|", harga_tiket )
                 return
         elif tinggi == 2:
             u = "anak-anak"
@@ -122,7 +122,7 @@ def main (userfile):
                 return
             else:
                 # bila terdapat data dengan umur dan tinggi yang sesuai
-                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                print(id_wahana, "|", nama_wahana, "|", harga_tiket)
                 return
     elif umur == 2:
         if tinggi == 1:
@@ -152,7 +152,7 @@ def main (userfile):
                 return
             else:
                 # bila terdapat data dengan umur dan tinggi yang sesuai
-                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                print(id_wahana, "|", nama_wahana, "|", harga_tiket)
                 return
         elif tinggi == 2:
             u = "dewasa"
@@ -181,7 +181,7 @@ def main (userfile):
                 return
             else:
                 # bila terdapat data dengan umur dan tinggi yang sesuai
-                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                print(id_wahana, "|", nama_wahana, "|", harga_tiket)
                 return
     elif umur == 3:
         if tinggi == 1:
@@ -211,7 +211,7 @@ def main (userfile):
                 return
             else:
                 # bila terdapat data dengan umur dan tinggi yang sesuai
-                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                print(id_wahana, "|", nama_wahana, "|", harga_tiket)
                 return
         elif tinggi == 2:
             u = "semua umur"
@@ -240,5 +240,5 @@ def main (userfile):
                 return
             else:
                 # bila terdapat data dengan umur dan tinggi yang sesuai
-                print(id_wahana, "| ", nama_wahana, "| ", harga_tiket)
+                print(id_wahana, "|", nama_wahana, "|", harga_tiket)
                 return
