@@ -40,6 +40,6 @@ def main(userfile):
         username = arr1[j][0]
         tanggal_pakai = arr1[j][1]
         jumlah_tiket =  arr1[j][3]
-        print(tanggal_pakai, "| ", username, "| ", jumlah_tiket)
+        print(tanggal_pakai, "|", username, "|", jumlah_tiket)
 
     return
