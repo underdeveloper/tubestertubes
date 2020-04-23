@@ -1,1 +1,9 @@
 ID_Wahana,Nama_Wahana,Harga_Tiket,Batasan_Umur,Batasan_Tinggi
+AFQ107,Cocoa Rain,70000,anak-anak,tanpa batasan
+NVD011,Hazelnut River,10000,anak-anak,tanpa batasan
+OOM233,Oompa Loompa Ride-Along,25000,semua umur,tanpa batasan
+WNC001,Mr. Wangky's Wacky Coaster Ride,100000,semua umur,>170
+GDI312,Hot Stuff,25000,dewasa,tanpa batasan
+FAE940,Definitely Not A Chocolate Factory,60000,dewasa,>170
+TEN010,Theoretically This Is Legal,80000,semua umur,>170
+JHE400,This One's Definitely Illegal But We Haven't Been Caught Yet,120000,dewasa,>170
