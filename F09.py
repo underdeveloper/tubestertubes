@@ -31,7 +31,7 @@ def main(pengguna):
     # Input dan validasi tanggal hari ini
     date_now = aux.input_date("Masukkan tanggal hari ini: ")
 
-    # Input dan validasi jumlah tiket yang ingin dibeli
+    # Input dan validasi jumlah tiket yang ingin digunakan
     tickets = int(input("Jumlah tiket yang di-refund: "))
     while tickets <= 0:
         if tickets == 0:
@@ -57,19 +57,23 @@ def main(pengguna):
         # Jika pengguna belum pernah membeli tiket di id_wahana, pengguna tidak diperbolehkan memakai tiket.
         print("Tiket Anda tidak valid dalam sistem kami.")
         print("Alasan: Belum membeli tiket pada wahana " + wahana_name + ".\n")
-    elif int(owned_tickets) < tickets:
-        # Jika pengguna meminta tiket lebih banyak daripada yang sebenarnya ia punya, pengguna tidak diperbolehkan memakai tiket.
+        return
+    
+    owned_tickets = str(ticket_id_wahana[aux.find_idx(tiket.data, "Jumlah_Tiket")])
+
+    if int(owned_tickets) < tickets:
+        # Jika pengguna meminta tiket lebih banyak daripada yang sebenarnya ia punya, pengguna tidak diperbolehkan me-refund tiket.
         print("Tiket Anda tidak valid dalam sistem kami.")
         print("Alasan: Anda hanya memiliki " + owned_tickets + " tiket pada wahana " + wahana_name + ".\n")
     else:
-        # Jika pengguna memiliki tiket yang cukup pada wahana, pengguna menggunakan tiket tersebut.
+        # Jika pengguna memiliki tiket yang cukup pada wahana, pengguna boleh me-refund tiket.
 
         # File refund tiket diupdate, sesuai banyak tiket yang dipakai.
         data_refund = [username, date_now, id_wahana, tickets]
         new_refund = aux.konsDot(refund.data, data_refund)
         load.store("refund.csv", new_refund)
 
-        # File refund tiket diupdate, banyak tiket yang dimiliki pengguna dikurangi banyak tiket yang dipakai.
+        # File refund tiket diupdate, banyak tiket yang dimiliki pengguna dikurangi banyak tiket yang di-refund
         if owned_tickets == tickets:
             # Jika pengguna kehabisan tiket pada wahana tersebut, baris tersebut dihapus.
             row_to_be_changed = aux.find_baris_idx(tiket.data, ticket_id_wahana)  # Baris tiket yang ingin dihapus
