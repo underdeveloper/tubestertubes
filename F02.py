@@ -2,7 +2,7 @@
 # Meng-update ke-7 file .csv
 
 # KAMUS
-filedesc = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
+filedesc = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran", "File Laporan Kehilangan Tiket")
 
 # ALGORITMA PROGRAM UTAMA
 
@@ -13,7 +13,7 @@ import auxilliary as flib
 # REALISASI FUNGSI/PROSEDUR
 
 def main(datatosave):
-    # procedure main (input datatosave : array [0..6] of string)
+    # procedure main (input datatosave : array [0..7] of array of string)
     # I.S. datatosave terdefinisi
     # F.S. isi dari datatosave telah disalin ke 7 file .csv
     # datatosave = load.files.data
@@ -33,15 +33,15 @@ def main(datatosave):
 
 
 def main_auto(datatosave):
-    # procedure main (input datatosave : array [0..6] of string)
+    # procedure main (input datatosave : array [0..7] of string)
     # I.S. datatosave terdefinisi
-    # F.S. isi dari datatosave telah disalin ke 7 file .csv
+    # F.S. isi dari datatosave telah disalin ke 8 file .csv
     # datatosave = load.files.data
     # KAMUS LOKAL
     # i, j : integer
     # ALGORITMA
     actual_filenames = ["user.csv", "wahana.csv", "pembelian.csv",
-                        "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv"]
+                        "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv", "hilang.csv"]
     for i in range(flib.length(actual_filenames)):
         filename = actual_filenames[i]
         # Save datatosave[i] ke <nama file>.csv
