@@ -21,6 +21,7 @@ def main(pengguna):
     date_of_birth = str(pengguna[1][aux.find_idx(pengguna, "Tanggal_Lahir")])
     height = int(pengguna[1][aux.find_idx(pengguna, "Tinggi_Badan")])
     balance = int(pengguna[1][aux.find_idx(pengguna, "Saldo")])
+    role = str(pengguna[1][aux.find_idx(pengguna, "Role")])
     
     # Input dan validasi ID Wahana
     id_wahana = input("Masukkan ID wahana: ")
@@ -74,8 +75,13 @@ def main(pengguna):
 
     # Mengecek apakah pengguna memiliki saldo yang cukup.
     tickets_price = tickets * int(wahana_found[aux.find_idx(wahana.data, "Harga_Tiket")])
-        # Saldo pengguna tidak cukup untuk membeli tiket
+
+    # Jika pengguna adalah pemain dengan golden account, harga jadi setengah.
+    if role == "Gold":
+        tickets_price *= 0.5
+        
     if tickets_price > balance: 
+        # Saldo pengguna tidak cukup untuk membeli tiket
         print("Harga tiket total: " + str(tickets_price))
         print("Saldo: " + str(balance))
         print("Saldo anda tidak cukup.")

@@ -19,6 +19,7 @@ def main(pengguna):
 
     username = str(pengguna[1][aux.find_idx(pengguna, "Username")])
     balance = int(pengguna[1][aux.find_idx(pengguna, "Saldo")])
+    role = str(pengguna[1][aux.find_idx(pengguna, "Role")])
 
     # Input dan validasi ID Wahana:
     id_wahana = input("Masukkan ID wahana: ")
@@ -89,6 +90,9 @@ def main(pengguna):
         # Memberi refund ke saldo akun pengguna
         single_ticket_price = int(wahana_found[aux.find_idx(wahana.data, "Harga_Tiket")])
         refund_percentage = 0.8 # Konstanta persentase dari harga tiket
+        if role == "Gold":
+            # Jika pengguna merupakan pemain dengan golden account, refund disesuaikan harga gold.
+            refund_percentage *= 0.8
         refund_amount = int(tickets * refund_percentage *  single_ticket_price)
         pengguna[1][aux.find_idx(pengguna, "Saldo")] = str(balance + refund_amount)
 

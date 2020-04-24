@@ -1,9 +1,8 @@
 # B04 - Laporan Kehilangan Tiket
-# Module B04 merupakan file yang digunakan untuk 
+# Module B04 merupakan file berisi fungsi untuk melaporkan kehilangan tiket. 
 
 import F01 as load
 import auxilliary as aux
-
 
 def main(pengguna):
     # PROCEDURE main (input pengguna)
