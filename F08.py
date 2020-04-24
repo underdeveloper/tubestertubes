@@ -30,7 +30,7 @@ def main(pengguna):
     # Input dan validasi tanggal hari ini
     date_now = aux.input_date("Masukkan tanggal hari ini: ")
 
-    # Input dan validasi jumlah tiket yang ingin dibeli
+    # Input dan validasi jumlah tiket yang ingin digunakan
     tickets = int(input("Jumlah tiket yang digunakan: "))
     while tickets <= 0:
         if tickets == 0:
