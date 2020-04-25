@@ -14,23 +14,32 @@ import auxilliary as aux
 import F01 as load
 
 def isBatasUmurTrue (umur) :
+    # function isBatasUmurTrue (umur : integer) -> boolean
     # Menentukan apakah batas umur yang dimasukkan benar atau tidak
+    # KAMUS LOKAL
 
+    # ALGORITMA
     if umur == 1 or umur == 2 or umur == 3 :
         return True
     else : #pilihan umur != 1 / 2 / 3
         return False
             
 def isBatasTinggiTrue (tinggi) :
+    # function isBatasTinggiTrue (tinggi : integer) -> boolean
     # Menentukan apakah batas tinggi yang dimasukkan benar atau tidak
+    # KAMUS LOKAL
 
+    # ALGORITMA
     if tinggi == 1 or tinggi == 2 :
         return True
     else : #pilihan umur != 1 / 2
         return False    
 
 def main ():
-    #Program utama F06
+    # procedure main ()
+    # I.S. Abstrak
+    # F.S. Wahana sesuai batasan pencarian ditampilkan.
+    # Program utama F06
     wahana = load.use ("wahana.csv")
 
     print ("Jenis batasan umur: ")

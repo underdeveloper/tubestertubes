@@ -1,17 +1,17 @@
 # F13 - TOP UP SALDO
-# Desainer: Sulthan
-# Coder: Sulthan
-# Tester: Sulthan
 
 import F01 as load
 import auxilliary as aux
 
 def main():
-    # procedure main()
+    # procedure main(input/output user : Rekaman)
     # I.S. user abstrak
     # F.S. Jika top-up berjalan, user akan diupdate.
     # KAMUS LOKAL
-
+    # user : Rekaman
+    # username : string
+    # user_found : array [0..6] of string
+    # balance, topup, new_balance : integer 
     # ALGORITMA
     user = load.use("user.csv")
 
@@ -47,6 +47,6 @@ def main():
     new_user[row_to_be_changed][idx_col_saldo] = str(new_balance)  # Penggantian baris
     load.store("user.csv", new_user)
 
-    print("Top up berhasil. Saldo " + user_real_name + " bertambah menjadi " + str(new_balance) + ".\n\n")
+    print("Top up berhasil. Saldo " + user_real_name + " bertambah menjadi " + str(new_balance) + ".")
 
     return

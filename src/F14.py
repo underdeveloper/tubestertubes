@@ -1,8 +1,5 @@
 # PROGRAM F14
 # Melihat riwayat penggunaan wahana dilakukan oleh admin
-# Desainer : Stefanny
-# Coder : Stefanny
-
 
 # ALGORITMA
 
@@ -28,11 +25,11 @@ def main():
 
     for i in range(1, aux.length(penggunaan.data)):
         if str(penggunaan.data[i][aux.find_idx(penggunaan.data, "ID_Wahana")]) == id_wahana:
-            tanggal_guna = penggunaan.data[i][aux.find_idx(wahana.data, "Tanggal_Penggunaan")]
-            username = penggunaan.data[i][aux.find_idx(wahana.data, "Username")]
-            tiket = penggunaan.data[i][aux.find_idx(wahana.data, "Jumlah_Tiket")]
+            tanggal_guna = penggunaan.data[i][aux.find_idx(penggunaan.data, "Tanggal_Penggunaan")]
+            username = penggunaan.data[i][aux.find_idx(penggunaan.data, "Username")]
+            tiket = penggunaan.data[i][aux.find_idx(penggunaan.data, "Jumlah_Tiket")]
             riwayat_baru = (tanggal_guna, username, tiket)
-            riwayat = aux.konsDot(riwayat, [riwayat_baru])
+            riwayat = aux.konsDot(riwayat, riwayat_baru)
 
     print("Riwayat penggunaan " + str(wahana_found[aux.find_idx(wahana.data, "Nama_Wahana")]) + ": ")
     for i in range(aux.length(riwayat)):

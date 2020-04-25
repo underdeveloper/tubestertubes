@@ -16,7 +16,7 @@ def main():
     # ALGORITMA
     isValid = False
     while (isValid == False):
-        x = str(input("Apakah anda mau melakukan penyimpanan file yang sudah dilakukan (Y/N) ? "))
+        x = str(input("Apakah anda mau melakukan penyimpanan file yang sudah dilakukan? (Y/N) "))
         if (x.upper() == "Y"):
             isGonnaSave = True
             isValid = True

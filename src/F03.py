@@ -83,7 +83,5 @@ def main(userfile):
         useradded = flib.konsDot(userfile.data, user.data)
     userfile.rows = userfile.rows + 1
     userfile.data = useradded
-    print("")
     print("Selamat menjadi pemain, " + user.data[0] + ". Selamat bermain.")
-    print("")
     return userfile

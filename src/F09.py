@@ -7,11 +7,21 @@ import F01 as load
 import auxilliary as aux
 
 def main(pengguna):
-    # PROCEDURE main (input/output pengguna)
+    # PROCEDURE main (input pengguna : array [0..1] of array [0..6] of string, 
+    #                 output tiket : Rekaman, output refund : Rekaman)
     # I.S. tiket dan refund abstrak
     # F.S. Jika input lolos ujian, tiken dan refund akan diupdate.
     # KAMUS LOKAL
-
+    # wahana, tiket, refund: Rekaman
+    # username, role : string
+    # balance : integer
+    # id_wahana : string
+    # wahana_found : array[0..4] of string
+    # date_now : string
+    # tickets, owned_tickets: integer
+    # cancel_refund : character
+    # data_refund : array [0..3] of string
+    # new_refund, previously_bought : Rekaman.data
     # ALGORITMA
     wahana = load.use("wahana.csv")
     tiket = load.use("tiket.csv")
@@ -56,7 +66,7 @@ def main(pengguna):
     if ticket_id_wahana == []:
         # Jika pengguna belum pernah membeli tiket di id_wahana, pengguna tidak diperbolehkan memakai tiket.
         print("Tiket Anda tidak valid dalam sistem kami.")
-        print("Alasan: Belum membeli tiket pada wahana " + wahana_name + ".\n")
+        print("Alasan: Belum membeli tiket pada wahana " + wahana_name + ".")
         return
     
     owned_tickets = str(ticket_id_wahana[aux.find_idx(tiket.data, "Jumlah_Tiket")])
@@ -64,7 +74,7 @@ def main(pengguna):
     if int(owned_tickets) < tickets:
         # Jika pengguna meminta tiket lebih banyak daripada yang sebenarnya ia punya, pengguna tidak diperbolehkan me-refund tiket.
         print("Tiket Anda tidak valid dalam sistem kami.")
-        print("Alasan: Anda hanya memiliki " + owned_tickets + " tiket pada wahana " + wahana_name + ".\n")
+        print("Alasan: Anda hanya memiliki " + owned_tickets + " tiket pada wahana " + wahana_name + ".")
     else:
         # Jika pengguna memiliki tiket yang cukup pada wahana, pengguna boleh me-refund tiket.
 
@@ -95,4 +105,4 @@ def main(pengguna):
         refund_amount = round(tickets * refund_percentage *  single_ticket_price)
         pengguna[1][aux.find_idx(pengguna, "Saldo")] = str(balance + refund_amount)
 
-        print("Uang refund sudah kami berikan pada akun Anda.\n\n")
+        print("Uang refund sudah kami berikan pada akun Anda.")

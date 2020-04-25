@@ -31,11 +31,10 @@ def main():
         kritiksaran.data[i] = kritiksaran.data[minpos]
         kritiksaran.data[minpos] = temp
 
-    print("kritik dan saran :")    
+    print("Kritik dan saran semua wahana: ")    
     for i in range(1,aux.length(kritiksaran.data)):
-        print(kritiksaran.data[i][2],' | ',end='')
-        print(kritiksaran.data[i][1],' | ',end='')
-        print(kritiksaran.data[i][0],' | ',end='')
-        print(kritiksaran.data[i][3],end='')
-        print()
+        print(str(kritiksaran.data[i][2]) + ' | ',end='')
+        print(str(kritiksaran.data[i][1]) + ' | ',end='')
+        print(str(kritiksaran.data[i][0]) + ' | ',end='')
+        print(str(kritiksaran.data[i][3]))
     return

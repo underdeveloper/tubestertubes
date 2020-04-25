@@ -18,9 +18,9 @@ def main(pengguna) :
     kritiksaran = load.use("kritiksaran.csv")
     array_kritik_baru = ["","","",""]
     array_kritik_baru[0] = pengguna[1][aux.find_idx(pengguna,"Username")]
-    array_kritik_baru[1] = str(input("Masukkan tanggal hari ini :"))
-    array_kritik_baru[2] = str(input("Masukkan ID Wahana :"))
-    array_kritik_baru[3] = str(input("Masukkan kritik dan saran :"))
+    array_kritik_baru[1] = str(input("Masukkan tanggal hari ini: "))
+    array_kritik_baru[2] = str(input("Masukkan ID Wahana: "))
+    array_kritik_baru[3] = str(input("Masukkan kritik dan saran: "))
     kritik_added = aux.konsDot(kritiksaran.data,array_kritik_baru)
     kritiksaran.data = kritik_added
     print("")

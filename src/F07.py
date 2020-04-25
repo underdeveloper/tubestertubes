@@ -1,17 +1,27 @@
 # F07 - PEMBELIAN TIKET
-# Desainer: Sulthan
-# Coder: Sulthan
-# Tester: Sulthan 
 
 import F01 as load
 import auxilliary as aux
 
 def main(pengguna):
-    # PROCEDURE main (input pengguna)
+    # PROCEDURE main (input pengguna : array [0..1] of array [0..6] of string
+    #                 output tiket : Rekaman, output pembelian : Rekaman)
     # I.S. pembelian dan tiket abstrak
     # F.S. Jika input lolos ujian, tiket dan pembelian akan diupdate.
     # KAMUS LOKAL
-
+    # wahana, pembelian, tiket : Rekaman
+    # username, date_of_birth, role : string
+    # height, balance : integer
+    # id_wahana : string
+    # wahana_found : array[0..4] of string
+    # date_now : string
+    # age : integer
+    # tickets : integer
+    # cancel_buy : character
+    # wahana_age_group, wahana_height_group : string
+    # tickets_price : integer
+    # data_pembelian : array [0..3] of string
+    # new_pembelian, previously_bought : Rekaman.data
     # ALGORITMA
     wahana = load.use("wahana.csv")
     pembelian = load.use("pembelian.csv")

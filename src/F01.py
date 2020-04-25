@@ -44,9 +44,7 @@ def main():
             files[i].rows = flib.length(reader)
             files[i].columns = flib.length(reader[0])
             files[i].data = reader
-    print("")
     print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
-    print("")
 
 def main_auto():
     # procedure main_auto (output files : array of Rekaman)
@@ -65,7 +63,7 @@ def main_auto():
             files[i].rows = flib.length(reader)
             files[i].columns = flib.length(reader[0])
             files[i].data = reader
-    print("\nFile perusahaan Willy Wangky's Chocolate Factory telah di-load.\n")
+    print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
 
 def use(filename):
     # function use (filename : string) -> string
@@ -88,7 +86,7 @@ def use(filename):
             raise ValueError
         return filefound
     except ValueError:
-        print("ERROR: Invalid filename.")
+        print("Galat: Filename salah.")
     # APLIKASI
     # (pada modul lain)
     # import F01 as load
@@ -115,7 +113,7 @@ def store(filename, new_table):
         if (isStored == False):
             raise ValueError
     except ValueError:
-        print("ERROR: Invalid filename.")
+        print("GALAT: Filename salah.")
     # APLIKASI
     # (pada modul lain)
     # import F01 as load

@@ -27,9 +27,7 @@ def main(datatosave):
         with open(os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + str(filename), mode = 'w', newline = '') as f:
             writer = csv.writer(f)
             writer.writerows(datatosave[i].data)
-    print("")
     print("Data berhasil disimpan!")
-    print("")
 
 
 def main_auto(datatosave):
@@ -48,4 +46,4 @@ def main_auto(datatosave):
         with open(os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + str(filename), mode='w', newline='') as f:
             writer = csv.writer(f)
             writer.writerows(datatosave[i].data)
-    print("\nData berhasil disimpan!\n")
+    print("Data berhasil disimpan!")

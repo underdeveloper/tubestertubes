@@ -17,6 +17,7 @@ def command_admin():
     print("save               : Menyimpan semua perubahan yang sudah dilakukan.")
     print("signup             : Mendaftarkan pemain baru.")
     print("cari pemain        : Mencari pemain sesuai username.")
+    print("lihat tiket        : Melihat kepemilikan tiket seorang pemain.")
     print("topup              : Top up saldo pengguna.")
     print("upgrade            : Meng-upgrade akun pengguna menjadi golden account.")
     print("hilang             : Melaporkan kehilangan tiket.")
@@ -25,7 +26,6 @@ def command_admin():
     print("riwayat wahana     : Melihat riwayat penggunaan wahana.")
     print("best               : Melihat wahana terbaik. ")
     print("exit               : Log-out.")
-
 
 def validate_date(date):
     # FUNCTION validate_date (date : string) -> boolean

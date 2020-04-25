@@ -7,11 +7,21 @@ import F01 as load
 import auxilliary as aux
 
 def main(pengguna):
-    # PROCEDURE main (input pengguna)
+    # PROCEDURE main (input pengguna : array [0..1] of array [0..6] of string,
+    #                 output tiket : Rekaman, output penggunaan : Rekaman)
     # I.S. tiket dan penggunaan abstrak
     # F.S. Jika input lolos ujian, tiket dan penggunaan akan diupdate.
     # KAMUS LOKAL
-
+    # wahana, tiket, penggunaan: Rekaman
+    # username : string
+    # height, balance : integer
+    # id_wahana : string
+    # wahana_found : array[0..4] of string
+    # date_now : string
+    # tickets, owned_tickets: integer
+    # cancel_use : character
+    # data_penggunaan : array [0..3] of string
+    # new_penggunaan, previously_bought : Rekaman.data
     # ALGORITMA
     wahana = load.use("wahana.csv")
     tiket = load.use("tiket.csv")
@@ -34,13 +44,13 @@ def main(pengguna):
     tickets = int(input("Jumlah tiket yang digunakan: "))
     while tickets <= 0:
         if tickets == 0:
-            cancel_buy = input("Batalkan menggunakan tiket? [Y/N] ")
-            while cancel_buy.upper() != 'Y' or cancel_buy.upper() != 'N':
-                cancel_buy = input(
+            cancel_use = input("Batalkan menggunakan tiket? [Y/N] ")
+            while cancel_use.upper() != 'Y' or cancel_use.upper() != 'N':
+                cancel_use = input(
                     "Masukan salah. Batalkan menggunakan tiket? [Y/N] ")
-            if cancel_buy == 'Y':
+            if cancel_use == 'Y':
                 return
-            else:  # cancel_buy == 'N'
+            else:  # cancel_use == 'N'
                 tickets = int(input("Jumlah tiket yang digunakan: "))
         else:
             tickets = int(input("Jumlah tiket harusnya bukan negatif. Mohon diulang: "))
@@ -54,7 +64,7 @@ def main(pengguna):
     if ticket_id_wahana == []:
         # Jika pengguna belum pernah membeli tiket di id_wahana, pengguna tidak diperbolehkan memakai tiket.
         print("Anda belum pernah membeli tiket terkait.")
-        print("Alasan: Belum membeli tiket pada wahana " + wahana_name + ".\n")
+        print("Alasan: Belum membeli tiket pada wahana " + wahana_name + ".")
         return
 
     owned_tickets = int(ticket_id_wahana[aux.find_idx(tiket.data, "Jumlah_Tiket")])
@@ -62,7 +72,7 @@ def main(pengguna):
     if int(owned_tickets) < tickets:
         # Jika pengguna meminta tiket lebih banyak daripada yang sebenarnya ia punya, pengguna tidak diperbolehkan memakai tiket.
         print("Anda belum pernah membeli tiket terkait.")
-        print("Alasan: Anda hanya memiliki " + str(owned_tickets) + " tiket pada wahana " + wahana_name + ".\n")
+        print("Alasan: Anda hanya memiliki " + str(owned_tickets) + " tiket pada wahana " + wahana_name + ".")
     else:
         # Jika pengguna memiliki tiket yang cukup pada wahana, pengguna menggunakan tiket tersebut.
         
@@ -85,6 +95,6 @@ def main(pengguna):
         load.store("tiket.csv", new_tiket)
 
         print("Terima kasih telah bermain.")
-        print("Selamat bersenang-senang di " + wahana_name + "!\n\n")
+        print("Selamat bersenang-senang di " + wahana_name + "!")
 
         return

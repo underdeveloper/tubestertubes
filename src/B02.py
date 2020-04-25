@@ -7,11 +7,15 @@ import F01 as load
 import auxilliary as aux
 
 def main():
-    # PROCEDURE main (output user)
+    # PROCEDURE main (output user : Rekaman)
     # I.S. user abstrak
     # F.S. user diganti satu barisnya sehingga kolom "Role" berisi "Gold"
     # KAMUS LOKAL
-
+    # username_upgraded : string
+    # user_found : array[0..1] of array[0..6] of string
+    # new_user : Rekaman.data
+    # row_to_be_changed : array[0..6] of string
+    # idx_col_role : integer
     # ALGORITMA
     user = load.use("user.csv")
 
@@ -33,6 +37,6 @@ def main():
         new_user[row_to_be_changed][idx_col_role] = "Gold"
         load.store("user.csv", new_user)
 
-        print("Akun pemain  " + username_upgraded + " telah di-upgrade.")
-        
+        print("Akun pemain " + username_upgraded + " telah di-upgrade.")
+
     return

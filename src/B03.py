@@ -6,8 +6,10 @@ import auxilliary as aux
 
 def total_sold_tickets(wahana_id):
     # function total_sold_tickets (wahana_id : string) -> integer
+    # Menghasilkan total tiket wahana yang telah terjual.
     # KAMUS LOKAL
-
+    # pembelian : Rekaman
+    # tickets_sold, i : integer
     # ALGORITMA
     pembelian = load.use("pembelian.csv")
     tickets_sold = 0
@@ -20,11 +22,16 @@ def total_sold_tickets(wahana_id):
 
 def main():
     # procedure main ()
-    # I.S. abstrak
-    # F.S. Dikeluarkan tiga wahana 'terbaik' (diurut sesuai jumlah tiket terjual).
-    # Syarat: Pasti sudah >= 3 wahana di wahana.csv
+    # I.S. Abstrak
+    # F.S. Dikeluarkan tiga wahana 'terbaik' (diurut sesuai jumlah tiket terjual)
+    # Syarat: Pasti sudah ada wahana sebanyak >= N_best pada wahana.csv
     # KAMUS LOKAL
-
+    # wahana : Rekaman
+    # wahana_ticket_data : array of tuple (string, string, integer)
+    # constant N_best : integer = 3
+    # i, j, maks_idx : integer
+    # wahana_id, wahana_name : string
+    # wahana_tickets : integer
     # ALGORITMA
     wahana = load.use("wahana.csv")
     wahana_ticket_data = [("", "", 0) for i in range(1, aux.length(wahana.data))]

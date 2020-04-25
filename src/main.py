@@ -26,8 +26,8 @@ import auxilliary as flib
 
 # Memuat file-filenya (F01 - Load file)
 
-# load.main()
 print("$ load")
+# load.main()
 load.main_auto() # Ganti jadi yang manual kalo testing sudah selesai.
 
 # Data semua file .csv telah di-load ke dalam suatu array bernama load.file.data
@@ -51,71 +51,82 @@ if (whoami != []):
 
 # Looping
 
-# Loop pemain
-while exit_flag == False and (whoami[1][flib.find_idx(whoami, "Role")] == "Pemain" or whoami[1][flib.find_idx(whoami, "Role")] == "Gold"):
-    print("Anda ter-logged in sebagai " + whoami[1][flib.find_idx(whoami, "Username")])
-    print("Anda adalah seorang Pemain.")
-    print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
-    command = input("$ ")
-    if (command == "list"):
-        flib.command_pemain()
-    elif (command == "save"):
-        # save.main(load.files)
-        save.main_auto(load.files) # tolong ganti ya :)
-    elif (command == "cari wahana"):
-        cari_wahana.main()
-    elif (command == "beli"):
-        beli_tiket.main(whoami)
-    elif (command == "main"):
-        pakai_tiket.main(whoami)
-    elif (command == "hilang"):
-        hilang_tiket.main(whoami)
-    elif (command == "refund"):
-        refund.main(whoami)
-    elif (command == "beri kritik saran"):
-        input_kritik_saran.main(whoami)
-    elif (command == "exit"):
-        exit_flag = True
-    else:
-        print("ERROR: Unknown command.")
-    if (exit_flag == False):
+while not exit_flag:
+    print("Anda ter-logged in sebagai " + str(whoami[1][flib.find_idx(whoami, "Username")]) + ".")
+
+    # Loop pemain
+    if (whoami[1][flib.find_idx(whoami, "Role")] == "Pemain" or whoami[1][flib.find_idx(whoami, "Role")] == "Gold"):
+        print("Anda adalah seorang Pemain.")
+        if whoami[1][flib.find_idx(whoami, "Role")] == "Gold":
+            print("Anda memiliki Golden Account (harga tiket diskon 50%).")
+        print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
+        command = input("$ ")
+        try:
+            if (command == "list"):
+                flib.command_pemain()
+            elif (command == "save"):
+                # save.main(load.files)
+                save.main_auto(load.files) # tolong ganti ya :)
+            elif (command == "cari wahana"):
+                cari_wahana.main()
+            elif (command == "beli"):
+                beli_tiket.main(whoami)
+            elif (command == "main"):
+                pakai_tiket.main(whoami)
+            elif (command == "hilang"):
+                hilang_tiket.main(whoami)
+            elif (command == "refund"):
+                refund.main(whoami)
+            elif (command == "beri kritik saran"):
+                input_kritik_saran.main(whoami)
+            elif (command == "cek saldo"):
+                print("Saldo akun Anda adalah " + str(whoami[1][flib.find_idx(whoami, "Saldo")]) + ".")
+            elif (command == "exit"):
+                exit_flag = True
+            else:
+                print("ERROR: Unknown command.")
+        except:
+            print("\nGALAT: Terjadi kesalahan pada penjalanan program, mungkin karena input pengguna yang salah.")
         print("")
 
-# Loop admin
-while exit_flag == False and whoami[1][flib.find_idx(whoami, "Role")] == "Admin":
-    print("Anda ter-logged in sebagai " + whoami[1][flib.find_idx(whoami, "Username")])
-    print("Anda adalah seorang Admin.")
-    print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
-    command = input("$ ")
-    if (command == "list"):
-        flib.command_admin()
-    elif (command == "save"):
-        # save.main(load.files) 
-        save.main_auto(load.files) # diganti lagi jadi manual kalo udah :)
-    elif (command == "signup"):
-        userfile = signup.main(load.use("user.csv"))
-        load.files[0] = userfile
-    elif (command == "cari pemain"):
-        cari_pemain.main(load.use("user.csv"))
-    elif (command == "topup"):
-        topup.main()
-    elif (command == "hilang"):
-        hilang_tiket.main(whoami)
-    elif (command == "upgrade"):
-        gold_upgrade.main()
-    elif (command == "lihat kritik saran"):
-        output_kritik_saran.main()
-    elif (command == "tambah wahana"):
-        tambah_wahana.main()
-    elif (command == "riwayat wahana"):
-        riwayat_wahana.main()
-    elif (command == "best"):
-        best_wahana.main()
-    elif (command == "exit"):
-        exit_flag = True
-    else:
-        print("ERROR: Unknown command.")
-    if (exit_flag == False):
+    # Loop admin
+    if whoami[1][flib.find_idx(whoami, "Role")] == "Admin":
+        print("Anda adalah seorang Admin.")
+        print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
+        command = input("$ ")
+        try:
+            if (command == "list"):
+                flib.command_admin()
+            elif (command == "save"):
+                # save.main(load.files) 
+                save.main_auto(load.files) # diganti lagi jadi manual kalo udah :)
+            elif (command == "signup"):
+                userfile = signup.main(load.use("user.csv"))
+                load.files[0] = userfile
+            elif (command == "cari pemain"):
+                cari_pemain.main()
+            elif (command == "lihat tiket"):
+                tiket_user.main()
+            elif (command == "topup"):
+                topup.main()
+            elif (command == "hilang"):
+                hilang_tiket.main(whoami)
+            elif (command == "upgrade"):
+                gold_upgrade.main()
+            elif (command == "lihat kritik saran"):
+                output_kritik_saran.main()
+            elif (command == "tambah wahana"):
+                tambah_wahana.main()
+            elif (command == "riwayat wahana"):
+                riwayat_wahana.main()
+            elif (command == "best"):
+                best_wahana.main()
+            elif (command == "exit"):
+                exit_flag = True
+            else:
+                print("\nGALAT: Unknown command.")
+        except:
+            print("\nGALAT: Terjadi kesalahan pada penjalanan program, mungkin karena input pengguna yang salah.")
         print("")
 
 # Setelah looping selesai, program selesai
@@ -128,4 +139,4 @@ if (exit_flag == True):
     else:
         raise SystemExit
 else:
-    print("ERROR: Unexpected exit from user/admin loop. Changes will not be saved.")
+    print("\nGALAT: Exit tidak terduga karena kesalahan pada program. Perubahan file tidak akan tersimpan.")
