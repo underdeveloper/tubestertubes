@@ -13,14 +13,14 @@ def main(userfile):
     # function main (userfile : Rekaman) -> array [0..1] of array [0..6] of string
     # Me-loginkan user yang sudah terdaftar ke dalam sistem.
     # KAMUS LOKAL
-    # isUser : boolean
-    # username, password : string
-    # finduser, findpassword : array [0..6] of string
+    # isUser, findpassword : boolean
+    # username, password, spw : string
+    # finduser : array [0..6] of string
     # user : array [0..1] of array [0..6] of string
     # ALGORITMA
     isUser = False
     while (isUser == False):
-        username = str(input("Masukkan username: "))
+        username = str(input("Masukkan username: ")).lower()
         password = str(input("Masukkan password: "))
         # Cek apakah username valid
         finduser = flib.find_baris_first(userfile.data, "Username", username)

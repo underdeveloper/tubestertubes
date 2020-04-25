@@ -6,7 +6,6 @@ filedesc = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Pen
 
 # ALGORITMA PROGRAM UTAMA
 
-import os
 import csv
 import auxilliary as flib
 
@@ -24,7 +23,7 @@ def main(datatosave):
         # Masukkan <nama file> yang akan di-save
         filename = str(input("Masukkan nama " + filedesc[i] + ": "))
         # Save datatosave[i] ke <nama file>.csv
-        with open(os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + str(filename), mode = 'w', newline = '') as f:
+        with open(__file__[:-10] + "data\\" + str(filename), mode = 'w', newline = '') as f:
             writer = csv.writer(f)
             writer.writerows(datatosave[i].data)
     print("Data berhasil disimpan!")
@@ -43,7 +42,7 @@ def main_auto(datatosave):
     for i in range(flib.length(actual_filenames)):
         filename = actual_filenames[i]
         # Save datatosave[i] ke <nama file>.csv
-        with open(os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + str(filename), mode='w', newline='') as f:
+        with open(__file__[:-10] + "data\\" + str(filename), mode='w', newline='') as f:
             writer = csv.writer(f)
             writer.writerows(datatosave[i].data)
     print("Data berhasil disimpan!")

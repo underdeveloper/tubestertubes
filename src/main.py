@@ -60,7 +60,7 @@ while not exit_flag:
         if whoami[1][flib.find_idx(whoami, "Role")] == "Gold":
             print("Anda memiliki Golden Account (harga tiket diskon 50%).")
         print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
-        command = input("$ ")
+        command = input("$ ").lower()
         try:
             if (command == "list"):
                 flib.command_pemain()
@@ -93,7 +93,7 @@ while not exit_flag:
     if whoami[1][flib.find_idx(whoami, "Role")] == "Admin":
         print("Anda adalah seorang Admin.")
         print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
-        command = input("$ ")
+        command = input("$ ").lower()
         try:
             if (command == "list"):
                 flib.command_admin()
