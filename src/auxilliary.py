@@ -4,27 +4,27 @@
 # Fungsi/prosedur di bawah ini merupakan fungsi yang mudah untuk dipahami dan dipakai.
 
 def command_pemain():
-    print("save | Menyimpan semua perubahan yang sudah dilakukan.")
-    print("cari wahana | Mencari wahana sesuai pembatasan user.")
-    print("beli | Membeli tiket.")
-    print("main | Menggunakan tiket dan melihat tiket yang Anda punya.")
-    print("refund | Meminta refund tiket.")
-    print("hilang | Melaporkan kehilangan tiket.")
-    print("beri kritik saran | Memberikan kritik/saran terhadap wahana.")
-    print("exit | Log-out dari sistem.")
+    print("save              : Menyimpan semua perubahan yang sudah dilakukan.")
+    print("cari wahana       : Mencari wahana sesuai pembatasan user.")
+    print("beli              : Membeli tiket.")
+    print("main              : Menggunakan tiket dan melihat tiket yang Anda punya.")
+    print("refund            : Meminta refund tiket.")
+    print("hilang            : Melaporkan kehilangan tiket.")
+    print("beri kritik saran : Memberikan kritik/saran terhadap wahana.")
+    print("exit              : Log-out dari sistem.")
 
 def command_admin():
-    print("save | Menyimpan semua perubahan yang sudah dilakukan.")
-    print("signup | Mendaftarkan pemain baru.")
-    print("cari pemain | Mencari pemain sesuai username.")
-    print("topup | Top up saldo pengguna.")
-    print("upgrade | Meng-upgrade akun pengguna menjadi golden account.")
-    print("hilang | Melaporkan kehilangan tiket.")
-    print("lihat kritik saran | Melihat daftar kritik/saran wahana.")
-    print("tambah wahana | Menambah wahana baru.")
-    print("riwayat wahana | Melihat riwayat penggunaan wahana.")
-    print("best | Melihat wahana terbaik. ")
-    print("exit | Log-out.")
+    print("save               : Menyimpan semua perubahan yang sudah dilakukan.")
+    print("signup             : Mendaftarkan pemain baru.")
+    print("cari pemain        : Mencari pemain sesuai username.")
+    print("topup              : Top up saldo pengguna.")
+    print("upgrade            : Meng-upgrade akun pengguna menjadi golden account.")
+    print("hilang             : Melaporkan kehilangan tiket.")
+    print("lihat kritik saran : Melihat daftar kritik/saran wahana.")
+    print("tambah wahana      : Menambah wahana baru.")
+    print("riwayat wahana     : Melihat riwayat penggunaan wahana.")
+    print("best               : Melihat wahana terbaik. ")
+    print("exit               : Log-out.")
 
 
 def validate_date(date):
