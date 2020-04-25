@@ -78,7 +78,7 @@ def main(pengguna):
 
     # Jika pengguna adalah pemain dengan golden account, harga jadi setengah.
     if role == "Gold":
-        tickets_price *= 0.5
+        tickets_price = round(tickets_price * 0.5)
         
     if tickets_price > balance: 
         # Saldo pengguna tidak cukup untuk membeli tiket
@@ -126,6 +126,6 @@ def main(pengguna):
     pengguna[1][aux.find_idx(pengguna, "Saldo")] = str(balance - tickets_price)
 
     print("Prosedur pembelian tiket telah selesai."
-           + "\nSelamat bersenang-senang di " + wahana_found[aux.find_idx(wahana.data, "Nama_Wahana")] + "!\n\n")
+           + "\nSelamat bersenang-senang di " + wahana_found[aux.find_idx(wahana.data, "Nama_Wahana")] + "!")
     
     return

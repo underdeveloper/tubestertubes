@@ -52,8 +52,7 @@ def main(pengguna):
         [tiket.data[0]], aux.find_baris_all(tiket.data, "Username", username))
 
     ticket_id_wahana = aux.find_baris_first(previously_bought, "ID_Wahana", id_wahana)
-    owned_tickets = str(ticket_id_wahana[aux.find_idx(tiket.data, "Jumlah_Tiket")])
-
+    
     if ticket_id_wahana == []:
         # Jika pengguna belum pernah membeli tiket di id_wahana, pengguna tidak diperbolehkan memakai tiket.
         print("Tiket Anda tidak valid dalam sistem kami.")
@@ -93,7 +92,7 @@ def main(pengguna):
         if role == "Gold":
             # Jika pengguna merupakan pemain dengan golden account, refund disesuaikan harga gold.
             refund_percentage *= 0.8
-        refund_amount = int(tickets * refund_percentage *  single_ticket_price)
+        refund_amount = round(tickets * refund_percentage *  single_ticket_price)
         pengguna[1][aux.find_idx(pengguna, "Saldo")] = str(balance + refund_amount)
 
         print("Uang refund sudah kami berikan pada akun Anda.\n\n")

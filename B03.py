@@ -4,8 +4,8 @@
 import F01 as load
 import auxilliary as aux
 
-def total_sold_tickets(wahana_name):
-    # function total_sold_tickets (wahana_name : string) -> integer
+def total_sold_tickets(wahana_id):
+    # function total_sold_tickets (wahana_id : string) -> integer
     # KAMUS LOKAL
 
     # ALGORITMA
@@ -13,7 +13,7 @@ def total_sold_tickets(wahana_name):
     tickets_sold = 0
 
     for i in range(1, aux.length(pembelian.data)):
-        if str(pembelian.data[i][aux.find_idx(pembelian.data, "ID_Wahana")]) == wahana_name:
+        if str(pembelian.data[i][aux.find_idx(pembelian.data, "ID_Wahana")]) == wahana_id:
             tickets_sold += int(pembelian.data[i][aux.find_idx(pembelian.data, "Jumlah_Tiket")])
 
     return tickets_sold
@@ -32,13 +32,13 @@ def main():
     for i in range(1, aux.length(wahana.data)):
         wahana_id = wahana.data[i][aux.find_idx(wahana.data, "ID_Wahana")]
         wahana_name = wahana.data[i][aux.find_idx(wahana.data, "Nama_Wahana")]
-        wahana_tickets = total_sold_tickets(wahana_name)
+        wahana_tickets = total_sold_tickets(wahana_id)
         wahana_ticket_data[i-1] = (wahana_id, wahana_name, wahana_tickets)
     
     # Sorting sesuai jumlah tiket yang terjual
-    for i in range(1, aux.length(wahana.data)):
+    for i in range(0, aux.length(wahana_ticket_data)):
         maks_idx = i
-        for j in range(i, aux.length(wahana.data)):
+        for j in range(i, aux.length(wahana_ticket_data)):
             if wahana_ticket_data[maks_idx][2] < wahana_ticket_data[j][2]:
                 maks_idx = j
         temp = wahana_ticket_data[i]
