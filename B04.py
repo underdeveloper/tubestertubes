@@ -88,7 +88,7 @@ def main(pengguna):
         load.store("hilang.csv", new_lost)
 
         # File kehilangan tiket diupdate, banyak tiket yang dimiliki pengguna dikurangi banyak tiket yang hilang.
-        if owned_tickets == tickets:
+        if int(owned_tickets) == tickets:
             # Jika pengguna kehabisan tiket pada wahana tersebut, baris tersebut dihapus.
             row_to_be_changed = aux.find_baris_idx(tiket.data, ticket_id_wahana)  # Baris tiket yang ingin dihapus
             new_tiket = aux.merge(tiket.data[:row_to_be_changed], tiket.data[row_to_be_changed+1:])  # Penghapusan baris

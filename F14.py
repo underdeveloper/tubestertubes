@@ -11,35 +11,31 @@ import F01 as load
 
 # REALISASI FUNGSI/PROSEDUR
 
-
 def main():
     # Program utama F14
-    # Admin memasukkan ID Wahana
+    # Admin memasukkan ID Wahana dan dikeluarkan riwayat penggunaan wahana tersebut.
     wahana = load.use ("wahana.csv")
+    penggunaan = load.use ("penggunaan.csv")
 
     id_wahana = str(input("Masukkan ID Wahana: "))
-    id_wahana_found = aux.find_baris_all(wahana.data, "ID_Wahana", id_wahana)
+    wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
 
-    while id_wahana_found == [] :
+    while wahana_found == [] :
         id_wahana = input("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\". Mohon diulang: ')
-        id_wahana_found = aux.find_baris_all(wahana.data, "ID_Wahana", id_wahana)
+        wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
 
-    print("Riwayat: ")
-    print (" ")
-    # if id_wahana_found != [] : <<tidak perlu, sudah divalidasi>>
-    j = 0
-    i = 0
-    arr1 = [0 for i in range(len(id_wahana_found))]
-    username = [0 for j in range(len(id_wahana_found))]
-    tanggal_pakai = [0 for j in range(len(id_wahana_found))]
-    jumlah_tiket = [0 for j in range(len(id_wahana_found))]
+    riwayat = []
 
-    for i in range(len(id_wahana_found)):
-        arr1[i] = id_wahana_found[i]
-    for j in range(len(arr1[i])):
-        username = arr1[j][0]
-        tanggal_pakai = arr1[j][1]
-        jumlah_tiket =  arr1[j][3]
-        print(tanggal_pakai, "|", username, "|", jumlah_tiket)
+    for i in range(1, aux.length(penggunaan.data)):
+        if str(penggunaan.data[i][aux.find_idx(penggunaan.data, "ID_Wahana")]) == id_wahana:
+            tanggal_guna = penggunaan.data[i][aux.find_idx(wahana.data, "Tanggal_Penggunaan")]
+            username = penggunaan.data[i][aux.find_idx(wahana.data, "Username")]
+            tiket = penggunaan.data[i][aux.find_idx(wahana.data, "Jumlah_Tiket")]
+            riwayat_baru = (tanggal_guna, username, tiket)
+            riwayat = aux.konsDot(riwayat, [riwayat_baru])
+
+    print("Riwayat penggunaan " + str(wahana_found[aux.find_idx(wahana.data, "Nama_Wahana")]) + ": ")
+    for i in range(aux.length(riwayat)):
+        print(str(riwayat[i][0]) + " | " + str(riwayat[i][1]) + " | " + str(riwayat[i][2]))
 
     return

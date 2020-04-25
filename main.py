@@ -103,7 +103,7 @@ while exit_flag == False and whoami[1][flib.find_idx(whoami, "Role")] == "Admin"
     elif (command == "upgrade"):
         gold_upgrade.main()
     elif (command == "lihat kritik saran"):
-        output_kritik_saran.print_sorted()
+        output_kritik_saran.main()
     elif (command == "tambah wahana"):
         tambah_wahana.main()
     elif (command == "riwayat wahana"):

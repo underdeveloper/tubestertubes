@@ -9,8 +9,8 @@ import F01 as load
 
 #REALISASI FUNGSI/PROSEDUR
 
-def print_sorted():
-    # procedure print_sorted (input kritiksaran : Rekaman)
+def main():
+    # procedure main (input kritiksaran : Rekaman)
     # Mengeluarkan data kritiksaran yang sudah diurut berdasarkan sorting_key
     # KAMUS LOKAL
     # sorting_key : string
