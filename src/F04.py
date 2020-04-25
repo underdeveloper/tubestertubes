@@ -10,7 +10,7 @@ import B01
 
 # REALISASI FUNGSI/PROSEDUR
 def main(userfile):
-    # function main (userfile : array of array [0..6] of string) -> array [0..1] of array [0..6] of string
+    # function main (userfile : Rekaman) -> array [0..1] of array [0..6] of string
     # Me-loginkan user yang sudah terdaftar ke dalam sistem.
     # KAMUS LOKAL
     # isUser : boolean
@@ -20,8 +20,8 @@ def main(userfile):
     # ALGORITMA
     isUser = False
     while (isUser == False):
-        username = str(input("Masukkan username: ")) # Feral
-        password = str(input("Masukkan password: ")) # fer4l
+        username = str(input("Masukkan username: "))
+        password = str(input("Masukkan password: "))
         # Cek apakah username valid
         finduser = flib.find_baris_first(userfile.data, "Username", username)
         if (finduser != []):
