@@ -41,6 +41,8 @@ def main(userfile):
 def getuserdata(user, dataname):
     # function getuserdata (dataname : string) -> string
     # Mengambil data dari user yang telah login
+    # KAMUS LOKAL
+    # ALGORITMA
     return user[1][flib.find_idx(user, str(dataname))]
     # APLIKASI
     # (pada modul lain)
