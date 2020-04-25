@@ -3,17 +3,13 @@
 #Menambah entry data ke kritiksaran.csv
 
 #KAMUS
-class kritiksaran :
-    datacount = 4
-    datadesc = ("Username","Tanggal_Kritik","ID_Wahana", "Isi_Kritik")
-    data = ["*" for i in range (datacount)]
 
 #ALGORITMA PROGRAM UTAMA
 import F01 as load
 import auxilliary as aux
 
 #REALISASI FUNGSI/PROSEDUR
-def main(userfile) :
+def main(pengguna) :
     # FUNCTION main (input/output userfile : array of array [0..3] of string)
     # I.S. userfile sudah terdefinisi
     # F.S. ditambahkan suatu data baru ke userfile
@@ -24,24 +20,24 @@ def main(userfile) :
     isDateValid = False
     isUserValid = False
     isValidID = False
+    kritiksaran = load.use("kritiksaran.csv")
+    array_kritik_baru = ["Username","Tanggal Kritik","ID_Wahana","Isi Kritik"]
     while (isValidID == False) or (isDateValid == False) or (isUserValid == False) :
-        for i in range(kritiksaran.datacount) :
-            if kritiksaran.datadesc[i] == "Username" :
-                kritiksaran.data[i] = str(input("Masukkan " + kritiksaran.datadesc[i] + ": "))
+        for i in range(aux.length(array_kritik_baru)) :
+            if array_kritik_baru[i] == "Username" :
+                array_kritik_baru[i] = pengguna[1][aux.find_idx(pengguna,"Username")]
                 isUserValid = True
-            elif kritiksaran.datadesc[i] == "Tanggal_Kritik" :
-                kritiksaran.data[i] = str(input("Masukkan " + kritiksaran.datadesc[i] + ": "))
-                aux.validate_date(kritiksaran.data[i])
+            elif array_kritik_baru[i] == "Tanggal Kritik" :
+                array_kritik_baru[i] = str(input("Masukkan Tanggal Kritik : "))
                 isDateValid = True
-            elif kritiksaran.datadesc[i] == "ID_Wahana" :
-                kritiksaran.data[i] = str(input("Masukkan " + kritiksaran.datadesc[i] + ": "))
+            elif array_kritik_baru[i] == "ID Wahana" :
+                array_kritik_baru[i] = str(input("Masukkan ID Wahana : "))
                 isValidID = True
             else :
-                kritiksaran.data[i] = str(input("Masukkan " + kritiksaran.datadesc[i] + ": "))
-    kritik_added = aux.konsDot(userfile.data,kritiksaran.data)
-    userfile.rows = userfile.rows + 1
-    userfile.data = kritik_added
+                array_kritik_baru[i] = str(input("Masukkan Isi Kritik : "))
+    kritik_added = aux.konsDot(kritiksaran.data,array_kritik_baru)
+    kritiksaran.data = kritik_added
     print("")
     print("Kritik dan saran Anda kami terima.")
-    return userfile
+    return kritiksaran
         
