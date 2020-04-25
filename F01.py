@@ -17,20 +17,20 @@ class Rekaman:
         self.columns = columns
         self.rows = rows
         self.data = [["*" for i in range(columns)] for j in range(rows)]
-filedescription = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran")
+filedescription = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran", "File Laporan Kehilangan Tiket")
 filecount = flib.length(filedescription)
 files = [Rekaman() for i in range (filecount)]
-# Di atas ini adalah "Rekaman", suatu tipe bentukan, dan 3 variable: filedescription : tuple [0..6], filecount : integer, files : array [0..filecount] of Rekaman()
-# Saat modul ini dijalankan, data ke-7 file .csv akan disimpan ke dalam files
+# Di atas ini adalah "Rekaman", suatu tipe bentukan, dan 3 variable: filedescription : tuple [0..7], filecount : integer, files : array [0..filecount] of Rekaman()
+# Saat modul ini dijalankan, data ke-8 file .csv akan disimpan ke dalam files
 # files inilah yang kemudian akan diakses, diubah valuenya, dst selama program dijalankan
-# Modul lain akan akan mengurus penyimpanan kembali files ke-7 file .csv
+# Modul lain akan akan mengurus penyimpanan kembali files ke-8 file .csv
 
 # REALISASI FUNGSI/PROSEDUR
 
 def main():
     # procedure main (output files : array of Rekaman)
     # I.S. file.data terdefinisi sembarang
-    # F.S. ke-7 file .csv di-load ke files
+    # F.S. ke-8 file .csv di-load ke files
     # KAMUS LOKAL
     # i : integer
     # reader : _csv.reader object
@@ -51,13 +51,13 @@ def main():
 def main_auto():
     # procedure main_auto (output files : array of Rekaman)
     # I.S. file.data terdefinisi sembarang
-    # F.S. ke-7 file .csv di-load ke files
+    # F.S. ke-8 file .csv di-load ke files
     # main_auto() merupakan prosedur sama dengan main(), tetapi diotomasikan.
     # Prosedur ini dipakai untuk masa testing program ini, dan akan dimatikan
     # saat program final dikeluarkan.
 
     actual_filenames = ["user.csv", "wahana.csv", "pembelian.csv", 
-    "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv"]
+    "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv", "hilang.csv"]
     for i in range(flib.length(actual_filenames)):
         files[i].name = actual_filenames[i]
         with open(os.path.dirname(__file__) + "\\" + actual_filenames[i], mode='r') as f:

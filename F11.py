@@ -5,16 +5,19 @@
 
 #ALGORITMA PROGAM UTAMA
 import auxilliary as aux
+import F01 as load
 
 #REALISASI FUNGSI/PROSEDUR
 
-def print_sorted(kritiksaran):
-    # function print_sorted (kritiksaran : Rekaman) -> array of array of string
+def main():
+    # procedure main (input kritiksaran : Rekaman)
     # Mengeluarkan data kritiksaran yang sudah diurut berdasarkan sorting_key
     # KAMUS LOKAL
     # sorting_key : string
     # sorting_idx, i, j, minpos : int
     # temp : array of string
+    # ALGORITMA
+    kritiksaran = load.use("kritiksaran.csv")
 
     sorting_key = "ID_Wahana"
     sorting_idx = aux.find_idx(kritiksaran.data, sorting_key) # Mencari indeks kolom <sorting_key>

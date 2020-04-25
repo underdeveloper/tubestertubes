@@ -30,7 +30,7 @@ def main(pengguna):
     # Input dan validasi tanggal hari ini
     date_now = aux.input_date("Masukkan tanggal hari ini: ")
 
-    # Input dan validasi jumlah tiket yang ingin dibeli
+    # Input dan validasi jumlah tiket yang ingin digunakan
     tickets = int(input("Jumlah tiket yang digunakan: "))
     while tickets <= 0:
         if tickets == 0:
@@ -50,13 +50,16 @@ def main(pengguna):
     previously_bought = aux.merge([tiket.data[0]], aux.find_baris_all(tiket.data, "Username", username))
     
     ticket_id_wahana = aux.find_baris_first(previously_bought, "ID_Wahana", id_wahana)
-    owned_tickets = int(ticket_id_wahana[aux.find_idx(tiket.data, "Jumlah_Tiket")])
-
+    
     if ticket_id_wahana == []:
         # Jika pengguna belum pernah membeli tiket di id_wahana, pengguna tidak diperbolehkan memakai tiket.
         print("Anda belum pernah membeli tiket terkait.")
         print("Alasan: Belum membeli tiket pada wahana " + wahana_name + ".\n")
-    elif int(owned_tickets) < tickets:
+        return
+
+    owned_tickets = int(ticket_id_wahana[aux.find_idx(tiket.data, "Jumlah_Tiket")])
+
+    if int(owned_tickets) < tickets:
         # Jika pengguna meminta tiket lebih banyak daripada yang sebenarnya ia punya, pengguna tidak diperbolehkan memakai tiket.
         print("Anda belum pernah membeli tiket terkait.")
         print("Alasan: Anda hanya memiliki " + str(owned_tickets) + " tiket pada wahana " + wahana_name + ".\n")
