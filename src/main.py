@@ -27,6 +27,7 @@ import auxilliary as flib
 # Memuat file-filenya (F01 - Load file)
 
 # load.main()
+print("$ load")
 load.main_auto() # Ganti jadi yang manual kalo testing sudah selesai.
 
 # Data semua file .csv telah di-load ke dalam suatu array bernama load.file.data
@@ -40,6 +41,7 @@ load.main_auto() # Ganti jadi yang manual kalo testing sudah selesai.
 # Login sebagai admin:
 # Username: wangkypro
 # Password: coklatenaknol
+print("$ login")
 whoami = login.main(load.use("user.csv"))
 
 # Dideklarasi exit_flag (boolean) yang menandakan apabila user sudah mau keluar dari program
@@ -55,7 +57,6 @@ while exit_flag == False and (whoami[1][flib.find_idx(whoami, "Role")] == "Pemai
     print("Anda adalah seorang Pemain.")
     print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
     command = input("$ ")
-    print("")
     if (command == "list"):
         flib.command_pemain()
     elif (command == "save"):
@@ -77,7 +78,8 @@ while exit_flag == False and (whoami[1][flib.find_idx(whoami, "Role")] == "Pemai
         exit_flag = True
     else:
         print("ERROR: Unknown command.")
-    print("")
+    if (exit_flag == False):
+        print("")
 
 # Loop admin
 while exit_flag == False and whoami[1][flib.find_idx(whoami, "Role")] == "Admin":
@@ -85,46 +87,35 @@ while exit_flag == False and whoami[1][flib.find_idx(whoami, "Role")] == "Admin"
     print("Anda adalah seorang Admin.")
     print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
     command = input("$ ")
-    print("")
     if (command == "list"):
         flib.command_admin()
-        print("")
     elif (command == "save"):
         # save.main(load.files) 
         save.main_auto(load.files) # diganti lagi jadi manual kalo udah :)
-        print("")
     elif (command == "signup"):
         userfile = signup.main(load.use("user.csv"))
         load.files[0] = userfile
-        print("")
     elif (command == "cari pemain"):
         cari_pemain.main(load.use("user.csv"))
-        print("")
     elif (command == "topup"):
         topup.main()
-        print("")
     elif (command == "hilang"):
         hilang_tiket.main(whoami)
-        print("")
     elif (command == "upgrade"):
         gold_upgrade.main()
-        print("")
     elif (command == "lihat kritik saran"):
         output_kritik_saran.main()
-        print("")
     elif (command == "tambah wahana"):
         tambah_wahana.main()
-        print("")
     elif (command == "riwayat wahana"):
         riwayat_wahana.main()
-        print("")
     elif (command == "best"):
         best_wahana.main()
-        print("")
     elif (command == "exit"):
         exit_flag = True
     else:
         print("ERROR: Unknown command.")
+    if (exit_flag == False):
         print("")
 
 # Setelah looping selesai, program selesai
