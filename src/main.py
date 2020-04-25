@@ -88,33 +88,44 @@ while exit_flag == False and whoami[1][flib.find_idx(whoami, "Role")] == "Admin"
     print("")
     if (command == "list"):
         flib.command_admin()
+        print("")
     elif (command == "save"):
         # save.main(load.files) 
         save.main_auto(load.files) # diganti lagi jadi manual kalo udah :)
+        print("")
     elif (command == "signup"):
         userfile = signup.main(load.use("user.csv"))
         load.files[0] = userfile
+        print("")
     elif (command == "cari pemain"):
         cari_pemain.main(load.use("user.csv"))
+        print("")
     elif (command == "topup"):
         topup.main()
+        print("")
     elif (command == "hilang"):
         hilang_tiket.main(whoami)
+        print("")
     elif (command == "upgrade"):
         gold_upgrade.main()
+        print("")
     elif (command == "lihat kritik saran"):
         output_kritik_saran.main()
+        print("")
     elif (command == "tambah wahana"):
         tambah_wahana.main()
+        print("")
     elif (command == "riwayat wahana"):
         riwayat_wahana.main()
+        print("")
     elif (command == "best"):
         best_wahana.main()
+        print("")
     elif (command == "exit"):
         exit_flag = True
     else:
         print("ERROR: Unknown command.")
-    print("")
+        print("")
 
 # Setelah looping selesai, program selesai
 if (exit_flag == True):

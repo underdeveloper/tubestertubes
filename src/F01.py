@@ -39,7 +39,7 @@ def main():
         # Masukkan <nama file> yang akan di-load
         files[i].name = str(input("Masukkan nama " + filedescription[i] + ": "))
         # Load <nama file>.csv ke file.data
-        with open(os.path.dirname(__file__) + "\\" + str(files[i].name), mode = 'r') as f:
+        with open(os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + str(files[i].name), mode = 'r') as f:
             reader = list(csv.reader(f))
             files[i].rows = flib.length(reader)
             files[i].columns = flib.length(reader[0])
@@ -60,7 +60,7 @@ def main_auto():
     "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv", "hilang.csv"]
     for i in range(flib.length(actual_filenames)):
         files[i].name = actual_filenames[i]
-        with open(os.path.dirname(__file__) + "\\" + actual_filenames[i], mode='r') as f:
+        with open(os.path.dirname(os.path.dirname(__file__)) + "\\data\\" + actual_filenames[i], mode='r') as f:
             reader = list(csv.reader(f))
             files[i].rows = flib.length(reader)
             files[i].columns = flib.length(reader[0])
