@@ -15,14 +15,14 @@ import F01 as load
 def main():
     # Program utama F14
     # Admin memasukkan ID Wahana
-    user = load.use("user.csv")
+    wahana = load.use ("wahana.csv")
 
     id_wahana = str(input("Masukkan ID Wahana: "))
-    id_wahana_found = aux.find_baris_all(user.data, "ID_Wahana", id_wahana)
+    id_wahana_found = aux.find_baris_all(wahana.data, "ID_Wahana", id_wahana)
 
     while id_wahana_found == [] :
         id_wahana = input("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\". Mohon diulang: ')
-        id_wahana_found = aux.find_baris_all(user.data, "ID_Wahana", id_wahana)
+        id_wahana_found = aux.find_baris_all(wahana.data, "ID_Wahana", id_wahana)
 
     print("Riwayat: ")
     print (" ")

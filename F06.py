@@ -86,20 +86,28 @@ def main ():
             u = "semua umur"
             t = "tanpa batasan"
             
-    umur_true = aux.merge([wahana.data[0]], aux.find_baris_all(wahana.data, "Batasan_Umur", u))
+    umur_true = aux.find_baris_all(wahana.data, "Batasan_Umur", u)
     validasi = aux.find_baris_all(umur_true, "Batasan_Tinggi", t)
 
-    if validasi == []:
-        print("Tidak ada wahana yang sesuai dengan pencarian kamu.")
-    
-    else:
-            
-        id_wahana = [validasi[i][0] for i in range(aux.length(validasi))]
-        nama_wahana = [validasi[i][1] for i in range(aux.length(validasi))]
-        harga_tiket = [validasi[i][2] for i in range(aux.length(validasi))]
-        arr1 = [(id_wahana[i], nama_wahana[i], harga_tiket[i]) for i in range(aux.length(validasi))]
+    arr1 = [0 for i in range(len(validasi))]
+    id_wahana = [0 for j in range(len(validasi))]
+    nama_wahana = [0 for j in range(len(validasi))]
+    harga_tiket = [0 for j in range(len(validasi))]
 
-        for i in range(aux.length(arr1)):
-            print (str(id_wahana[i]), "|", str(nama_wahana[i]), "|", str(harga_tiket[i]))
-        
+    for i in range(len(validasi)):
+        arr1[i] = validasi[i]
+        # print (D[i])
+    for j in range(len(arr1[i])):
+        # Z = arr1[j]
+        # arr2 = Z[1]
+        id_wahana = arr1[j][0]
+        nama_wahana = arr1[j][1]
+        harga_tiket =  arr1[j][2]
+
+    if validasi == [] :
+        print ("Tidak ada wahana yang sesuai dengan pencarian kamu.")
+    else :
+        #bila terdapat data dengan umur dan tinggi yang sesuai
+        print (id_wahana, "|", nama_wahana, "|", harga_tiket )
+    
     return
