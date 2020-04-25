@@ -17,7 +17,7 @@ import B01
 # REALISASI FUNGSI/PROSEDUR
 
 def main(userfile):
-    # fungsi main (userfile : array of array [0..6] of string) -> array of array [0..6] of string
+    # fungsi main (userfile : Rekaman) -> Rekaman
     # I.S. userfile terdefinisi
     # F.S. ditambahkan suatu data baru ke userfile
     # KAMUS LOKAL

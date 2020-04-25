@@ -28,7 +28,7 @@ files = [Rekaman() for i in range (filecount)]
 # REALISASI FUNGSI/PROSEDUR
 
 def main():
-    # procedure main (output files : array of Rekaman)
+    # procedure main (output files : array [0..7] of Rekaman)
     # I.S. file.data terdefinisi sembarang
     # F.S. ke-8 file .csv di-load ke files
     # KAMUS LOKAL
@@ -47,7 +47,7 @@ def main():
     print("File perusahaan Willy Wangky's Chocolate Factory telah di-load.")
 
 def main_auto():
-    # procedure main_auto (output files : array of Rekaman)
+    # procedure main_auto (output files : array [0..7] of Rekaman)
     # I.S. file.data terdefinisi sembarang
     # F.S. ke-8 file .csv di-load ke files
     # main_auto() merupakan prosedur sama dengan main(), tetapi diotomasikan.
@@ -94,7 +94,7 @@ def use(filename):
     # >> files[0]
 
 def store(filename, new_table):
-    # procedure store (input filename : string, input new_table : array of array of string)
+    # procedure store (input filename : string, input new_table : Rekaman)
     # Meng-update salah satu elemen files.name yang sesuai dengan nama file yang di-input
     # KAMUS LOKAL
     # i : integer

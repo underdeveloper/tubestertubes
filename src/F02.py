@@ -13,10 +13,10 @@ import auxilliary as flib
 # REALISASI FUNGSI/PROSEDUR
 
 def main(datatosave):
-    # procedure main (input datatosave : array [0..7] of array of string)
+    # procedure main (input datatosave : array [0..7] of Rekaman)
     # I.S. datatosave terdefinisi
     # F.S. isi dari datatosave telah disalin ke 7 file .csv
-    # datatosave = load.files.data
+    # datatosave = load.files
     # KAMUS LOKAL
     # i, j : integer
     # ALGORITMA
@@ -31,10 +31,10 @@ def main(datatosave):
 
 
 def main_auto(datatosave):
-    # procedure main (input datatosave : array [0..7] of string)
+    # procedure main (input datatosave : array [0..7] of Rekaman)
     # I.S. datatosave terdefinisi
     # F.S. isi dari datatosave telah disalin ke 8 file .csv
-    # datatosave = load.files.data
+    # datatosave = load.files
     # KAMUS LOKAL
     # i, j : integer
     # ALGORITMA
