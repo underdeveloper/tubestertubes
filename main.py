@@ -72,7 +72,7 @@ while exit_flag == False and (whoami[1][flib.find_idx(whoami, "Role")] == "Pemai
     elif (command == "refund"):
         refund.main(whoami)
     elif (command == "beri kritik saran"):
-        input_kritik_saran.main()
+        input_kritik_saran.main(whoami)
     elif (command == "exit"):
         exit_flag = True
     else:

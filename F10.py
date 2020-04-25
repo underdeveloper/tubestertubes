@@ -2,12 +2,6 @@
 #Program menerima kritik dan saran
 #Menambah entry data ke kritiksaran.csv
 
-#KAMUS
-class kritiksaran :
-    datacount = 4
-    datadesc = ("Username","Tanggal_Kritik","ID_Wahana", "Isi_Kritik")
-    data = ["*" for i in range (datacount)]
-
 #ALGORITMA PROGRAM UTAMA
 import F01 as load
 import auxilliary as aux
@@ -21,15 +15,15 @@ def main(userfile) :
     # isDataValid, isUserValid, isValidID : boolean
     # i : integer
     # formatcheck : string
+    # ALGORITMA
+    kritiksaran = load.use("kritiksaran.csv")
     isDateValid = False
     isUserValid = False
     isValidID = False
+    array_kritik_baru = ["", "", "", ""]
     while (isValidID == False) or (isDateValid == False) or (isUserValid == False) :
         for i in range(kritiksaran.datacount) :
-            if kritiksaran.datadesc[i] == "Username" :
-                kritiksaran.data[i] = str(input("Masukkan " + kritiksaran.datadesc[i] + ": "))
-                isUserValid = True
-            elif kritiksaran.datadesc[i] == "Tanggal_Kritik" :
+            if kritiksaran.datadesc[i] == "Tanggal_Kritik" :
                 kritiksaran.data[i] = str(input("Masukkan " + kritiksaran.datadesc[i] + ": "))
                 aux.validate_date(kritiksaran.data[i])
                 isDateValid = True
@@ -38,7 +32,7 @@ def main(userfile) :
                 isValidID = True
             else :
                 kritiksaran.data[i] = str(input("Masukkan " + kritiksaran.datadesc[i] + ": "))
-    kritik_added = aux.konsDot(userfile.data,kritiksaran.data)
+    kritik_added = aux.konsDot(kritiksaran.data, array_kritik_baru)
     userfile.rows = userfile.rows + 1
     userfile.data = kritik_added
     print("")
