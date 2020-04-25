@@ -1,7 +1,4 @@
 # PROGRAM F06
-# Desainer : Stefanny
-# Coder : Stefanny, Sulthan
-# Tester : Stefanny, Sulthan, Baskoro, Feral
 
 # Mencari wahana sesuai kriteria tinggi badan dan batasan umur
 
