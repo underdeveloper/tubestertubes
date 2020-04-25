@@ -12,10 +12,10 @@ import F01 as load
 # REALISASI FUNGSI/PROSEDUR
 
 
-def main(userfile):
+def main():
     # Program utama F14
     # Admin memasukkan ID Wahana
-    user = load.use (userfile)
+    user = load.use ("wahana.csv")
 
     id_wahana = str(input("Masukkan ID Wahana: "))
     id_wahana_found = aux.find_baris_all(user.data, "ID_Wahana", id_wahana)
