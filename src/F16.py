@@ -8,7 +8,7 @@
 # REALISASI FUNGSI/PROSEDUR
 
 def main():
-    # procedure main () -> boolean
+    # function main () -> boolean
     # Mencari tahu apakah user mau melakukan save sebelum meng-exit program
     # KAMUS LOKAL
     # isGonnaSave, isValid : boolean
