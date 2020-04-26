@@ -1,7 +1,4 @@
 # F09 - REFUND TIKET
-# Desainer: Sulthan
-# Coder: Sulthan
-# Tester: Sulthan
 
 import F01 as load
 import auxilliary as aux

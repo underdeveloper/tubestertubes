@@ -1,5 +1,5 @@
 #Program F11
-#Menampilkan kritik dan saran yang dimasukkan pemain, diurutkan berdasarkan ID Wahana secara alfabetis
+#Menampilkan kritik dan saran yang dimasukkan pemain, diurutkan berdasarkan ID Wahana secara alfabetis.
 
 #KAMUS
 

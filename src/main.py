@@ -53,30 +53,32 @@ if (whoami != []):
 
 while not exit_flag:
     print("Anda ter-logged in sebagai " + str(whoami[1][flib.find_idx(whoami, "Username")]) + ".")
-
+    
     # Loop pemain
     if (whoami[1][flib.find_idx(whoami, "Role")] == "Pemain" or whoami[1][flib.find_idx(whoami, "Role")] == "Gold"):
         print("Anda adalah seorang Pemain.")
         if whoami[1][flib.find_idx(whoami, "Role")] == "Gold":
             print("Anda memiliki Golden Account (harga tiket diskon 50%).")
         print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
-        command = input("$ ").lower()
         try:
+            command = input("$ ").lower()
             if (command == "list"):
                 flib.command_pemain()
             elif (command == "save"):
-                # save.main(load.files)
-                save.main_auto(load.files) # tolong ganti ya :)
+                save.main(load.files)
+                # save.main_auto(load.files) # tolong ganti ya :)
             elif (command == "cari wahana"):
                 cari_wahana.main()
             elif (command == "beli"):
                 beli_tiket.main(whoami)
+                flib.reload_user(whoami, load.use("user.csv"))
             elif (command == "main"):
                 pakai_tiket.main(whoami)
             elif (command == "hilang"):
                 hilang_tiket.main(whoami)
             elif (command == "refund"):
                 refund.main(whoami)
+                flib.reload_user(whoami, load.use("user.csv"))
             elif (command == "beri kritik saran"):
                 input_kritik_saran.main(whoami)
             elif (command == "cek saldo"):
@@ -93,8 +95,8 @@ while not exit_flag:
     if whoami[1][flib.find_idx(whoami, "Role")] == "Admin":
         print("Anda adalah seorang Admin.")
         print("Apa yang mau anda lakukan? (Ketik \"list\" untuk melihat daftar command)")
-        command = input("$ ").lower()
         try:
+            command = input("$ ").lower()
             if (command == "list"):
                 flib.command_admin()
             elif (command == "save"):
@@ -132,8 +134,8 @@ while not exit_flag:
 if (exit_flag == True):
     isGonnaSave = exit_program.main()
     if (isGonnaSave == True):
-        # save.main(load.files)
-        save.main_auto(load.files) # Ganti jadi yang manual kalo testing sudah selesai.
+        save.main(load.files)
+        # save.main_auto(load.files) # Ganti jadi yang manual kalo testing sudah selesai.
         raise SystemExit
     else:
         raise SystemExit

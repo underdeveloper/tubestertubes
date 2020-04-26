@@ -350,3 +350,24 @@ def search(table, result_column, from_column, from_data):
     # B = flib.search(A, "Saldo", "Nama", "Willy Wangky")
     # print(B)
     # >> "0"
+
+#     PEMBANTU PENJALANAN ALGORITMA UTAMA PROGRAM
+# Fungsi/prosedur di bawah digunakan sebagai pembantu tambahan bagi algoritma utama program.
+
+def reload_user(whoami, userfile):
+    # function whoami (whoami: array [0..1] of array [0..6] of string,
+    #                  userfile: Rekaman) -> array [0..1] of array [0..6] of string
+    # I.S. whoami merupakan baris pada user.csv untuk pengguna yang sedang logged in.
+    # F.S. whoami dimuat ulang.
+    # Ini dipakai jika terjadinya suatu perubahan terhadap data pengguna, contohnya saldo.
+    #   Fungsi ini hanya dipakai di algoritma utama (main.py)
+    # KAMUS LOKAL
+    # username : string
+    # user_found : array [0..6] of string
+    # user_renewed : array [0..1] of array [0..6] of string
+    # ALGORITMA
+    username = str(whoami[1][find_idx(whoami, "Username")])
+    user_found = find_baris_first(userfile.data, "Username", username)
+    user_renewed = [userfile.data[0], user_found]
+
+    return user_renewed

@@ -1,7 +1,4 @@
 # F08 - MENGGUNAKAN TIKET
-# Desainer: Sulthan
-# Coder: Sulthan
-# Tester: Sulthan
 
 import F01 as load
 import auxilliary as aux
