@@ -101,8 +101,7 @@ while not exit_flag:
                 # save.main(load.files) 
                 save.main_auto(load.files) # diganti lagi jadi manual kalo udah :)
             elif (command == "signup"):
-                userfile = signup.main(load.use("user.csv"))
-                load.files[0] = userfile
+                signup.main(load.use("user.csv"))
             elif (command == "cari pemain"):
                 cari_pemain.main()
             elif (command == "lihat tiket"):

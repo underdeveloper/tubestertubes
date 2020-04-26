@@ -12,12 +12,17 @@ import auxilliary as flib
 # REALISASI FUNGSI/PROSEDUR
 
 def main(datatosave):
-    # procedure main (input datatosave : array [0..7] of Rekaman)
+    # procedure main (input datatosave : array [0..7] of F01.Rekaman)
     # I.S. datatosave terdefinisi
     # F.S. isi dari datatosave telah disalin ke 7 file .csv
     # datatosave = load.files
     # KAMUS LOKAL
     # i, j : integer
+    # filename : string
+    # writer : _csv.writer object
+    # f : SEQFILE of
+    #   (*) data : F01.Rekaman.data
+    #   (1) ""
     # ALGORITMA
     for i in range (flib.length(datatosave)):
         # Masukkan <nama file> yang akan di-save
@@ -28,14 +33,19 @@ def main(datatosave):
             writer.writerows(datatosave[i].data)
     print("Data berhasil disimpan!")
 
-
 def main_auto(datatosave):
-    # procedure main (input datatosave : array [0..7] of Rekaman)
+    # procedure main (input datatosave : array [0..7] of F01.Rekaman)
     # I.S. datatosave terdefinisi
     # F.S. isi dari datatosave telah disalin ke 8 file .csv
     # datatosave = load.files
     # KAMUS LOKAL
     # i, j : integer
+    # filename : string
+    # writer : _csv.writer object
+    # f : SEQFILE of
+    #   (*) data : F01.Rekaman.data
+    #   (1) ""
+    # actual_filenames : array [0..7] of string
     # ALGORITMA
     actual_filenames = ["user.csv", "wahana.csv", "pembelian.csv",
                         "penggunaan.csv", "tiket.csv", "refund.csv", "kritiksaran.csv", "hilang.csv"]

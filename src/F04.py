@@ -10,7 +10,7 @@ import B01
 
 # REALISASI FUNGSI/PROSEDUR
 def main(userfile):
-    # function main (userfile : Rekaman) -> array [0..1] of array [0..6] of string
+    # function main (userfile : F01.Rekaman) -> array [0..1] of array [0..6] of string
     # Me-loginkan user yang sudah terdaftar ke dalam sistem.
     # KAMUS LOKAL
     # isUser, findpassword : boolean
@@ -39,7 +39,7 @@ def main(userfile):
     return user
 
 def getuserdata(user, dataname):
-    # function getuserdata (dataname : string) -> string
+    # function getuserdata (user : array [0..1] of array [0..6] of string, dataname : string) -> string
     # Mengambil data dari user yang telah login
     # KAMUS LOKAL
     # ALGORITMA

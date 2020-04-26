@@ -1,30 +1,35 @@
 # Program F03
 # Menambah entry ke user.csv
 
-# KAMUS
-class user:
-    datacount = 7
-    datadesc = ("nama pemain", "tanggal lahir pemain (DD/MM/YYYY)", "tinggi badan pemain (cm)", "username pemain", "password pemain", "role pemain", "saldo pemain")
-    data = ["*" for i in range (datacount)]
-
-# ALGORITMA PROGRAM UTAMA
-
-import os
 import F01 as load
 import auxilliary as flib
 import B01
 
+# KAMUS
+# type custom :
+# < constant datadesc : array [0..6] of string = ["nama pemain", "tanggal lahir pemain (DD/MM/YYYY)", "tinggi badan pemain (cm)", "username pemain", "password pemain", "role pemain", "saldo pemain"]
+#   constant datacount : integer = flib.length(datadesc)
+#   data : array [0..datacount] of string >
+class custom:
+    datadesc = ("nama pemain", "tanggal lahir pemain (DD/MM/YYYY)", "tinggi badan pemain (cm)", "username pemain", "password pemain", "role pemain", "saldo pemain")
+    datacount = flib.length(datadesc)
+    data = ["*" for i in range (datacount)]
+
+# ALGORITMA PROGRAM UTAMA
+
 # REALISASI FUNGSI/PROSEDUR
 
 def main(userfile):
-    # fungsi main (userfile : Rekaman) -> Rekaman
+    # procedure main (input/output userfile : load.Rekaman, output user.data : custom.data)
     # I.S. userfile terdefinisi
     # F.S. ditambahkan suatu data baru ke userfile
     # KAMUS LOKAL
+    # user : custom
     # isUsernameOK, isBirthdayOK, isHeightOK, isEmpty : boolean
     # i : integer
     # sandi : string
     # ALGORITMA
+    user = custom()
     isUsernameOK = False
     isBirthdayOK = False
     isHeightOK = False
@@ -80,8 +85,6 @@ def main(userfile):
                 print("Tanggal lahir Anda tidak valid. Silakan ulangi lagi.")
             if (isHeightOK == False):
                 print("Tinggi badan Anda tidak valid. Silakan ulangi lagi.")
-        useradded = flib.konsDot(userfile.data, user.data)
-    userfile.rows = userfile.rows + 1
-    userfile.data = useradded
+    # Simpan data user baru ke database
+    load.store(userfile.name, flib.konsDot(userfile.data, user.data))
     print("Selamat menjadi pemain, " + user.data[0] + ". Selamat bermain.")
-    return userfile
