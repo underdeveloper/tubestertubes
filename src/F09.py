@@ -31,9 +31,9 @@ def main(pengguna):
     # Input dan validasi ID Wahana:
     id_wahana = input("Masukkan ID wahana: ")
     wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
-    while wahana_found == []:
-        id_wahana = input("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\". Mohon diulang: ')
-        wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
+    if wahana_found == []:
+        print("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\".')
+        return
     wahana_name = wahana_found[aux.find_idx(wahana.data, "Nama_Wahana")]
 
     # Input dan validasi tanggal hari ini

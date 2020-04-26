@@ -6,30 +6,31 @@ import auxilliary as flib
 import B01
 
 # KAMUS
-# type custom :
+# type Custom :
 # < constant datadesc : array [0..6] of string = ["nama pemain", "tanggal lahir pemain (DD/MM/YYYY)", "tinggi badan pemain (cm)", "username pemain", "password pemain", "role pemain", "saldo pemain"]
 #   constant datacount : integer = flib.length(datadesc)
 #   data : array [0..datacount] of string >
-class custom:
-    datadesc = ("nama pemain", "tanggal lahir pemain (DD/MM/YYYY)", "tinggi badan pemain (cm)", "username pemain", "password pemain", "role pemain", "saldo pemain")
-    datacount = flib.length(datadesc)
-    data = ["*" for i in range (datacount)]
+class Custom():
+    def __init__(self):
+        self.datadesc = ("nama pemain", "tanggal lahir pemain (DD/MM/YYYY)", "tinggi badan pemain (cm)", "username pemain", "password pemain", "role pemain", "saldo pemain")
+        self.datacount = flib.length(self.datadesc)
+        self.data = ["*" for i in range (self.datacount)]
 
 # ALGORITMA PROGRAM UTAMA
 
 # REALISASI FUNGSI/PROSEDUR
 
 def main(userfile):
-    # procedure main (input/output userfile : load.Rekaman, output user.data : custom.data)
+    # procedure main (input/output userfile : load.Rekaman, output user.data : Custom.data)
     # I.S. userfile terdefinisi
     # F.S. ditambahkan suatu data baru ke userfile
     # KAMUS LOKAL
-    # user : custom
+    # user : Custom
     # isUsernameOK, isBirthdayOK, isHeightOK, isEmpty : boolean
     # i : integer
     # sandi : string
     # ALGORITMA
-    user = custom()
+    user = Custom()
     isUsernameOK = False
     isBirthdayOK = False
     isHeightOK = False

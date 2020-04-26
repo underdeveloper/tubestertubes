@@ -20,20 +20,19 @@ def main(pengguna):
     are_they_an_admin = (str(pengguna[1][aux.find_idx(pengguna, "Role")]) == "Admin") # Mengecek apakah pengguna admin
     
     # Input dan validasi username
+    print("Jika Anda bukan admin, Anda tidak bisa melaporkan kehilangan tiket untuk pengguna lain.")
     username_lost_tickets = str(input("Masukkan username: "))
     if (not are_they_an_admin) and (username_lost_tickets != username_typing):
         # Jika pengguna bukan admin dan mencoba melaporkan kehilangan tiket untuk pengguna lain, tidak diperbolehkan.
-        print("Jika Anda bukan admin, Anda tidak bisa melaporkan kehilangan tiket untuk pengguna lain.")
-        username_lost_tickets = str(input("Masukkan username Anda: "))
         while username_lost_tickets != username_typing:
             print("Jika Anda bukan admin, Anda tidak bisa melaporkan kehilangan tiket untuk pengguna lain.")
             username_lost_tickets = str(input("Masukkan username *Anda*: "))
     else:
         # Admin boleh melaporkan kehilangan tiket untuk pengguna lain.
         user_found = aux.find_baris_first(user.data, "Username", username_lost_tickets)
-        while user_found == []:
-            username_lost_tickets = input("Tidak ditemukan user dengan username \"" + username_lost_tickets + '\". Mohon diulang: ')
-            user_found = aux.find_baris_first(user.data, "Username", username_lost_tickets)
+        if user_found == []:
+            print("Tidak ditemukan pengguna dengan username \"" + username_lost_tickets + '\".')
+            return
     
     # Input dan validasi tanggal hari ini
     date_now = aux.input_date("Masukkan tanggal hari ini: ")
@@ -41,9 +40,9 @@ def main(pengguna):
     # Input dan validasi ID Wahana
     id_wahana = input("Masukkan ID wahana: ")
     wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
-    while wahana_found == []:
-        id_wahana = input("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\". Mohon diulang: ')
-        wahana_found = aux.find_baris_first(wahana.data, "ID_Wahana", id_wahana)
+    if wahana_found == []:
+        print("Tidak ditemukan wahana dengan ID \"" + id_wahana + '\".')
+        return
     wahana_name = wahana_found[aux.find_idx(wahana.data, "Nama_Wahana")]
 
     # Input dan validasi jumlah tiket yang hilang

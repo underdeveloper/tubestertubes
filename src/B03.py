@@ -1,5 +1,5 @@
 # B03 - Best Wahana
-# Module B04 merupakan file berisi fungsi untuk melaporkan kehilangan tiket.
+# Module B04 merupakan file berisi prosedur untuk melihat wahana terbaik.
 
 import F01 as load
 import auxilliary as aux

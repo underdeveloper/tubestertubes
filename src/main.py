@@ -1,3 +1,5 @@
+# Algoritma utama dari program
+
 # KAMUS
 # exit_flag, isGonnaSave : boolean
 
@@ -28,6 +30,7 @@ import auxilliary as flib
 
 print("$ load")
 load.main()
+# load.main_auto() # untuk debugging. comment otherwise.
 
 # Data semua file .csv telah di-load ke dalam suatu array bernama load.file.data
 # Untuk memanggil salah satu file pada array bisa dengan load.use(<Nama File>.csv)
@@ -65,6 +68,7 @@ while not exit_flag:
                 flib.command_pemain()
             elif (command == "save"):
                 save.main(load.files)
+                # save.main_auto(load.files) # untuk debugging. comment otherwise.
             elif (command == "cari wahana"):
                 cari_wahana.main()
             elif (command == "beli"):
@@ -99,6 +103,7 @@ while not exit_flag:
                 flib.command_admin()
             elif (command == "save"):
                 save.main(load.files)
+                # save.main_auto(load.files) # untuk debugging. comment otherwise.
             elif (command == "signup"):
                 signup.main(load.use("user.csv"))
             elif (command == "cari pemain"):
@@ -132,6 +137,7 @@ if (exit_flag == True):
     isGonnaSave = exit_program.main()
     if (isGonnaSave == True):
         save.main(load.files)
+        # save.main_auto(load.files) # untuk debugging. comment otherwise.
         raise SystemExit
     else:
         raise SystemExit

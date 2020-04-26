@@ -22,8 +22,9 @@ def main():
     username_upgraded = input("Masukkan username yang ingin di-upgrade: ")
     user_found = aux.find_baris_first(user.data, "Username", username_upgraded)
     while user_found == []:
-        username_upgraded = input("Tidak ditemukan user dengan username \"" + username_upgraded + '\". Mohon diulang: ')
-        user_found = aux.find_baris_first(user.data, "Username", username_upgraded)
+        if user_found == []:
+            print("Tidak ditemukan pengguna dengan username \"" + username_upgraded + '\".')
+            return
 
     if user_found[aux.find_idx(user.data, "Role")] == "Gold":
         print("Pemain " + username_upgraded + " sudah memiliki akun Gold.")

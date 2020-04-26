@@ -18,9 +18,9 @@ def main():
     # Input dan validasi Username:
     username = input("Masukkan username: ")
     user_found = aux.find_baris_first(user.data, "Username", username)
-    while user_found == []:
-        username = input("Tidak ditemukan pengguna dengan username \"" + username + '\". Mohon diulang: ')
-        user_found = aux.find_baris_first(user.data, "Username", username)
+    if user_found == []:
+        print("Tidak ditemukan pengguna dengan username \"" + username + '\".')
+        return
     user_real_name = str(user_found[aux.find_idx(user.data, "Nama")])
     balance = int(user_found[aux.find_idx(user.data, "Saldo")])
 
