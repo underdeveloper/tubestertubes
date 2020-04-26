@@ -3,9 +3,9 @@
 
 # import f01, f02, f03, f04... dll
 import F01 as load
-import F02 as save
-import F03 as signup
-import F04 as login
+import F02 as login
+import F03 as save
+import F04 as signup
 import F05 as cari_pemain
 import F06 as cari_wahana
 import F07 as beli_tiket
@@ -27,8 +27,7 @@ import auxilliary as flib
 # Memuat file-filenya (F01 - Load file)
 
 print("$ load")
-# load.main()
-load.main_auto() # Ganti jadi yang manual kalo testing sudah selesai.
+load.main()
 
 # Data semua file .csv telah di-load ke dalam suatu array bernama load.file.data
 # Untuk memanggil salah satu file pada array bisa dengan load.use(<Nama File>.csv)
@@ -66,7 +65,6 @@ while not exit_flag:
                 flib.command_pemain()
             elif (command == "save"):
                 save.main(load.files)
-                # save.main_auto(load.files) # tolong ganti ya :)
             elif (command == "cari wahana"):
                 cari_wahana.main()
             elif (command == "beli"):
@@ -100,8 +98,7 @@ while not exit_flag:
             if (command == "list"):
                 flib.command_admin()
             elif (command == "save"):
-                # save.main(load.files) 
-                save.main_auto(load.files) # diganti lagi jadi manual kalo udah :)
+                save.main(load.files)
             elif (command == "signup"):
                 signup.main(load.use("user.csv"))
             elif (command == "cari pemain"):
@@ -135,7 +132,6 @@ if (exit_flag == True):
     isGonnaSave = exit_program.main()
     if (isGonnaSave == True):
         save.main(load.files)
-        # save.main_auto(load.files) # Ganti jadi yang manual kalo testing sudah selesai.
         raise SystemExit
     else:
         raise SystemExit
