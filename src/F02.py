@@ -1,5 +1,5 @@
 # Program F02
-# Meng-update ke-7 file .csv
+# Meng-update file .csv
 
 # KAMUS
 filedesc = ("File User", "File Daftar Wahana", "File Pembelian Tiket", "File Penggunaan Tiket", "File Kepemilikan Tiket", "File Refund Tiket", "File Kritik dan Saran", "File Laporan Kehilangan Tiket")
