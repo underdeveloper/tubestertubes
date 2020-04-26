@@ -6,6 +6,19 @@ CARA MENJALANKAN PROGRAM
 1. Buka /src.
 2. Interpret file <main.py> dengan python.
 
+LOGIN BEBERAPA USER
+Inilah detail login beberapa user, sehingga Anda bisa mengakses program.
+
+username | password
+
+ - ADMIN
+wangkypro | coklatenaknol
+
+ - PEMAIN / PEMAIN GOLD
+theredshirtedbloke | linguistics
+akumasihkecil | belumjadibesar
+yoels | ilovekermit
+
 DESKRIPSI DIREKTORI DAN FILE
 
 /src  : direktori berisi semua source code yang diperlukan agar program
