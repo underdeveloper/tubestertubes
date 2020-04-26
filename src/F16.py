@@ -1,5 +1,5 @@
 # Program F16
-# Meng-exit program, dan menanyakan apakah perubahan mau disimpan atau tidak
+# Memulai proses exit program, dengan menanyakan apakah perubahan mau disimpan atau tidak
 
 # KAMUS
 
